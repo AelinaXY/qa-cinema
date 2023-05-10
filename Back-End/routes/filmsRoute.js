@@ -17,6 +17,18 @@ module.exports = app => {
     // Delete a film by id
     router.delete("/:id", films.delete);
 
+    // Retrieve films by genre
+    router.get("/genre/:genre", films.findByGenre);
+
+    // Retrieve films by rating
+    router.get("/rating/:rating", films.findByRating);
+
+    // Retrieve films by year
+    router.get("/year/:year", films.findByYear);
+
+    // Retrieve films by title
+    router.get("/title/:title", films.findByTitle);
+
     app.use('/films',router)
 
 }

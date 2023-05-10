@@ -102,3 +102,47 @@ exports.delete = (req, res) => {
     } else res.send({ message: `Film was deleted successfully!` });
   });
 };
+
+exports.findByGenre = (req, res) => {
+  Films.getByGenre(req.params.genre, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving films by genre."
+      });
+    else res.send(data);
+  });
+};
+
+exports.findByRating = (req, res) => {
+  Films.getByRating(req.params.rating, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving films by rating."
+      });
+    else res.send(data);
+  });
+};
+
+exports.findByYear = (req, res) => {
+  Films.getByYear(req.params.year, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving films by year."
+      });
+    else res.send(data);
+  });
+};
+
+exports.findByTitle = (req, res) => {
+  Films.getByTitle(req.params.title, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving films by title."
+      });
+    else res.send(data);
+  });
+};

@@ -1,38 +1,138 @@
-.App {
-  text-align: center;
+body {
+  font-size: 18px;
+  left: 2px;
+  background-color: rgba(0, 41, 65, 255);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Carousel */
+
+.carousel-image {
+  height: 600px;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.carousel {
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Cards */
+
+.nr-card-img {
+  height: 50vh;
+  object-fit: fill;
+}
+
+.nr-text-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  box-shadow: -2px -5px 5px 0px rgba(245, 240, 245, 1);
+}
+
+.nr-text-col {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* .new-rel-row {
+  margin-top: 40px;
+} */
+
+.new-rel-card {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.new-rel-card:hover {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.nr-text-card {
+  width: 100%;
+}
+
+.hp-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.hp-card:hover {
+  transform: scale(1.02);
+  box-shadow: -2px -5px 5px 0px rgba(245, 240, 245, 1);
+}
+
+/* Containers */
+.footer-container {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 41, 65, 1) 40%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  width: 100vw;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.footer-social-container {
+  height: 10vh;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 41, 65, 1) 40%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  width: 100vw;
+  border: black solid 1px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hp-card-container {
+  background-color: rgba(0, 41, 65, 255);
+  padding-top: 40px;
 }
+
+.new-realease-container {
+  background-color: rgba(0, 41, 65, 255);
+  padding: 40px 40px;
+}
+
+.social-links li a i {
+  color: white;
+  padding-top: 1rem;
+  padding: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.social-links li a i:hover {
+  color: #afafe7;
+  padding-top: 1rem;
+}
+
+/* .navbar {
+  background-color: #00003f;
+} */
+
+ul {
+  list-style: none;
+  /* list-style-position: inside; */
+}
+
+.opening-col,
+.QuickLinks-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px;
+}
+
+Button {
+  background-color: #00003f;
+}
+
+/* .navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
