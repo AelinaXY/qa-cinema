@@ -104,7 +104,7 @@ exports.delete = (req, res) => {
 };
 
 exports.findByGenre = (req, res) => {
-  Films.getByGenre(req.params.genre, (err, data) => {
+  Films.findByGenre(req.params.genre, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -115,7 +115,7 @@ exports.findByGenre = (req, res) => {
 };
 
 exports.findByRating = (req, res) => {
-  Films.getByRating(req.params.rating, (err, data) => {
+  Films.findByRating(req.params.rating, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -126,7 +126,7 @@ exports.findByRating = (req, res) => {
 };
 
 exports.findByYear = (req, res) => {
-  Films.getByYear(req.params.year, (err, data) => {
+  Films.findByYear(req.params.year, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -137,7 +137,7 @@ exports.findByYear = (req, res) => {
 };
 
 exports.findByTitle = (req, res) => {
-  Films.getByTitle(req.params.title, (err, data) => {
+  Films.findByTitle(req.params.title, (err, data) => {
     if (err)
       res.status(500).send({
         message:
