@@ -97,4 +97,26 @@ Showings.remove = (id, result) => {
   });
 };
 
+Showings.findByTitle = (title, result) => {
+  sql.query(`select showings.showing_screen, showings.showing_time, (screens.screen_max_seats-(SELECT COUNT(*) FROM tickets WHERE ticket_showing = showings.id)) AS "Remaining Seats"  from showings 
+  join films on showings.showing_film = films.id
+  join screens on showings.showing_screen = screens.id
+  where films.film_title = "${title}";`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found showing: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found Showing with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
 module.exports = Showings;
