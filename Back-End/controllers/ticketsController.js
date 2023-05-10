@@ -99,3 +99,23 @@ exports.update = (req, res) => {
       } else res.send({ message: `Ticket was deleted successfully!` });
     });
   };
+
+
+  
+exports.book = (req, res) => {
+  const username = req.query.username;
+  const showingId = req.query.showing;
+
+  console.log(username, showingId);
+
+
+
+  Tickets.bookTicket(username, showingId, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tickets."
+      });
+    else res.send(data);
+  });
+};
