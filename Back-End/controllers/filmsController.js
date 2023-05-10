@@ -148,7 +148,7 @@ exports.findByTitle = (req, res) => {
 };
 
 exports.findNewReleases = (req, res) => {
-  Films.getNewReleases((err, data) => {
+  Films.findNewReleases((err, data) => {
     if (err)
       res.status(500).send({
         message:

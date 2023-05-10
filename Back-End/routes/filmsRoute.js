@@ -9,7 +9,7 @@ module.exports = app => {
     router.get("/", films.findAll);
 
     // Retrieve a single film by id
-    router.get("/:id", films.findOne);
+    router.get("/byId/:id", films.findOne);
 
     // Update a film by id
     router.put("/:id", films.update);
@@ -30,7 +30,7 @@ module.exports = app => {
     router.get("/title/:title", films.findByTitle);
 
     // Retrieve new releases
-    router.get("/new-releases", films.findNewReleases);
+    router.get("/new-releases/", films.findNewReleases);
 
     app.use('/films',router)
 
