@@ -97,4 +97,18 @@ Tickets.updateById = (id, ticket, result) => {
     });
   };
 
+  Tickets.bookTicket = (userName, showing, result) => {
+    sql.query(`INSERT INTO tickets SET ticket_showing = ${showing}, ticket_user = (SELECT id FROM users WHERE user_name = "${userName}" LIMIT 1)
+    `,(err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      console.log("created tickets: ", { id: res.insertId });
+      result(null, { id: res.insertId });
+    });
+  };
+
   module.exports = Tickets;
