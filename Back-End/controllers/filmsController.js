@@ -146,3 +146,23 @@ exports.findByTitle = (req, res) => {
     else res.send(data);
   });
 };
+
+exports.findNewReleases = (req, res) => {
+  Films.getNewReleases((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving new releases."
+      });
+    else {
+      const newReleases = data.map(film => {
+        return {
+          film_title: film.film_title,
+          film_poster: film.film_poster,
+          film_rating: film.film_rating
+        };
+      });
+      res.send(newReleases);
+    }
+  });
+};

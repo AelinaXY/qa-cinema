@@ -29,6 +29,9 @@ module.exports = app => {
     // Retrieve films by title
     router.get("/title/:title", films.findByTitle);
 
+    // Retrieve new releases
+    router.get("/new-releases", films.findNewReleases);
+
     app.use('/films',router)
 
 }
