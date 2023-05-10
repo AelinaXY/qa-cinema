@@ -1,10 +1,10 @@
 const sql = require("../dbutils/dbConnect.js");
 
 const DiscussionBoardPost = function(discussionBoardPost){
-    this.discussionBoardPost_title= discussionBoard.discussionBoardPost_title;
-    this.discussionBoardPost_body = discussionBoard.discussionBoardPost_body;
-    this.discussionBoardPost_film_id = discussionBoard.discussionBoardPost_film_id;
-    this.discussionBoardPost_film_rating = discussionBoard.discussionBoardPost_film_rating;
+    this.title= discussionBoardPost.title;
+    this.body = discussionBoardPost.body;
+    this.film_id = discussionBoardPost.film_id;
+    this.film_rating = discussionBoardPost.film_rating;
 }
 
 DiscussionBoardPost.create = (newPost,result)=>{
@@ -20,12 +20,12 @@ DiscussionBoardPost.create = (newPost,result)=>{
     });
 }
 
-DiscussionBoardPost.getAll = (title, result) => {
+DiscussionBoardPost.getAll = (result) => {
     let query = "SELECT * FROM discussion_board";
   
-    if (title) {
-      query += ` WHERE title LIKE '%${title}%'`;
-    }
+    // if (title) {
+    //   query += ` WHERE title LIKE '%${title}%'`;
+    // }
   
     sql.query(query, (err, res) => {
       if (err) {
@@ -34,6 +34,7 @@ DiscussionBoardPost.getAll = (title, result) => {
         return;
       }
   
+      console.log(res);
       console.log("posts: ", res);
       result(null, res);
     });
@@ -61,7 +62,7 @@ DiscussionBoardPost.getAll = (title, result) => {
   DiscussionBoardPost.updateById = (id, post, result) => {
     sql.query(
       "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ? WHERE id = ?",
-      [post.title, post.body, post.film_id, post.film_rating],
+      [post.title, post.body, post.film_id, post.film_rating, id],
       (err, res) => {
         if (err) {
           console.log("error: ", err);

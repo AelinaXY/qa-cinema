@@ -10,11 +10,11 @@ exports.create = (req, res) => {
   }
 
   // Create a discussion board post
-  const discussionBoardPost = new DiscussionBoardPosts({
-    discussionBoardPost_title: req.body.discussionBoardPost_title,
-    discussionBoardPost_body : req.body.discussionBoardPost_body,
-    discussionBoardPost_film_id : req.body.discussionBoardPost_film_id,
-    discussionBoardPost_film_rating : req.body.discussionBoardPost_film_rating
+  const discussionBoardPost = new DiscussionBoardPost({
+    title: req.body.title,
+    body: req.body.body,
+    film_id: req.body.film_id,
+    film_rating: req.body.film_rating
 
   });
 
