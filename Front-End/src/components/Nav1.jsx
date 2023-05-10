@@ -4,16 +4,31 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useState } from "react";
+import axios from "axios";
 
 function Nav1() {
+  const [movieTitle, setMovieTitle] = useState("");
+  const [movieData, setMovieData] = useState(null);
+
+  const handleMovieTitleChange = (event) => {
+    setMovieTitle(event.target.value);
+  };
+
+  const handleSearch = () => {
+    const url = `http://localhost:8080/`;
+    axios.get(url).then((response) => {
+      setMovieData(response.data);
+    });
+  };
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg">
       <Container fluid>
         <Navbar.Brand href="/">QA Cinema</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
-            className="me-auto my-2 my-lg-0"
+            className="mx-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
@@ -33,14 +48,19 @@ function Nav1() {
               </NavDropdown.Item>
             </NavDropdown> */}
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" type="submit" onSubmit={handleSearch}>
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              value={movieTitle}
+              onChange={handleMovieTitleChange}
             />
-            <Button variant="outline-success">Search</Button>
+
+            <Button variant="outline-success" type="submit">
+              Search
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>
