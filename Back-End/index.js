@@ -1,33 +1,3 @@
-// const express = require("express"); // importing express
-
-// const bodyParser = require("body-parser");
-// const cors = require("cors");
-
-// const myapp = express(); // initialising it
-// myapp.use(cors());
-// myapp.use(bodyParser.json()); // converts the request body from JSON (res => res.json())
-
-// const mySQLServer = require("./dbConnect.js");
-
-// // get routes - add all the routes here
-// const movieRouter = require("./routes/moviesRoute");
-
-// myapp.use("/movies", movieRouter);
-
-// // myapp.use("*", (req, res, next) => next({ status: 404, message: "Invalid url" })); // catches 404's
-
-// // myapp.use((err, req, res, next) => {
-// //   res.status(err.status ? err.status : 500).send(err.message);
-// // });
-
-// mySQLServer.connect();
-
-// const myserver = myapp.listen(5000, () =>
-//   console.log("Server started on", myserver.address().port)
-// );
-
-// module.exports = myserver;
-
 const express = require("express");
 const cors = require("cors");
 
@@ -53,8 +23,9 @@ app.get("/", (req, res) => {
 require("./routes/usersRoute.js")(app);
 require("./routes/ccdetailsRoute.js")(app);
 require("./routes/filmsRoute.js")(app);
-
-
+require("./routes/showingsRoute.js")(app);
+require("./routes/screensRoute.js")(app);
+require("./routes/ticketsRoute.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
