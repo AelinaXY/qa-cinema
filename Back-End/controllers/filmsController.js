@@ -30,6 +30,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
+  // #swagger.paths = ['/films/']
   const title = req.query.title;
 
   Films.getAll(title, (err, data) => {
