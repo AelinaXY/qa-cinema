@@ -13,7 +13,6 @@ exports.create = (req, res) => {
     showing_film: req.body.showing_film,
     showing_screen: req.body.showing_screen,
     showing_time: req.body.showing_time,
-    showing_currentSeats: showing.showing_currentSeats
   });
 
   // Save Showing in the database

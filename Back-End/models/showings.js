@@ -5,7 +5,6 @@ const Showings = function(showing) {
   this.showing_film = showing.showing_film;
   this.showing_screen = showing.showing_screen;
   this.showing_time = showing.showing_time;
-  this.showing_currentSeats = showing.showing_currentSeats
 };
 
 Showings.create = (newShowing, result) => {
@@ -58,8 +57,8 @@ Showings.findById = (id, result) => {
 
 Showings.updateById = (id, showing, result) => {
   sql.query(
-    "UPDATE showings SET showing_film = ?, showing_screen = ?, showing_time = ?, showing_currentSeats = ? WHERE id = ?",
-    [showing.showing_film, showing.showing_screen, showing.showing_time, showing.showing_currentSeats, id],
+    "UPDATE showings SET showing_film = ?, showing_screen = ?, showing_time = ? WHERE id = ?",
+    [showing.showing_film, showing.showing_screen, showing.showing_time, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
