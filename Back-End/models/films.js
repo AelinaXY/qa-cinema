@@ -155,4 +155,17 @@ Films.findByTitle = (title, result) => {
   });
 };
 
+Films.findNewReleases = (result) => {
+  sql.query(`SELECT film_title, film_poster, film_rating FROM films WHERE film_year = YEAR(CURRENT_DATE())`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("new releases: ", res);
+    result(null, res);
+  });
+};
+
 module.exports = Films;
