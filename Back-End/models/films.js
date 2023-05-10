@@ -103,4 +103,56 @@ Films.remove = (id, result) => {
   });
 };
 
+Films.findByGenre = (genre, result) => {
+  sql.query(`SELECT * FROM films WHERE film_genre LIKE '%${genre}%'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log(`films with genre ${genre}: `, res);
+    result(null, res);
+  });
+};
+
+Films.findByRating = (rating, result) => {
+  sql.query(`SELECT * FROM films WHERE film_rating = '${rating}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log(`films with rating ${rating}: `, res);
+    result(null, res);
+  });
+};
+
+Films.findByYear = (year, result) => {
+  sql.query(`SELECT * FROM films WHERE film_year = ${year}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log(`films from year ${year}: `, res);
+    result(null, res);
+  });
+};
+
+Films.findByTitle = (title, result) => {
+  sql.query(`SELECT * FROM films WHERE film_title LIKE '%${title}%'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log(`films with title ${title}: `, res);
+    result(null, res);
+  });
+};
+
 module.exports = Films;
