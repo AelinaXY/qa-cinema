@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "startboth": "concurrently \"react-scripts start\" \"cd ../Back-End && nodemon index.js"
+    "startboth": "concurrently \"react-scripts start\" \"cd ../Back-End && nodemon index.js\""
   },
   "eslintConfig": {
     "extends": [

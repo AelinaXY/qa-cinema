@@ -5,6 +5,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import {Link} from "react-router-dom";
+import shuffle from "../functions/shuffle";
 
 const filledHomePageReturn = (films, newReleases) => {
   console.log("IN FILLED HOME PAGE");
@@ -15,7 +16,7 @@ const filledHomePageReturn = (films, newReleases) => {
 
   const cardList = [];
 
-  films.slice(0, 3).map((i) => {
+  newReleases.slice(0, 3).map((i) => {
     carouselList.push(
       <Carousel.Item>
         <img
@@ -36,14 +37,17 @@ const filledHomePageReturn = (films, newReleases) => {
     cardList.push(
       <Col className=" d-flex align-items-center justify-content-center">
 
+    <Link to={`/screenings/${i.film_title}`}>
       <Card style={{ width: "18rem" }} className="hp-card" >
       <Card.Img variant="top" src={`${i.film_poster}`} />
       <Card.Body>
-        <Link to='/screenings'>
-        <Button>Go to Screenings</Button>
-        </Link>
+      <div class="col-xs-1" align="center">
+        
+        <Button class="cardButton">Go to Screenings</Button>
+        </div>
       </Card.Body>
     </Card>
+    </Link>
     </Col>
   );
   })
@@ -55,7 +59,7 @@ const filledHomePageReturn = (films, newReleases) => {
       <Container>
         <Row>
           <Col>
-          <img id="imageCarouselLeft" src={`${films[0].film_poster}`} />
+          <img id="imageCarouselLeft" src={`${newReleases[0].film_poster}`} />
           </Col>
 
           <Col>
@@ -63,7 +67,7 @@ const filledHomePageReturn = (films, newReleases) => {
           </Col>
 
           <Col>
-            <img id="imageCarouselRight" src={`${films[2].film_poster}`} />
+            <img id="imageCarouselRight" src={`${newReleases[2].film_poster}`} />
           </Col>
         </Row>
       </Container>
@@ -80,18 +84,9 @@ const filledHomePageReturn = (films, newReleases) => {
             <Card className="bg-dark  new-rel-card">
               <Card.Img
                 className="nr-card-img"
-                src="images/guardians-3.jpg"
+                src={`${newReleases[1].film_poster}`}
                 alt="Card image"
               />
-              {/* <Card.ImgOverlay> */}
-              {/* <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural
-                      lead-in to additional content. This content is a little bit
-                      longer.
-                    </Card.Text>
-                    <Card.Text>Last updated 3 mins ago</Card.Text>
-                  </Card.ImgOverlay> */}
             </Card>
           </Col>
           <Col className="nr-text-col">

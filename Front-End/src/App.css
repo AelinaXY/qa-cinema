@@ -39,8 +39,7 @@ body {
 /* Cards */
 
 .nr-card-img {
-  height: 50vh;
-  object-fit: fill;
+  width: 100%;
 }
 
 .nr-text-card {
@@ -71,7 +70,7 @@ body {
 }
 
 .nr-text-card {
-  width: 100%;
+  width: 50%;
 }
 
 .hp-card {
