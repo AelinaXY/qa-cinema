@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "ticket_showing": 1,
+      "ticket_user": 1
+    },
+    {
+      "id": 2,
+      "ticket_showing": 2,
+      "ticket_user": 2
+    },
+    {
+      "id": 3,
+      "ticket_showing": 3,
+      "ticket_user": 3
+    },
+    {
+      "id": 4,
+      "ticket_showing": 4,
+      "ticket_user": 4
+    },
+    {
+      "id": 5,
+      "ticket_showing": 5,
+      "ticket_user": 5
+    }, 
+    {
+        "id": 6,
+        "ticket_showing": 2,
+        "ticket_user": 3
+    }
+  ]
+  

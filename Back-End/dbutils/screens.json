@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "screen_max_seats": 100
+    },
+    {
+      "id": 2,
+      "screen_max_seats": 150
+    },
+    {
+      "id": 3,
+      "screen_max_seats": 120
+    },
+    {
+      "id": 4,
+      "screen_max_seats": 200
+    },
+    {
+      "id": 5,
+      "screen_max_seats": 80
+    }
+  ]
