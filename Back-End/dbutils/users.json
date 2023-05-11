@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "user_name": "maryum_s",
+      "user_fname": "maryum",
+      "user_pass": "pass123"
+    },
+    {
+      "id": 2,
+      "user_name": "jimmy_d",
+      "user_fname": "jimmy",
+      "user_pass": "abc123"
+    },
+    {
+      "id": 3,
+      "user_name": "lauren_d",
+      "user_fname": "lauren",
+      "user_pass": "password1234"
+    },
+    {
+      "id": 4,
+      "user_name": "allwin_j",
+      "user_fname": "allwin",
+      "user_pass": "password123"
+    },
+    {
+      "id": 5,
+      "user_name": "rose_a",
+      "user_fname": "rose",
+      "user_pass": "word123"
+    }
+  ]

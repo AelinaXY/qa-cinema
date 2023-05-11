@@ -5,6 +5,7 @@ import Screenings from "./components/Screenings";
 import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
+
 import {
   BrowserRouter,
   Route,
