@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "showing_film": 5,
+      "showing_screen": 2,
+      "showing_time": "2023-05-11T18:30:00"
+    },
+    {
+      "id": 2,
+      "showing_film": 2,
+      "showing_screen": 2,
+      "showing_time": "2023-05-12T20:00:00"
+    },
+    {
+      "id": 3,
+      "showing_film": 3,
+      "showing_screen": 3,
+      "showing_time": "2023-05-13T19:15:00"
+    },
+    {
+      "id": 4,
+      "showing_film": 4,
+      "showing_screen": 1,
+      "showing_time": "2023-05-14T21:30:00"
+    },
+    {
+      "id": 5,
+      "showing_film": 5,
+      "showing_screen": 2,
+      "showing_time": "2023-05-15T16:45:00"
+    }
+  ]
+  
