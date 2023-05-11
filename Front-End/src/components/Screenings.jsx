@@ -1,5 +1,7 @@
+import StripeContainer from "./StripeContainer";
+
 const Screenings = () => {
-  return <h2>Screenings</h2>;
+  return <StripeContainer />;
 };
 
 export default Screenings;
