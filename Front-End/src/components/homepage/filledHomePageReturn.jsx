@@ -84,18 +84,9 @@ const filledHomePageReturn = (films, newReleases) => {
             <Card className="bg-dark  new-rel-card">
               <Card.Img
                 className="nr-card-img"
-                src="images/guardians-3.jpg"
+                src={`${newReleases[1].film_poster}`}
                 alt="Card image"
               />
-              {/* <Card.ImgOverlay> */}
-              {/* <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural
-                      lead-in to additional content. This content is a little bit
-                      longer.
-                    </Card.Text>
-                    <Card.Text>Last updated 3 mins ago</Card.Text>
-                  </Card.ImgOverlay> */}
             </Card>
           </Col>
           <Col className="nr-text-col">
