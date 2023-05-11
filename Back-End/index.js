@@ -1,12 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const swaggerUi = require('swagger-ui-express')
-const swaggerFile = require('./swagger-output.json')
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("./swagger-output.json");
 
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8081",
 };
 
 app.use(cors(corsOptions));
@@ -17,7 +17,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // simple route
 app.get("/", (req, res) => {
@@ -32,9 +32,42 @@ require("./routes/screensRoute.js")(app);
 require("./routes/ticketsRoute.js")(app);
 require("./routes/discussionBoardRoute.js")(app);
 
-
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
+});
+
+// Stripe
+require("dotenv").config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(cors());
+
+app.post("/payment", cors(), async (req, res) => {
+  let { amount, id } = req.body;
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: "USD",
+      description: "QA Cinema",
+      payment_method: id,
+      confirm: true,
+    });
+    console.log("Payment", payment);
+    res.json({
+      message: "Payment successful",
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error", error);
+    res.json({
+      message: "Payment failed",
+      success: false,
+    });
+  }
 });
