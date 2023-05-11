@@ -5,7 +5,7 @@ import Screenings from "./components/Screenings";
 import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
-import Film from './components/Film';
+import Film from "./components/Film";
 
 import {
   BrowserRouter,
@@ -16,7 +16,7 @@ import { Switch, BrowserRouter as Router, Link } from "react-router-dom";
 function App() {
   return (
     <>
-      <Film/>
+      <Film />
       <BrowserRouter>
         <Nav1 />
         <Route path="/" exact>
