@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
+
 import { useState } from "react";
 
 const ContactForm = () => {
@@ -16,7 +17,7 @@ const ContactForm = () => {
   if (state.succeeded) {
     return (
       <div className="contact-msg">
-        <Col md={6} className="mb-2">
+        <Col md={6} className="mx-auto">
           <Toast show={showA} onClose={toggleShowA}>
             <Toast.Header>
               <img
@@ -24,10 +25,11 @@ const ContactForm = () => {
                 className="rounded me-2"
                 alt=""
               />
-              <strong className="me-auto">Bootstrap</strong>
+              <strong className="me-auto">QA Cinemas</strong>
             </Toast.Header>
             <Toast.Body>
-              Woohoo, you're reading this text in a Toast!
+              Thank you for you for your inquiry. Respomses typically take 1-2
+              working days.
             </Toast.Body>
           </Toast>
         </Col>
@@ -35,7 +37,7 @@ const ContactForm = () => {
     );
   }
   return (
-    <Container>
+    <Container className="email-container">
       <Row>
         <Col>
           <form onSubmit={handleSubmit}>

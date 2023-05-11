@@ -165,8 +165,24 @@ h2 {
   text-shadow: 1px 1px 0px #ff0000;
 }
 
-.contact-msg {
+/* .contact-msg {
   display: flex;
   flex-direction: column;
   align-items: center;
+} */
+
+.email-container {
+  width: 50vh;
+}
+
+.address-card {
+  width: 50vh;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: darkblue; */
+  padding-top: 20px;
 }
