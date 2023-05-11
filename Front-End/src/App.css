@@ -80,7 +80,7 @@ body {
 }
 
 .hp-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.08);
   box-shadow: -2px -5px 5px 0px rgba(245, 240, 245, 1);
 }
 

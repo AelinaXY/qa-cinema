@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import {Link} from "react-router-dom";
 
 const filledHomePageReturn = (films, newReleases) => {
   console.log("IN FILLED HOME PAGE");
@@ -11,6 +12,8 @@ const filledHomePageReturn = (films, newReleases) => {
   console.log(newReleases);
 
   const carouselList = [];
+
+  const cardList = [];
 
   films.slice(0, 3).map((i) => {
     carouselList.push(
@@ -27,6 +30,25 @@ const filledHomePageReturn = (films, newReleases) => {
       </Carousel.Item>
     );
   });
+
+  films.map((i) =>
+  {
+    cardList.push(
+      <Col className=" d-flex align-items-center justify-content-center">
+
+      <Card style={{ width: "18rem" }} className="hp-card" >
+      <Card.Img variant="top" src={`${i.film_poster}`} />
+      <Card.Body>
+        <Link to='/screenings'>
+        <Button>Go to Screenings</Button>
+        </Link>
+      </Card.Body>
+    </Card>
+    </Col>
+  );
+  })
+
+
 
   return (
     <>
@@ -48,37 +70,7 @@ const filledHomePageReturn = (films, newReleases) => {
       {/* // Cards  */}
       <Container fluid className="hp-card-container">
         <Row>
-          <Col className=" d-flex align-items-center justify-content-center">
-            <Card style={{ width: "18rem" }} className="hp-card">
-              <Card.Img variant="top" src="images/guardians-3.jpg" />
-              <Card.Body>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>{" "}
-          </Col>
-
-          <Col className=" d-flex align-items-center justify-content-center">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="images/guardians-3.jpg" />
-              <Card.Body>
-                <Button>Go somewhere</Button>
-              </Card.Body>
-            </Card>{" "}
-          </Col>
-
-          <Col className=" d-flex align-items-center justify-content-center">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="images/guardians-3.jpg" />
-              <Card.Body>
-                {/* <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                      Some quick example text to build on the card title and make up
-                      the bulk of the card's content.
-                    </Card.Text> */}
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>{" "}
-          </Col>
+          {cardList}
         </Row>
       </Container>
       {/* // New Release Cards  */}
