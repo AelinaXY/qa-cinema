@@ -5,6 +5,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import {Link} from "react-router-dom";
+import shuffle from "../functions/shuffle";
 
 const filledHomePageReturn = (films, newReleases) => {
   console.log("IN FILLED HOME PAGE");
@@ -15,7 +16,7 @@ const filledHomePageReturn = (films, newReleases) => {
 
   const cardList = [];
 
-  films.slice(0, 3).map((i) => {
+  newReleases.slice(0, 3).map((i) => {
     carouselList.push(
       <Carousel.Item>
         <img
@@ -39,9 +40,11 @@ const filledHomePageReturn = (films, newReleases) => {
       <Card style={{ width: "18rem" }} className="hp-card" >
       <Card.Img variant="top" src={`${i.film_poster}`} />
       <Card.Body>
+      <div class="col-xs-1" align="center">
         <Link to='/screenings'>
-        <Button>Go to Screenings</Button>
+        <Button class="cardButton">Go to Screenings</Button>
         </Link>
+        </div>
       </Card.Body>
     </Card>
     </Col>
@@ -55,7 +58,7 @@ const filledHomePageReturn = (films, newReleases) => {
       <Container>
         <Row>
           <Col>
-          <img id="imageCarouselLeft" src={`${films[0].film_poster}`} />
+          <img id="imageCarouselLeft" src={`${newReleases[0].film_poster}`} />
           </Col>
 
           <Col>
@@ -63,7 +66,7 @@ const filledHomePageReturn = (films, newReleases) => {
           </Col>
 
           <Col>
-            <img id="imageCarouselRight" src={`${films[2].film_poster}`} />
+            <img id="imageCarouselRight" src={`${newReleases[2].film_poster}`} />
           </Col>
         </Row>
       </Container>
