@@ -10,12 +10,30 @@ body {
 /* Carousel */
 
 .carousel-image {
-  height: 600px;
+  /* height: 600px; */
   width: 100%;
 }
 
 .carousel {
   width: 100%;
+  z-index: 950;
+
+}
+
+#imageCarouselLeft {
+  margin-top: 10%;
+  width: 90%;
+  filter: brightness(50%);
+  transform: rotate(-15deg);
+  float: right;
+}
+#imageCarouselRight {
+  margin-top: 10%;
+  width: 90%;
+  filter: brightness(50%);
+  transform: rotate(15deg);
+  z-index: 900;
+  float: left;
 }
 
 /* Cards */
