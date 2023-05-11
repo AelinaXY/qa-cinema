@@ -37,16 +37,17 @@ const filledHomePageReturn = (films, newReleases) => {
     cardList.push(
       <Col className=" d-flex align-items-center justify-content-center">
 
+    <Link to={`/screenings/${i.film_title}`}>
       <Card style={{ width: "18rem" }} className="hp-card" >
       <Card.Img variant="top" src={`${i.film_poster}`} />
       <Card.Body>
       <div class="col-xs-1" align="center">
-        <Link to='/screenings'>
+        
         <Button class="cardButton">Go to Screenings</Button>
-        </Link>
         </div>
       </Card.Body>
     </Card>
+    </Link>
     </Col>
   );
   })
