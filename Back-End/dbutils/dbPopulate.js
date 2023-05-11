@@ -83,3 +83,16 @@ fs.readFile('ccdetails.json','utf8',(err,data)=>{
     });
     console.log('ccdetail data inserted into database');
 });
+
+//read the discussionboard file
+fs.readFile('discussionboard.json','utf8',(err,data)=>{
+    if(err) throw err;
+    const discussionboard = JSON.parse(data);
+    discussionboard.forEach(post=>{
+        let sql = 'INSERT INTO cc_details SET ?';
+        db.query(sql,post,(err)=>{
+            if (err) throw err;
+        });
+    });
+    console.log('discussionboard data inserted into database');
+});
