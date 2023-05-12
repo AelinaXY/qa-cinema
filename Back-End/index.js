@@ -38,36 +38,34 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-// Stripe
-require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
-const bodyParser = require("body-parser");
+const stripe = require("stripe")(
+  "sk_test_51N6WNWCKjd8RwmSKm2ukkDLFViI5khLyvD5GKLcIFEBtEIHyFp1ZJ4utF3x0tV4WXamYpI6mXVypvqA3SBLqE1Y600o867sDCD"
+);
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.static("public"));
 
-app.use(cors());
+const calculateOrderAmount = (items) => {
+  // Replace this constant with a calculation of the order's amount
+  // Calculate the order total on the server to prevent
+  // people from directly manipulating the amount on the client
+  return 1400;
+};
 
-app.post("/payment", cors(), async (req, res) => {
-  let { amount, id } = req.body;
-  try {
-    const payment = await stripe.paymentIntents.create({
-      amount,
-      currency: "USD",
-      description: "QA Cinema",
-      payment_method: id,
-      confirm: true,
-    });
-    console.log("Payment", payment);
-    res.json({
-      message: "Payment successful",
-      success: true,
-    });
-  } catch (error) {
-    console.log("Error", error);
-    res.json({
-      message: "Payment failed",
-      success: false,
-    });
-  }
+app.post("/create-payment-intent", async (req, res) => {
+  const { items } = req.body;
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: calculateOrderAmount(items),
+    currency: "gbp",
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
 });
+
+app.listen(4242, () => console.log("Node server listening on port 4242!"));
