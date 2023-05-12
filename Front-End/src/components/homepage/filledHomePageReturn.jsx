@@ -5,7 +5,6 @@ import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import {Link} from "react-router-dom";
-import shuffle from "../functions/shuffle";
 
 const filledHomePageReturn = (films, newReleases) => {
   console.log("IN FILLED HOME PAGE");

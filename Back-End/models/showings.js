@@ -97,11 +97,11 @@ Showings.remove = (id, result) => {
   });
 };
 
-Showings.findByTitle = (title, result) => {
+Showings.findByShowingId = (id, result) => {
   sql.query(`select showings.id, showings.showing_screen, showings.showing_time, (screens.screen_max_seats-(SELECT COUNT(*) FROM tickets WHERE ticket_showing = showings.id)) AS "Remaining Seats"  from showings 
   join films on showings.showing_film = films.id
   join screens on showings.showing_screen = screens.id
-  where films.film_title = "${title}";`, (err, res) => {
+  where films.id = "${id}";`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
