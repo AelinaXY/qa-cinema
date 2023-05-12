@@ -22,12 +22,16 @@ const ThankYou = () => {
                 // className="justify-content-center"
                 style={{ paddingTop: "30px" }}
               >
-                <h2 className="justify-content-center">QA CINEMA</h2>
+                <h2 className="justify-content-center thankyou-head">
+                  QA CINEMA
+                </h2>
               </Card.Title>
               <hr></hr>
               <Card.Body>
-                <h2>Purchase successful!</h2>
-                <h2>Thank you for choosing to view with QA Cinemas</h2>
+                <h2 className="thankyou-head">Purchase successful!</h2>
+                <h2 className="thankyou-head">
+                  Thank you for choosing to view with QA Cinemas
+                </h2>
               </Card.Body>
               <Link to="/">
                 <Button className="thankyou-btn ">Home Page</Button>

@@ -187,6 +187,7 @@ h1 {
 }
 
 .thankyou-card {
+  margin-top: 60px;
   background-color: rgba(0, 41, 65, 255);
   width: 50vw;
   height: 50vh;
@@ -201,18 +202,24 @@ hr {
 }
 
 .thankyou-btn {
-  color: black;
+  color: white;
   background-color: black;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-.thankyou-btn :hover {
-  color: white;
+.thankyou-btn:hover {
+  text-shadow: 1px 1px 0px #ff0000;
   background-color: rgba(0, 41, 65, 255) !important;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.thankyou-head {
+  color: white;
+
+  text-shadow: 1px 1px 0px #ff0000;
 }
