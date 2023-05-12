@@ -58,11 +58,11 @@ const Discussion = () => {
 
     for (let i = 1; i <= 5; i++) {
       stars.push(
-        <StarIcon
-          key={i}
-          onClick={() => handleRatingClick(i)}
-          style={{ cursor: 'pointer', color: i <= rating ? 'yellow' : 'grey' }}
-        />
+        <span key={i} onClick={()=>handleRatingClick(i)}
+          style={{cursor:'pointer',color:i<=rating? 'yellow':'gray',}}
+        >
+          ☆
+        </span>
       );
     }
 
