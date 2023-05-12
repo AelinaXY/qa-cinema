@@ -5,7 +5,6 @@ import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import {Link} from "react-router-dom";
-import shuffle from "../functions/shuffle";
 
 const filledHomePageReturn = (films, newReleases) => {
   console.log("IN FILLED HOME PAGE");
@@ -37,7 +36,7 @@ const filledHomePageReturn = (films, newReleases) => {
     cardList.push(
       <Col className=" d-flex align-items-center justify-content-center">
 
-    <Link to={`/screenings/${i.film_title}`}>
+    <Link to={`/screenings/${i.film_title.replace(/\s+/g, '')}`}>
       <Card style={{ width: "18rem" }} className="hp-card" >
       <Card.Img variant="top" src={`${i.film_poster}`} />
       <Card.Body>
@@ -74,7 +73,7 @@ const filledHomePageReturn = (films, newReleases) => {
 
       <Container fluid className="new-rs-title-container">
         <Row>
-          <h1>QA's Newest Releases</h1>
+          <h1>QA's Newest Films</h1>
         </Row>
       </Container>
 
@@ -85,7 +84,7 @@ const filledHomePageReturn = (films, newReleases) => {
         </Row>
       </Container>
       {/* // New Release Cards  */}
-      <Container fluid className="new-realease-container">
+      {/* <Container fluid className="new-realease-container">
         <Row className="new-rel-row">
           <Col>
             <Card className="bg-dark  new-rel-card">
@@ -111,12 +110,12 @@ const filledHomePageReturn = (films, newReleases) => {
                     </Button>
                   </div>
                 </Card.Link>
-                {/* <Card.Link href="#">Another Link</Card.Link> */}
+                <Card.Link href="#">Another Link</Card.Link>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
       {/* // Footer  */}
       <Container fluid className="footer-container">
         <Row>
