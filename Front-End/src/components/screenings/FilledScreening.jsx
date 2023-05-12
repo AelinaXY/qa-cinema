@@ -10,6 +10,7 @@ import shuffle from "../functions/shuffle";
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import arrayChunk from "../functions/arrayChunk";
+import dateParseFromDB from "../functions/dateParseFromDB";
 
 
 const FilledScreening = ({ films, selectedFilm }) => {
@@ -21,7 +22,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
 
 
   //Get All Showings
-  const [showingData, setShowingData] = useState("");
+  const [showingData, setShowingData] = useState([]);
   const [error, setError] = useState("");
   const loaded = useRef(false);
 
@@ -61,30 +62,29 @@ const FilledScreening = ({ films, selectedFilm }) => {
     let containedFlag = false;
     let savedFilm;
 
-    filmArray.forEach((film) => { 
-      if(film.film_title.replace(/\s+/g, '') === selectedFilm)
-    {
-      savedFilm = film;
-      containedFlag = true;
-    }})
-    {
-      
-    }
+    filmArray.forEach((film) => {
+      if (film.film_title.replace(/\s+/g, '') === selectedFilm) {
+        savedFilm = film;
+        containedFlag = true;
+      }
+    })
 
-    if(containedFlag)
-    {
+
+    
+    if (containedFlag) {
       shownCardsAdder(printArray, filmArray);
+      let displayShowingData = [];
 
       printArray.push(
         <Row>
           <Col className=" d-flex align-items-center justify-content-center">
 
-            <Card style={{ width: "80%"}}>
+            <Card style={{ width: "80%" }}>
               <Card.Body>
                 <Container>
                   <Row>
                     <Col>
-                      <Card.Img id="shownFilmImage" variant="top" src={`${savedFilm.film_poster}` }/>
+                      <Card.Img id="shownFilmImage" variant="top" src={`${savedFilm.film_poster}`} />
 
                     </Col>
 
@@ -92,8 +92,28 @@ const FilledScreening = ({ films, selectedFilm }) => {
 
                       <div class="col-xs-1" align="center">
 
-                        <Button class="cardButton">Go to Screenings for {savedFilm.film_title} </Button>
-                      </div>
+                        <h1>Showings for {`${savedFilm.film_title}`}</h1>
+                        {
+                          showingData.map((i) => {
+                            console.log(i.film_id);
+                            console.log(savedFilm.id);
+                            if (i.film_id === savedFilm.id) {
+                              displayShowingData.push(
+                                <>
+                                  <br />
+                                  <h2>Showing at: {dateParseFromDB(i.showing_time)}</h2>
+                                  <h2>With {i.remaining_seats} seats left on Screen {i.showing_screen}</h2>
+                                  <h2>Book Now</h2>
+                                  
+                                </>
+                              )
+                            }
+                          }
+                          )
+                        }
+
+                        {displayShowingData}
+                      </div >
                     </Col>
                   </Row>
 
@@ -102,13 +122,12 @@ const FilledScreening = ({ films, selectedFilm }) => {
 
             </Card>
           </Col>
-    </Row>
+        </Row>
 
       )
     }
 
-    else
-    {
+    else {
       shownCardsAdder(printArray, filmArray);
     }
   })
@@ -119,30 +138,30 @@ const FilledScreening = ({ films, selectedFilm }) => {
         {filmArray.map((i) => {
           return (
             <Col className=" d-flex align-items-center justify-content-center">
-  
+
               <Link to={`/screenings/${i.film_title.replace(/\s+/g, '')}`}>
-              <Card style={{ width: "36rem" }} className="hp-card">
-                <Card.Body>
-                  <Container>
-                    <Row>
-                      <Col>
-                        <Card.Img variant="top" src={`${i.film_poster}`} />
-  
-                      </Col>
-  
-                      <Col>
-  
-                        <div class="col-xs-1" align="center">
-  
-                          <Button class="cardButton">Go to Screenings</Button>
-                        </div>
-                      </Col>
-                    </Row>
-  
-                  </Container>
-                </Card.Body>
-  
-              </Card>
+                <Card style={{ width: "36rem" }} className="hp-card">
+                  <Card.Body>
+                    <Container>
+                      <Row>
+                        <Col>
+                          <Card.Img variant="top" src={`${i.film_poster}`} />
+
+                        </Col>
+
+                        <Col>
+
+                          <div class="col-xs-1" align="center">
+
+                            <Button class="cardButton">Go to Screenings</Button>
+                          </div>
+                        </Col>
+                      </Row>
+
+                    </Container>
+                  </Card.Body>
+
+                </Card>
               </Link>
             </Col>
           );
@@ -157,7 +176,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
     if (error !== "") {
       console.log(error);
     } else if (showingData !== "") {
-      console.log(printArray);
+      console.log(showingData);
       return (
         <>
           {printArray}
