@@ -112,5 +112,20 @@ exports.delete = (req, res) => {
         }
       } else res.send(data);
     });
+  }
+
+    exports.findAllShowings = (req, res) => {
+      Showings.findByAllShowing((err, data) => {
+        if (err) {
+          if (err.kind === "not_found") {
+            res.status(404).send({
+              message: `Not found Showing.`
+            });
+          } else {
+            res.status(500).send({
+              message: "Error retrieving Showing with that"});
+          }
+        } else res.send(data);
+      });
   };
 

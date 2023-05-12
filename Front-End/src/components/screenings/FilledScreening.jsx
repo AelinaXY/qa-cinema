@@ -31,7 +31,7 @@ const FilledScreening = ({films, selectedFilm}) => {
 
 
     //Get All Showings
-    let showingData = {};
+    const [showingData, setShowingData] = useState("");
     const [error, setError] = useState("");
     const loaded = useRef(false);
 
@@ -46,7 +46,7 @@ const FilledScreening = ({films, selectedFilm}) => {
       axios
         .get(url, config)
         .then((response) => {
-          setFunction(response.data, filmTitle, filmId);
+          setFunction(response.data);
         })
         .catch((error) => {
           setError(error);
@@ -54,25 +54,18 @@ const FilledScreening = ({films, selectedFilm}) => {
 
     })
 
-    const pushData = (dataToBePushed,filmTitle,filmId) =>
-    {
-      showingData.title = filmTitle;
-      showingData.id = filmId;
-      showingData.showings = dataToBePushed;
-    }
-
     useEffect(() =>
     {
       if (loaded.current === false){
-        for(let i = 0; i<films.length; i++)
-        {
-          request(`http://localhost:8080/showings/film/${films[i].id}`,pushData);
-        }
+          request(`http://localhost:8080/showings/allFilms/0`,setShowingData);
         
         loaded.current = true
       }
 
     },[]);
+
+
+    
 
 
     if (loaded) {
