@@ -35,6 +35,32 @@ body {
   z-index: 900;
   float: left;
 }
+/* Title */
+
+.new-rs-title-container{
+  padding-top: 2%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.new-rs-title-container h1{
+  background-color: #81efc9;
+  width: 30%;
+  min-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  padding-top: 0.2%;
+  padding-bottom: 0.2%;
+  font-weight: bolder;  
+  color: black;
+  font-size: 300%;
+  text-shadow: whitesmoke;
+  border-color: black;
+  border-width: 5px;
+
+
+}
 
 /* Cards */
 
@@ -109,7 +135,6 @@ body {
 
 .hp-card-container {
   background-color: rgba(0, 41, 65, 255);
-  padding-top: 40px;
 }
 
 .new-realease-container {

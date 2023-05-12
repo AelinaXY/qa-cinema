@@ -71,6 +71,13 @@ const filledHomePageReturn = (films, newReleases) => {
           </Col>
         </Row>
       </Container>
+
+      <Container fluid className="new-rs-title-container">
+        <Row>
+          <h1>QA's Newest Releases</h1>
+        </Row>
+      </Container>
+
       {/* // Cards  */}
       <Container fluid className="hp-card-container">
         <Row>
