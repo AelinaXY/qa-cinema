@@ -13,6 +13,12 @@ const Discussion = () => {
       "Access-Control-Allow-Origin": "*",
     }};
 
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
+
   useEffect(() => {
     fetchDiscussions();
   }, []);

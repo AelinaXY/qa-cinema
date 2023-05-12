@@ -1,4 +1,7 @@
 const Screenings = () => {
+  
+
+
   return <h2>Screenings</h2>;
 };
 
