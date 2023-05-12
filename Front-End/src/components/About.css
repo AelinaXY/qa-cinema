@@ -1,13 +1,13 @@
 /* About.css */
 
-.container {
+.container.aboutPage {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100vh;
   }
-  h3{ color:rgba(0, 41, 65, 255);
+  h3.aboutPage { color:rgba(0, 41, 65, 255);
     text-align: center;
     text-decoration: none;
     font-style: italic;
@@ -16,9 +16,9 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif 
   }
 
-  h3 span{background-color:rgb(255, 255, 255); 
+ h3.aboutPage span{background-color:rgb(255, 255, 255); 
   }
-  h2 {
+  h2.aboutPage {
     font-size: 60px;
     font-style: italic;
     margin-bottom: 20px;
@@ -28,11 +28,11 @@
     background-size: cover;
     color:rgba(0, 41, 65, 255);
   }
-  h2 span { 
+  h2.aboutPage span { 
     background-color:rgb(255, 255, 255); 
 }
 
-h1 {
+h1.aboutPage {
     color:rgba(0, 41, 65, 255);
     text-align: center;
     text-decoration: none;
@@ -42,11 +42,11 @@ h1 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
 }
   
- h1 span{
+h1.aboutPage span{
     background-color:rgb(255, 255, 255); 
 }
   
-  p1 {
+  p1.aboutPage {
     color: white;
     text-align:center;
     text-decoration: aqua;

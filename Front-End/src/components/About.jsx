@@ -13,7 +13,7 @@ const About = () => {
   return (
     <div>
 
-      <h2><span>About Us</span></h2>  
+      <h2 className='aboutPage'><span>About Us</span></h2>  
       <img className="openings-image" src={Openings} alt="Openings"/>
       <img className="tickets-image" src={Tickets} alt="Tickets"/>
       <img className="values-image" src={Values} alt="Values"/>
@@ -21,28 +21,28 @@ const About = () => {
 
       
       
-       <h3><span>Who are We?.</span></h3>
-      <p1>We are specialists in technology! With our expertise and cutting edge technology to bring you the perfect blend of innovation and entertainment.
+       <h3 className='aboutPage'><span>Who are We?.</span></h3>
+      <p1 className='aboutPage'>We are specialists in technology! With our expertise and cutting edge technology to bring you the perfect blend of innovation and entertainment.
      Step into our world of technological marvels and let us take you on an unforgettable cinematic adventure like no other. Welcome to the future of cinema.
      Still want to learn more? <a href="/contacts">Write to us!</a></p1>
       
 
     
-      <h1><span>A preview of our new state of the art cinema.</span></h1>
-      <Carousel>
-        <div>
-          <img src={Building} alt="Site" />
+      <h1 className='aboutPage'><span>A preview of our new state of the art cinema.</span></h1>
+      <Carousel className='aboutPage'>
+        <div className='aboutPage'>
+          <img className='aboutPage' src={Building} alt="Site" />
        
         </div>
-        <div>
-          <img src={Chair} alt="Seating" />
+        <div className='aboutPage'>
+          <img className='aboutPage' src={Chair} alt="Seating" />
           
         </div>
-        <div>
-          <img src={Screen} alt="Screen" />
+        <div className='aboutPage'>
+          <img className='aboutPage' src={Screen} alt="Screen" />
           
         </div>
-        <p1>This top of the line new cinema will change the industry forever</p1>
+        <p1 className='aboutPage'>This top of the line new cinema will change the industry forever</p1>
         
       </Carousel>
       
