@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "cc_user": 1,
+      "cc_number": 1234567890123456,
+      "cc_date": 1225,
+      "cc_ccv": 123
+    },
+    {
+      "id": 2,
+      "cc_user": 2,
+      "cc_number": 9876543210987654,
+      "cc_date": 1024,
+      "cc_ccv": 456
+    },
+    {
+      "id": 3,
+      "cc_user": 3,
+      "cc_number":6789543210987654,
+      "cc_date": 2025,
+      "cc_ccv": 654
+    },
+    {
+      "id": 4,
+      "cc_user": 4,
+      "cc_number":9087543210987654,
+      "cc_date": 1026,
+      "cc_ccv": 426
+    },
+    {
+      "id": 5,
+      "cc_user": 5,
+      "cc_number": 7777666655554444,
+      "cc_date": 1126,
+      "cc_ccv": 987
+    }
+  ]

@@ -1,35 +1,40 @@
-const express = require("express"); // importing express
-const mongoose = require("mongoose"); // importing mongoose
-
-const bodyParser = require("body-parser");
+const express = require("express");
 const cors = require("cors");
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger-output.json')
 
-const myapp = express(); // initialising it
-myapp.use(cors());
-myapp.use(bodyParser.json()); // converts the request body from JSON (res => res.json())
+const app = express();
 
-// get routes - add all the routes here
-const movieRouter = require("./routes/moviesRoute");
+var corsOptions = {
+  origin: "*"
+};
 
-myapp.use("/movies", movieRouter);
+app.use(cors(corsOptions));
 
-// myapp.use("*", (req, res, next) => next({ status: 404, message: "Invalid url" })); // catches 404's
+// parse requests of content-type - application/json
+app.use(express.json());
 
-// myapp.use((err, req, res, next) => {
-//   res.status(err.status ? err.status : 500).send(err.message);
-// });
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(
-  "mongodb://localhost:27017/QAcinemaBE",
-  { useNewUrlParser: true },
-  (err) => {
-    if (err) return console.error(err);
-    return console.log("Connection successful");
-  }
-);
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
-const myserver = myapp.listen(5000, () =>
-  console.log("Server started on", myserver.address().port)
-);
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to test application." });
+});
 
-module.exports = myserver;
+require("./routes/usersRoute.js")(app);
+require("./routes/ccdetailsRoute.js")(app);
+require("./routes/filmsRoute.js")(app);
+require("./routes/showingsRoute.js")(app);
+require("./routes/screensRoute.js")(app);
+require("./routes/ticketsRoute.js")(app);
+require("./routes/discussionBoardRoute.js")(app);
+
+
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
