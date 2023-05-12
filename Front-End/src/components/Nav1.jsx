@@ -34,7 +34,7 @@ function Nav1() {
           >
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/screenings">Screenings</Nav.Link>
+            <Nav.Link href="/screenings/navLink">Screenings</Nav.Link>
             <Nav.Link href="/discussion">Discussion</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
             {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
