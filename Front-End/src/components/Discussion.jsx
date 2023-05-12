@@ -8,13 +8,18 @@ const Discussion = () => {
   const [filmId, setFilmId] = useState('');
   const [rating, setRating] = useState(0);
 
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    }};
+
   useEffect(() => {
     fetchDiscussions();
   }, []);
 
   const fetchDiscussions = () => {
     axios
-      .get('http://localhost:8080/discussion_board')
+      .get('http://localhost:8080/discussion_board', config)
       .then((response) => {
         setDiscussions(response.data);
       })
@@ -32,7 +37,7 @@ const Discussion = () => {
         body,
         film_id: filmId,
         film_rating: rating,
-      })
+      }, config)
       .then((response) => {
         console.log(response.data);
         fetchDiscussions(); 
