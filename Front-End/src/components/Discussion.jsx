@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import StarIcon from '@material-ui/icons/Star';
-
 const Discussion = () => {
   const [discussions, setDiscussions] = useState([]);
   const [title, setTitle] = useState('');
@@ -65,7 +61,7 @@ const Discussion = () => {
         <StarIcon
           key={i}
           onClick={() => handleRatingClick(i)}
-          style={{ cursor: 'pointer', color: i <= rating ? 'yellow' : 'white' }}
+          style={{ cursor: 'pointer', color: i <= rating ? 'yellow' : 'grey' }}
         />
       );
     }
@@ -97,7 +93,7 @@ const Discussion = () => {
         />
         <div>
           <label>Rating: </label>
-          {renderStars()} {/* Render the star icons */}
+          {renderStars()} 
         </div>
         <button type="submit">Create Discussion</button>
       </form>
