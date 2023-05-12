@@ -8,10 +8,6 @@ const Discussion = () => {
   const [filmId, setFilmId] = useState('');
   const [rating, setRating] = useState(0);
 
-  const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    }};
 
   const config = {
     headers: {
@@ -25,7 +21,7 @@ const Discussion = () => {
 
   const fetchDiscussions = () => {
     axios
-      .get('http://localhost:8080/discussion_board', config)
+      .get('http://localhost:8080/discussionBoard', config)
       .then((response) => {
         setDiscussions(response.data);
       })
@@ -38,7 +34,7 @@ const Discussion = () => {
     e.preventDefault();
 
     axios
-      .post('http://localhost:8080/discussion_board', {
+      .post('http://localhost:8080/discussionBoard', {
         title,
         body,
         film_id: filmId,
