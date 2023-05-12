@@ -1,25 +1,7 @@
-// import { Elements } from "@stripe/react-stripe-js";
-// import { loadStripe } from "@stripe/stripe-js";
-// import PaymentForm from "./PaymentForm";
-
-// const PUBLIC_KEY =
-//   "pk_test_51N6WNWCKjd8RwmSK8SoMWnKiN2J2OO6spK0MS5tjLMiixQJdzBJvKBsMmjhqU3AzAmMHUeYV1pp43sQafV2tLoXs0074uQolOD";
-// const stripeTestPromise = loadStripe(PUBLIC_KEY);
-
-// const StripeContainer = () => {
-//   return (
-//     <Elements stripe={stripeTestPromise}>
-//       <PaymentForm />
-//     </Elements>
-//   );
-// };
-
-// export default StripeContainer;
-
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-
+import ProductDisplay from "./ProductDisplay";
 import CheckoutForm from "./CheckoutForm";
 // import "./App.css";
 
@@ -38,7 +20,7 @@ export default function StripeContainer() {
     fetch("http://localhost:8080/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+      body: JSON.stringify({ items: [{ id: "cinema-ticket" }] }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret))

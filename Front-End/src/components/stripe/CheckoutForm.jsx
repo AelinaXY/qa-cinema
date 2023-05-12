@@ -30,7 +30,10 @@ export default function CheckoutForm() {
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case "succeeded":
+          console.log("Message before setting state: ", message);
           setMessage("Payment succeeded!");
+          console.log("Message after setting state: ", message);
+
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -46,6 +49,8 @@ export default function CheckoutForm() {
   }, [stripe]);
 
   const handleSubmit = async (e) => {
+    console.log("handleSubmit called");
+
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -60,7 +65,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/screening/",
+        return_url: "http://localhost:3000/thankyou/",
       },
     });
 
@@ -88,7 +93,9 @@ export default function CheckoutForm() {
         id="link-authentication-element"
         onChange={(e) => setEmail(e.target ? e.target.value : "")}
       />
+
       <PaymentElement id="payment-element" options={paymentElementOptions} />
+
       <button disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
@@ -96,6 +103,9 @@ export default function CheckoutForm() {
       </button>
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
+      {message === "Payment succeeded!" && (
+        <div id="success-message">{message}</div>
+      )}
     </form>
   );
 }

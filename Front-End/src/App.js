@@ -5,6 +5,7 @@ import Screenings from "./components/Screenings";
 import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
+import ThankYou from "./components/ThankYou";
 
 import {
   BrowserRouter,
@@ -31,6 +32,9 @@ function App() {
         </Route>
         <Route path="/discussion">
           <Discussion />
+        </Route>
+        <Route path="/thankyou">
+          <ThankYou />
         </Route>
       </BrowserRouter>
     </>
