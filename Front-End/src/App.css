@@ -101,6 +101,11 @@ body {
   padding: 40px 40px;
 }
 
+.contact-container {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
 /* Footer */
 .social-links li a i {
   color: white;
@@ -114,10 +119,6 @@ body {
   color: #afafe7;
   padding-top: 1rem;
 }
-
-/* .navbar {
-  background-color: #00003f;
-} */
 
 ul {
   list-style: none;
@@ -165,6 +166,17 @@ h2 {
   text-shadow: 1px 1px 0px #ff0000;
 }
 
+.navbar {
+  height: 15vh;
+  border: 1px solid black;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 41, 65, 1) 40%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
 /* .contact-msg {
   display: flex;
   flex-direction: column;
@@ -172,7 +184,7 @@ h2 {
 } */
 
 .email-container {
-  width: 50vh;
+  width: 75vh;
 }
 
 .address-card {
@@ -185,4 +197,13 @@ h2 {
   align-items: center;
   /* background-color: darkblue; */
   padding-top: 20px;
+}
+
+.header {
+  margin: 25px 50px 55px 100px;
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.bookings-alert {
+  margin: 65px 25px 25px 25px;
 }
