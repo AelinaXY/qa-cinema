@@ -17,7 +17,6 @@ body {
 .carousel {
   width: 100%;
   z-index: 950;
-
 }
 
 #imageCarouselLeft {
@@ -36,16 +35,15 @@ body {
   float: left;
 }
 
-
 /* Title */
 
-.new-rs-title-container{
+.new-rs-title-container {
   padding-top: 2%;
   padding-bottom: 2%;
   text-align: center;
 }
 
-.new-rs-title-container h1{
+.new-rs-title-container h1 {
   background-color: #81efc9;
   width: 30%;
   min-width: 300px;
@@ -54,14 +52,12 @@ body {
   border-radius: 20px;
   padding-top: 0.2%;
   padding-bottom: 0.2%;
-  font-weight: bolder;  
+  font-weight: bolder;
   color: black;
   font-size: 300%;
   text-shadow: whitesmoke;
   border-color: black;
   border-width: 5px;
-
-
 }
 
 /* Showings */
@@ -152,6 +148,14 @@ body {
   padding: 40px 40px;
 }
 
+.ratings-container {
+  padding: 40px 40px;
+}
+
+.faq-container {
+  padding: 40px 40px;
+}
+
 /* Footer */
 .social-links li a i {
   color: white;
@@ -214,4 +218,15 @@ Button {
 .navbar-light .navbar-brand {
   color: white;
   text-shadow: 1px 1px 0px #ff0000;
+}
+
+.header {
+  margin: 25px 50px 55px 100px;
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.ratings-card {
+  margin: 25px 55px;
+  height: 28rem;
+  object-fit: contain;
 }

@@ -5,6 +5,7 @@ import Screenings from "./components/Screenings";
 import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
+import Ratings from "./components/Ratings";
 
 import {
   BrowserRouter,
@@ -16,7 +17,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Nav1 />
+        {/* <Nav1 />
         <Route path="/" exact>
           <HomePage />
         </Route>
@@ -31,7 +32,8 @@ function App() {
         </Route>
         <Route path="/discussion">
           <Discussion />
-        </Route>
+        </Route> */}
+        <Ratings />
       </BrowserRouter>
     </>
   );
