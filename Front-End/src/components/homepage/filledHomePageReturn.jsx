@@ -36,7 +36,7 @@ const filledHomePageReturn = (films, newReleases) => {
     cardList.push(
       <Col className=" d-flex align-items-center justify-content-center">
 
-    <Link to={`/screenings/${i.film_title.replace(/\s+/g, '')}`}>
+    <Link to={`/screenings/${i.id}`}>
       <Card style={{ width: "18rem" }} className="hp-card" >
       <Card.Img variant="top" src={`${i.film_poster}`} />
       <Card.Body>
