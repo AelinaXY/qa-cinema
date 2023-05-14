@@ -21,40 +21,56 @@ const Ratings = () => {
       <Container className="ratings-container">
         <Row>
           <Col md={4}>
-            <Card
-              style={{ width: "18rem", height: "24rem" }}
-              className="ratings-card"
-            >
-              <Card.Img variant="top" src="images/u-rating.png" />
+            <Card style={{ width: "18rem" }} className="ratings-card mx-auto">
+              <Card.Img
+                variant="top"
+                src="images/u-rating.png"
+                className="ratings-img"
+              />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                <Card.Title className="ratings-title">
+                  Suitable for all
+                </Card.Title>
+                <Card.Text className="ratings-text">
+                  A U film should be suitable for audiences aged four years and
+                  over, although it is impossible to predict what might upset
+                  any particular child.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={4}>
-            <Card style={{ width: "18rem" }} className="ratings-card">
+            <Card style={{ width: "18rem" }} className="ratings-card mx-auto">
               <Card.Img variant="top" src="images/pg-rating.png" />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                <Card.Title className="ratings-title">
+                  Parental guidance
+                </Card.Title>
+                <Card.Text className="ratings-text">
+                  General viewing, but some scenes may be unsuitable for young
+                  children. Unaccompanied children of any age may watch, but
+                  parents are advised to consider whether the content may upset
+                  younger, or more sensitive, children.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={4}>
-            <Card style={{ width: "18rem" }} className="ratings-card">
-              <Card.Img variant="top" src="images/12-rating.png" />
+            <Card style={{ width: "18rem" }} className="ratings-card  mx-auto">
+              <Card.Img
+                variant="top"
+                src="images/12-rating.png"
+                className="ratings-img"
+              />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                <Card.Title className="ratings-title">
+                  Suitable for 12 years and over
+                </Card.Title>
+                <Card.Text className="ratings-text">
+                  General viewing, but some scenes may be unsuitable for young
+                  children. Unaccompanied children of any age may watch, but
+                  parents are advised to consider whether the content may upset
+                  younger, or more sensitive, children.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -62,37 +78,51 @@ const Ratings = () => {
         </Row>
         <Row>
           <Col md={4}>
-            <Card style={{ width: "18rem" }} className="ratings-card">
+            <Card style={{ width: "18rem" }} className="ratings-card  mx-auto">
               <Card.Img variant="top" src="images/12a-rating.jpeg" />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                <Card.Title className="ratings-title">
+                  Suitable for 12 years and over
+                </Card.Title>
+                <Card.Text className="ratings-text">
+                  Films classified 12A and video works classified 12 contain
+                  material that is not generally suitable for children aged
+                  under 12. No one younger than 12 may see a 12A film in a
+                  cinema unless accompanied by an adult. Adults planning to take
+                  a child under 12 to view a 12A film should consider whether
+                  the film is suitable for that child. To help them decide, we
+                  recommend that they check the content advice for that film in
+                  advance. No one younger than 12 may rent or buy a 12 rated
+                  video work.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={4}>
-            <Card style={{ width: "18rem" }} className="ratings-card">
+            <Card style={{ width: "18rem" }} className="ratings-card mx-auto">
               <Card.Img variant="top" src="images/15-rating.png" />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                <Card.Title className="ratings-title">
+                  Suitable only for 15 years and over
+                </Card.Title>
+                <Card.Text className="ratings-text">
+                  No one younger than 15 may see a 15 film in a cinema. No one
+                  younger than 15 may rent or buy a 15 rated video work.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={4}>
-            <Card style={{ width: "18rem" }} className="ratings-card">
+            <Card style={{ width: "18rem" }} className="ratings-card mx-auto">
               <Card.Img variant="top" src="images/18-rating.png" />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                <Card.Title className="ratings-title">
+                  Suitable only for adults
+                </Card.Title>
+                <Card.Text className="ratings-text">
+                  No one younger than 18 may see an 18 film in a cinema. No one
+                  younger than 18 may rent or buy an 18 rated video work. Adults
+                  should be free to choose their own entertainment.
                 </Card.Text>
               </Card.Body>
             </Card>

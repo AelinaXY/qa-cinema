@@ -228,5 +228,23 @@ Button {
 .ratings-card {
   margin: 25px 55px;
   height: 28rem;
-  object-fit: contain;
+}
+
+.ratings-img {
+  object-fit: fill;
+  height: 250px;
+  background-color: #00003f;
+}
+
+.ratings-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.ratings-text {
+  height: 100px;
+  overflow-y: auto;
+  padding-bottom: 10px;
 }
