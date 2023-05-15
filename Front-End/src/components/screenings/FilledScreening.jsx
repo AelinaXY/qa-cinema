@@ -90,7 +90,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
 
                     <Col>
 
-                      <div class="col-xs-1" align="center">
+                      <div class="col-xs-1 showingData" align="center" className="showingData">
 
                         <h1>Showings for {`${savedFilm.film_title}`}</h1>
                         {

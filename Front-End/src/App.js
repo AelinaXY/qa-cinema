@@ -6,6 +6,8 @@ import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
 import Footer2 from "./components/Footer2";
+import ThankYou from "./components/ThankYou";
+import Ratings from "./components/Ratings";
 
 import {
   BrowserRouter,
@@ -17,7 +19,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Nav1 />
+        /* <Nav1 />
         <Route path="/" exact>
           <HomePage />
         </Route>
@@ -33,9 +35,15 @@ function App() {
         <Route path="/discussion">
           <Discussion />
         </Route>
+        <Route path="/thankyou">
+          <ThankYou />
+        </Route>
+        <Route path="/ratings">
+          <Ratings />
+        </Route>
       </BrowserRouter>
 
-      <Footer2/>
+      <Footer2 />
     </>
   );
 }
