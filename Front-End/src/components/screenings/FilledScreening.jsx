@@ -30,7 +30,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const request = ((url, setFunction, filmTitle, filmId) => {
+  const request = ((url, setFunction) => {
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -148,7 +148,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
         </Modal.Footer>
       </Modal>
       </>
-      
+
 )
     }
 
