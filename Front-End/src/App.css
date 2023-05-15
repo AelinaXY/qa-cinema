@@ -262,10 +262,12 @@ Button {
 
 .bookings-alert {
   margin: 65px 25px 25px 25px;
+}
 h1 {
   font-size: 24px;
   color: white;
 }
+
 
 .thankyou-card {
   margin-top: 60px;

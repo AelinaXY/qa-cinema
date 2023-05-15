@@ -46,9 +46,6 @@ const filledHomePageReturn = (films, newReleases) => {
       </Card.Body>
     </Card>
     </Link>
-    </Col>
-  );
-  })
 
 
         <Link to={`/screenings/${i.film_title.replace(/\s+/g, "")}`}>
