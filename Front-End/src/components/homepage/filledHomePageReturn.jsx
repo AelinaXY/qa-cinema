@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const filledHomePageReturn = (films, newReleases) => {
   console.log("IN FILLED HOME PAGE");
@@ -31,8 +31,7 @@ const filledHomePageReturn = (films, newReleases) => {
     );
   });
 
-  films.map((i) =>
-  {
+  films.map((i) => {
     cardList.push(
       <Col className=" d-flex align-items-center justify-content-center">
 
@@ -52,21 +51,37 @@ const filledHomePageReturn = (films, newReleases) => {
   })
 
 
+        <Link to={`/screenings/${i.film_title.replace(/\s+/g, "")}`}>
+          <Card style={{ width: "18rem" }} className="hp-card">
+            <Card.Img variant="top" src={`${i.film_poster}`} />
+            <Card.Body>
+              <div class="col-xs-1" align="center">
+                <Button class="cardButton">Go to Screenings</Button>
+              </div>
+            </Card.Body>
+          </Card>
+        </Link>
+      </Col>
+    );
+  });
 
   return (
     <>
       <Container>
         <Row>
           <Col>
-          <img id="imageCarouselLeft" src={`${newReleases[0].film_poster}`} />
+            <img id="imageCarouselLeft" src={`${newReleases[0].film_poster}`} />
           </Col>
 
           <Col>
-            <Carousel className="filmCarouselTwo" >{carouselList}</Carousel>
+            <Carousel className="filmCarouselTwo">{carouselList}</Carousel>
           </Col>
 
           <Col>
-            <img id="imageCarouselRight" src={`${newReleases[2].film_poster}`} />
+            <img
+              id="imageCarouselRight"
+              src={`${newReleases[2].film_poster}`}
+            />
           </Col>
         </Row>
       </Container>
@@ -79,9 +94,7 @@ const filledHomePageReturn = (films, newReleases) => {
 
       {/* // Cards  */}
       <Container fluid className="hp-card-container">
-        <Row>
-          {cardList}
-        </Row>
+        <Row>{cardList}</Row>
       </Container>
       {/* // New Release Cards  */}
       {/* <Container fluid className="new-realease-container">

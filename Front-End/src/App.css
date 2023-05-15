@@ -36,16 +36,15 @@ body {
   float: left;
 }
 
-
 /* Title */
 
-.new-rs-title-container{
+.new-rs-title-container {
   padding-top: 2%;
   padding-bottom: 2%;
   text-align: center;
 }
 
-.new-rs-title-container h1{
+.new-rs-title-container h1 {
   background-color: #81efc9;
   width: 30%;
   min-width: 300px;
@@ -54,14 +53,12 @@ body {
   border-radius: 20px;
   padding-top: 0.2%;
   padding-bottom: 0.2%;
-  font-weight: bolder;  
+  font-weight: bolder;
   color: black;
   font-size: 300%;
   text-shadow: whitesmoke;
   border-color: black;
   border-width: 5px;
-
-
 }
 
 /* Showings */
@@ -155,6 +152,14 @@ body {
 .contact-container {
   margin-bottom: 30px;
   margin-top: 30px;
+}
+
+.ratings-container {
+  padding: 40px 40px;
+}
+
+.faq-container {
+  padding: 40px 40px;
 }
 
 /* Footer */
@@ -298,4 +303,33 @@ hr {
   color: white;
 
   text-shadow: 1px 1px 0px #ff0000;
+}
+
+.header {
+  margin: 25px 50px 55px 100px;
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.ratings-card {
+  margin: 25px 55px;
+  height: 28rem;
+}
+
+.ratings-img {
+  object-fit: fill;
+  height: 250px;
+  background-color: #00003f;
+}
+
+.ratings-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.ratings-text {
+  height: 100px;
+  overflow-y: auto;
+  padding-bottom: 10px;
 }
