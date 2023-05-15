@@ -48,7 +48,7 @@ const filledHomePageReturn = (films, newReleases) => {
     </Link>
 
 
-        <Link to={`/screenings/${i.film_title.replace(/\s+/g, "")}`}>
+        {/* <Link to={`/screenings/${i.film_title.replace(/\s+/g, "")}`}>
           <Card style={{ width: "18rem" }} className="hp-card">
             <Card.Img variant="top" src={`${i.film_poster}`} />
             <Card.Body>
@@ -57,7 +57,7 @@ const filledHomePageReturn = (films, newReleases) => {
               </div>
             </Card.Body>
           </Card>
-        </Link>
+        </Link> */}
       </Col>
     );
   });
