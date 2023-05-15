@@ -6,11 +6,17 @@ const app = require('../index.js');
 const dbConnect = require('../dbutils/dbConnect.js');
 const { DB } = require('../dbutils/dbconfig.js');
 const dbconfig = require('../dbutils/dbconfig.js');
+const { cleanUpDb } = require('./cleanUpDb'); 
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
 describe('Film API', () => {
+
+  afterEach(async () => {
+    await cleanUpDb(); 
+  });
+
   it('should create a film', (done) => {
     const filmData = {
       film_title: 'TestFilm',              
@@ -29,15 +35,7 @@ describe('Film API', () => {
         chai.expect(err).to.be.null;                
         chai.expect(res.body).to.include(filmData); 
         chai.expect(res.status).to.equal(200);
-
-        cleanUpDb()
-        .then(()=>{
-          dbConnect.query("DELETE * FROM films where film_title='TestFilm'");
-          done();
-        })
-        .catch((cleanupError)=>{
-          done(cleanupError)
-        })
+        done();
       });
   });
 });
