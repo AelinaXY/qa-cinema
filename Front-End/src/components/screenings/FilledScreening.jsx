@@ -107,10 +107,12 @@ const FilledScreening = ({ films, selectedFilm }) => {
                             if (i.film_id === savedFilm.id) {
                               displayShowingData.push(
                                 <>
-                                  <br />
+                                  <br/>
                                   <h2>Showing at: {dateParseFromDB(i.showing_time)}</h2>
                                   <h2>With {i.remaining_seats} seats left on Screen {i.showing_screen}</h2>
                                   <Button onClick={handleShow}>Book Now</Button>
+                                  <br/>
+
                                   
                                 </>
                               )
