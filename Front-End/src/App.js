@@ -5,6 +5,7 @@ import Screenings from "./components/Screenings";
 import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
+import Footer2 from "./components/Footer2";
 
 import {
   BrowserRouter,
@@ -33,6 +34,8 @@ function App() {
           <Discussion />
         </Route>
       </BrowserRouter>
+
+      <Footer2/>
     </>
   );
 }
