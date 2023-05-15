@@ -6,7 +6,7 @@ const app = require('../index.js');
 const dbConnect = require('../dbutils/dbConnect.js');
 const { DB } = require('../dbutils/dbconfig.js');
 const dbconfig = require('../dbutils/dbconfig.js');
-const { cleanUpDb } = require('./cleanUpDb'); 
+const { cleanUpDb } = require('./cleanUpDb.js'); 
 
 chai.use(chaiHttp);
 const expect = chai.expect;

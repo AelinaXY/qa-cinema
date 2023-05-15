@@ -10,3 +10,5 @@ const cleanUpDb = async () => {
         throw error;
     }
 };
+
+module.exports = {cleanUpDb};
