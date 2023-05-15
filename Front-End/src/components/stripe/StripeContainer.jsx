@@ -16,6 +16,8 @@ export default function StripeContainer({ticketAmount}) {
   const [clientSecret, setClientSecret] = useState("");
   const createdPaymentIntent = useRef(false);
 
+  const paymentId = useRef("");
+
   
   const amountOfTickets = [];
 
@@ -57,6 +59,8 @@ export default function StripeContainer({ticketAmount}) {
         return res.json();})
       .then((data) => {
         console.log(data);
+        paymentId.current = data.id;
+        createdPaymentIntent.current = true;
         return setClientSecret(data.clientSecret);})
       .catch((err) => console.log(err));
   }, [ticketAmount])
