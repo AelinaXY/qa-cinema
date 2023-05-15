@@ -263,10 +263,11 @@ Button {
 .bookings-alert {
   margin: 65px 25px 25px 25px;
 }
-h1 {
+
+/* h1 {
   font-size: 24px;
   color: white;
-}
+} */
 
 
 .thankyou-card {
@@ -334,4 +335,8 @@ hr {
   height: 100px;
   overflow-y: auto;
   padding-bottom: 10px;
+}
+
+.showingData {
+  color: black;
 }
