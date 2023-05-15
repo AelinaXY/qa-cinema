@@ -9,7 +9,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import arrayChunk from "../functions/arrayChunk";
 import dateParseFromDB from "../functions/dateParseFromDB";
-
+import Modal from 'react-bootstrap/Modal';
 
 const FilledScreening = ({ films, selectedFilm }) => {
 
@@ -23,6 +23,12 @@ const FilledScreening = ({ films, selectedFilm }) => {
   const [showingData, setShowingData] = useState([]);
   const [error, setError] = useState("");
   const loaded = useRef(false);
+
+  //Modal stuff
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const request = ((url, setFunction, filmTitle, filmId) => {
     const config = {
@@ -76,6 +82,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
       let displayShowingData = [];
 
       printArray.push(
+        <>
         <Row>
           <Col className=" d-flex align-items-center justify-content-center">
 
@@ -103,7 +110,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
                                   <br />
                                   <h2>Showing at: {dateParseFromDB(i.showing_time)}</h2>
                                   <h2>With {i.remaining_seats} seats left on Screen {i.showing_screen}</h2>
-                                  <h2>Book Now</h2>
+                                  <Button onClick={handleShow}>Book Now</Button>
                                   
                                 </>
                               )
@@ -124,7 +131,23 @@ const FilledScreening = ({ films, selectedFilm }) => {
           </Col>
         </Row>
 
-      )
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </>
+      
+)
     }
 
     else {
