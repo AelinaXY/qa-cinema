@@ -19,6 +19,15 @@ const Ratings = () => {
   return (
     <>
       <Container className="ratings-container">
+        <div class="alert alert-info" role="alert">
+          All of our film classifications are in accordance with the British
+          Board of Film Classification (BBFC). If you have any queries please
+          visit the{" "}
+          <a href="https://www.bbfc.co.uk/">
+            British Board of Film Classification{" "}
+          </a>{" "}
+          website.
+        </div>
         <Row>
           <Col md={4}>
             <Card style={{ width: "18rem" }} className="ratings-card mx-auto">
@@ -40,7 +49,7 @@ const Ratings = () => {
             </Card>
           </Col>
           <Col md={4}>
-            <Card style={{ width: "18rem" }} className="ratings-card mx-auto">
+            <Card style={{ width: "18rem" }} className="ratings-card mx-auto ">
               <Card.Img variant="top" src="images/pg-rating.png" />
               <Card.Body>
                 <Card.Title className="ratings-title">
@@ -139,7 +148,7 @@ const Ratings = () => {
                 className="list-group-item"
                 onClick={() => handleItemClick(0)}
               >
-                Do I need a paper ticket?
+                DO I NEED A PAPER TICKET
                 {activeItems.includes(0) && (
                   <ul className="list-group">
                     <li className="list-group-item">
