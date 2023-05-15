@@ -63,7 +63,9 @@ const FilledScreening = ({ films, selectedFilm }) => {
     let savedFilm;
 
     filmArray.forEach((film) => {
-      if (film.film_title.replace(/\s+/g, '') === selectedFilm) {
+      console.log(selectedFilm);
+      console.log(film.id);
+      if (film.id == selectedFilm) {
         savedFilm = film;
         containedFlag = true;
       }
@@ -139,7 +141,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
           return (
             <Col className=" d-flex align-items-center justify-content-center">
 
-              <Link to={`/screenings/${i.film_title.replace(/\s+/g, '')}`}>
+              <Link to={`/screenings/${i.id}`}>
                 <Card style={{ width: "36rem" }} className="hp-card">
                   <Card.Body>
                     <Container>
