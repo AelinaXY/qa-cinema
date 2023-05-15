@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../index.js'); 
 const Films = require('../models/films'); 
+const app = require('../index.js');
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -18,14 +19,13 @@ describe('Film API', () => {
     };
 
     chai
-      .request(server)                         
-      .post('/films/create')                   
+      .request(app)                         
+      .post('/films/')                   
       .send(filmData)                          
       .end((err, res) => {
-        expect(err).to.be.null;                
-        //expect(res).to.have.status(201);       
-        expect(res.body).to.deep.include(filmData); 
-        done();                                
+        chai.expect(err).to.be.null;                
+        chai.expect(res.body).to.include(filmData); 
+        done();     
       });
   });
 });
