@@ -29,6 +29,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
   const [showingScreen, setShowingScreen] = useState("");
   const [tickets, setTickets] = useState("");
   const [movieModalTitle, setMovieModalTitle] = useState("DEFAULT");
+  const [ticketsAmount, setTicketsAmount] = useState(15);
 
   const handleClose = () => setShow(false);
   const handleShow = (title, time, tickets, screen) => {
@@ -152,7 +153,9 @@ const FilledScreening = ({ films, selectedFilm }) => {
             <Modal.Body>
               Booking at {showingTime} in Screen {showingScreen} <br/>
               Only {tickets} tickets left!
-              <StripeContainer/>
+              <Button onClick={() => {setTicketsAmount(ticketsAmount+1);}}>CLICK ME!</Button>
+              {ticketsAmount}
+              <StripeContainer data={ticketsAmount}/>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>

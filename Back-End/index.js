@@ -44,11 +44,26 @@ const stripe = require("stripe")(
 
 app.use(express.static("public"));
 
+
+
 const calculateOrderAmount = (items) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
-  return 1400;
+  
+  let returnAmount = 200;
+
+
+  items.forEach(i => {
+
+    if(i.id === 'cinema-ticket')
+    {
+      returnAmount+=1400;
+    }
+  });
+
+  console.log(returnAmount);
+
+
+  return returnAmount;
+
 };
 
 app.post("/create-payment-intent", async (req, res) => {
@@ -65,7 +80,21 @@ app.post("/create-payment-intent", async (req, res) => {
 
   res.send({
     clientSecret: paymentIntent.client_secret,
+    id: paymentIntent.id,
   });
 });
+
+// app.post("/update-payment-intent", async (req, res) => {
+//   const { items } = req.body;
+
+//   // Create a PaymentIntent with the order amount and currency
+//   const paymentIntent = await stripe.paymentIntents.update(id,{
+//     amount: calculateOrderAmount(items)
+//   });
+
+//   res.send({
+//     clientSecret: paymentIntent.client_secret,
+//   });
+// });
 
 app.listen(4242, () => console.log("Node server listening on port 4242!"));
