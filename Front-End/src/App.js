@@ -5,6 +5,7 @@ import Screenings from "./components/Screenings";
 import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
+import Footer2 from "./components/Footer2";
 import ThankYou from "./components/ThankYou";
 
 import {
@@ -24,7 +25,7 @@ function App() {
         <Route path="/about">
           <About />
         </Route>
-        <Route path="/screenings">
+        <Route path="/screenings/:film">
           <Screenings />
         </Route>
         <Route path="/contact">
@@ -37,6 +38,8 @@ function App() {
           <ThankYou />
         </Route>
       </BrowserRouter>
+
+      <Footer2 />
     </>
   );
 }

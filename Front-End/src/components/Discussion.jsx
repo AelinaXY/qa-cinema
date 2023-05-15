@@ -6,6 +6,8 @@ const Discussion = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [filmId, setFilmId] = useState('');
+  const [rating, setRating] = useState(0);
+
 
   const config = {
     headers: {
@@ -17,10 +19,9 @@ const Discussion = () => {
     fetchDiscussions();
   }, []);
 
-  // Fetch all discussions from the backend
   const fetchDiscussions = () => {
     axios
-      .get('http://localhost:8080/discussionboard', config)
+      .get('http://localhost:8080/discussionBoard', config)
       .then((response) => {
         setDiscussions(response.data);
       })
@@ -29,20 +30,19 @@ const Discussion = () => {
       });
   };
 
-  // Create a new discussion by making a POST request to the backend
   const handleCreateDiscussion = (e) => {
     e.preventDefault();
 
     axios
-      .post('http://localhost:8080/discussionboard', {
+      .post('http://localhost:8080/discussionBoard', {
         title,
         body,
         film_id: filmId,
-        film_rating: 0,
+        film_rating: rating,
       }, config)
       .then((response) => {
         console.log(response.data);
-        fetchDiscussions();
+        fetchDiscussions(); 
       })
       .catch((error) => {
         console.log(error);
@@ -51,6 +51,29 @@ const Discussion = () => {
     setTitle('');
     setBody('');
     setFilmId('');
+    setRating(0);
+  };
+
+  // Handle the selection of a rating
+  const handleRatingClick = (selectedRating) => {
+    setRating(selectedRating);
+  };
+
+  // Render the star icons based on the selected rating
+  const renderStars = () => {
+    const stars = [];
+
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} onClick={()=>handleRatingClick(i)}
+          style={{cursor:'pointer',color:i<=rating? 'yellow':'gray',}}
+        >
+          ☆
+        </span>
+      );
+    }
+
+    return stars;
   };
 
   return (
@@ -75,6 +98,10 @@ const Discussion = () => {
           value={filmId}
           onChange={(e) => setFilmId(e.target.value)}
         />
+        <div>
+          <label>Rating: </label>
+          {renderStars()} 
+        </div>
         <button type="submit">Create Discussion</button>
       </form>
       <h2>Discussions</h2>
@@ -84,7 +111,7 @@ const Discussion = () => {
             <h3>{discussion.title}</h3>
             <p>{discussion.body}</p>
             <p>Film ID: {discussion.film_id}</p>
-            {/* <p>Rating: {discussion.film_rating}</p> */}
+            <p>Rating: {discussion.film_rating}</p>
           </li>
         ))}
       </ul>
@@ -93,4 +120,3 @@ const Discussion = () => {
 };
 
 export default Discussion;
-
