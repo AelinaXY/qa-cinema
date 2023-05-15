@@ -12,39 +12,42 @@ const stripePromise = loadStripe(
   "pk_test_51N6WNWCKjd8RwmSK8SoMWnKiN2J2OO6spK0MS5tjLMiixQJdzBJvKBsMmjhqU3AzAmMHUeYV1pp43sQafV2tLoXs0074uQolOD"
 );
 
-export default function StripeContainer({ticketAmount}) {
+export default function StripeContainer(prop) {
   const [clientSecret, setClientSecret] = useState("");
   const createdPaymentIntent = useRef(false);
 
+  const {data} = prop;
+
   const paymentId = useRef("");
 
+  console.log(data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
   
   const amountOfTickets = [];
 
-  for(let i=0; i<ticketAmount; i++)
+  for(let i=0; i<data; i++)
   {
-    amountOfTickets.push({id:"cinema-ticket"});
+    amountOfTickets.push({id:'cinema-ticket'});
     }
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   if(createdPaymentIntent.current === true)
-  //   {
-  //     console.log(amountOfTickets)
-  //   // Create PaymentIntent as soon as the page loads
-  //   fetch("http://localhost:8080/update-payment-intent", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ items: amountOfTickets}),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setClientSecret(data.clientSecret))
-  //     .catch((err) => console.log(err));
+    if(createdPaymentIntent.current === true)
+    {
+      console.log(amountOfTickets, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+    // Create PaymentIntent as soon as the page loads
+    fetch("http://localhost:8080/update-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: amountOfTickets, id: paymentId.current}),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret))
+      .catch((err) => console.log(err));
 
-  //   }
+    }
     
-  // }, [prop.data]);
+  }, [prop.data]);
 
 
   useEffect(() =>
@@ -63,7 +66,7 @@ export default function StripeContainer({ticketAmount}) {
         createdPaymentIntent.current = true;
         return setClientSecret(data.clientSecret);})
       .catch((err) => console.log(err));
-  }, [ticketAmount])
+  }, [])
 
   const appearance = {
     theme: "stripe",

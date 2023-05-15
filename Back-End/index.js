@@ -84,17 +84,19 @@ app.post("/create-payment-intent", async (req, res) => {
   });
 });
 
-// app.post("/update-payment-intent", async (req, res) => {
-//   const { items } = req.body;
+app.post("/update-payment-intent", async (req, res) => {
+  const { items } = req.body;
+  const {id} = req.body;
+  console.log(`UPDATE ${id}`);
 
-//   // Create a PaymentIntent with the order amount and currency
-//   const paymentIntent = await stripe.paymentIntents.update(id,{
-//     amount: calculateOrderAmount(items)
-//   });
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.update(id,{
+    amount: calculateOrderAmount(items)
+  });
 
-//   res.send({
-//     clientSecret: paymentIntent.client_secret,
-//   });
-// });
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
 
 app.listen(4242, () => console.log("Node server listening on port 4242!"));
