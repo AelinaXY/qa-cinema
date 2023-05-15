@@ -6,6 +6,7 @@ import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
 import Footer2 from "./components/Footer2";
+import ThankYou from "./components/ThankYou";
 
 import {
   BrowserRouter,
@@ -33,9 +34,12 @@ function App() {
         <Route path="/discussion">
           <Discussion />
         </Route>
+        <Route path="/thankyou">
+          <ThankYou />
+        </Route>
       </BrowserRouter>
 
-      <Footer2/>
+      <Footer2 />
     </>
   );
 }

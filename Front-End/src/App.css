@@ -17,7 +17,6 @@ body {
 .carousel {
   width: 100%;
   z-index: 950;
-
 }
 
 #imageCarouselLeft {
@@ -213,5 +212,48 @@ Button {
 
 .navbar-light .navbar-brand {
   color: white;
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+h1 {
+  font-size: 24px;
+  color: white;
+}
+
+.thankyou-card {
+  margin-top: 60px;
+  background-color: rgba(0, 41, 65, 255);
+  width: 50vw;
+  height: 50vh;
+  /* background: #eee; */
+  box-shadow: 0 8px 8px -4px lightblue;
+  /* background-image: url("/images/guardians-3.jpg"); */
+}
+
+hr {
+  margin-top: 30px;
+  color: white;
+}
+
+.thankyou-btn {
+  color: white;
+  background-color: black;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.thankyou-btn:hover {
+  text-shadow: 1px 1px 0px #ff0000;
+  background-color: rgba(0, 41, 65, 255) !important;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thankyou-head {
+  color: white;
+
   text-shadow: 1px 1px 0px #ff0000;
 }
