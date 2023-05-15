@@ -18,5 +18,11 @@ module.exports = app => {
   // Delete a showing by id
   router.delete("/:id", showings.delete);
 
+  //Get Showings by Film TItle
+  router.get("/film/:id", showings.findId);
+
+  router.get("/allFilms/:id", showings.findAllShowings);
+
+
   app.use('/showings', router);
 };

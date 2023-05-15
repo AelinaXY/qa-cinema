@@ -16,7 +16,10 @@ module.exports = app => {
     router.put("/:id", tickets.update);
 
       // Delete a Ticket with id
-  router.delete("/:id", tickets.delete);
+    router.delete("/:id", tickets.delete);
+
+    router.post("/book/", tickets.book);
+
   
     app.use('/tickets', router);
   };

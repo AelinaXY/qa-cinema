@@ -30,6 +30,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
+  // #swagger.paths = ['/films/']
   const title = req.query.title;
 
   Films.getAll(title, (err, data) => {
@@ -100,5 +101,69 @@ exports.delete = (req, res) => {
         });
       }
     } else res.send({ message: `Film was deleted successfully!` });
+  });
+};
+
+exports.findByGenre = (req, res) => {
+  Films.findByGenre(req.params.genre, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving films by genre."
+      });
+    else res.send(data);
+  });
+};
+
+exports.findByRating = (req, res) => {
+  Films.findByRating(req.params.rating, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving films by rating."
+      });
+    else res.send(data);
+  });
+};
+
+exports.findByYear = (req, res) => {
+  Films.findByYear(req.params.year, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving films by year."
+      });
+    else res.send(data);
+  });
+};
+
+exports.findByTitle = (req, res) => {
+  Films.findByTitle(req.params.title, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving films by title."
+      });
+    else res.send(data);
+  });
+};
+
+exports.findNewReleases = (req, res) => {
+  Films.findNewReleases((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving new releases."
+      });
+    else {
+      const newReleases = data.map(film => {
+        return {
+          film_title: film.film_title,
+          film_poster: film.film_poster,
+          film_rating: film.film_rating
+        };
+      });
+      res.send(newReleases);
+    }
   });
 };

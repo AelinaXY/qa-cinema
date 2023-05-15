@@ -11,19 +11,72 @@ body {
 /* Carousel */
 
 .carousel-image {
-  height: 600px;
+  /* height: 600px; */
   width: 100%;
 }
 
 .carousel {
   width: 100%;
+  z-index: 950;
+
+}
+
+#imageCarouselLeft {
+  margin-top: 10%;
+  width: 90%;
+  filter: brightness(50%);
+  transform: rotate(-15deg);
+  float: right;
+}
+#imageCarouselRight {
+  margin-top: 10%;
+  width: 90%;
+  filter: brightness(50%);
+  transform: rotate(15deg);
+  z-index: 900;
+  float: left;
+}
+
+
+/* Title */
+
+.new-rs-title-container{
+  padding-top: 2%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.new-rs-title-container h1{
+  background-color: #81efc9;
+  width: 30%;
+  min-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  padding-top: 0.2%;
+  padding-bottom: 0.2%;
+  font-weight: bolder;  
+  color: black;
+  font-size: 300%;
+  text-shadow: whitesmoke;
+  border-color: black;
+  border-width: 5px;
+
+
+}
+
+/* Showings */
+
+#shownFilmImage {
+  float: left;
+  /* height: 40%;
+  width: 40%; */
 }
 
 /* Cards */
 
 .nr-card-img {
-  height: 50vh;
-  object-fit: fill;
+  width: 100%;
 }
 
 .nr-text-card {
@@ -54,7 +107,7 @@ body {
 }
 
 .nr-text-card {
-  width: 100%;
+  width: 50%;
 }
 
 .hp-card {
@@ -63,7 +116,7 @@ body {
 }
 
 .hp-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.08);
   box-shadow: -2px -5px 5px 0px rgba(245, 240, 245, 1);
 }
 
@@ -93,7 +146,6 @@ body {
 
 .hp-card-container {
   background-color: rgba(0, 41, 65, 255);
-  padding-top: 40px;
 }
 
 .new-realease-container {
@@ -143,7 +195,7 @@ Button {
   align-items: center;
 } */
 
-h2 {
+.navbar h2 {
   color: white;
 }
 

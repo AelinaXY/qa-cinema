@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger-output.json')
 
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "*"
 };
 
 app.use(cors(corsOptions));
@@ -14,6 +16,8 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // simple route
 app.get("/", (req, res) => {
@@ -26,6 +30,8 @@ require("./routes/filmsRoute.js")(app);
 require("./routes/showingsRoute.js")(app);
 require("./routes/screensRoute.js")(app);
 require("./routes/ticketsRoute.js")(app);
+require("./routes/discussionBoardRoute.js")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
