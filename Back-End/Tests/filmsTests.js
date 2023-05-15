@@ -25,7 +25,15 @@ describe('Film API', () => {
       .end((err, res) => {
         chai.expect(err).to.be.null;                
         chai.expect(res.body).to.include(filmData); 
-        done();     
+        chai.expect(res.status).to.equal(201);
+
+        cleanUpDb()
+        .then(()=>{
+          done();
+        })
+        .catch((cleanupError)=>{
+          done(cleanupError)
+        })
       });
   });
 });
