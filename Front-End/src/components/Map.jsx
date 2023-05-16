@@ -1,7 +1,4 @@
-import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-
-import { Icon } from "leaflet";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Map = () => {
@@ -35,6 +32,40 @@ const Map = () => {
               />
               <Marker position={[53.478154, -2.238327]} />
             </MapContainer>
+          </Col>
+        </Row>
+      </Container>
+      <Container className="header-maps">
+        <Row>
+          <Col>
+            <p class="alert alert-primary" role="alert">
+              {" "}
+              For information on public transport that takes you Piccadilly
+              which is the nearest transport hub to QA cinemas please visit{" "}
+              <a
+                target="_blank"
+                href="https://moovitapp.com/index/en-gb/public_transportation-Manchester_Piccadilly_Railway_Station_MAN-North_West-site_19067081-2105"
+              >
+                Moovit
+              </a>{" "}
+              or{" "}
+              <a
+                target="_blank"
+                href="https://tfgm.com/public-transport/bus/stations/manchester-piccadilly-gardens-bus"
+              >
+                Transport for Greater Manchester
+              </a>
+              .
+              <p>
+                Parking can be found at{" "}
+                <a
+                  target="_blank"
+                  href="https://www.ncp.co.uk/find-a-car-park/car-parks/manchester-chorlton-street/"
+                >
+                  Chorlton street car park
+                </a>
+              </p>
+            </p>
           </Col>
         </Row>
       </Container>
