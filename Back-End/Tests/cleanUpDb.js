@@ -11,4 +11,4 @@ const cleanUpDb = async () => {
     }
 };
 
-module.exports = {cleanUpDb};
+module.exports = cleanUpDb;
