@@ -38,34 +38,46 @@ const Map = () => {
       <Container className="header-maps">
         <Row>
           <Col>
-            <p class="alert alert-primary" role="alert">
-              {" "}
-              For information on public transport that takes you Piccadilly
-              which is the nearest transport hub to QA cinemas please visit{" "}
-              <a
-                target="_blank"
-                href="https://moovitapp.com/index/en-gb/public_transportation-Manchester_Piccadilly_Railway_Station_MAN-North_West-site_19067081-2105"
-              >
-                Moovit
-              </a>{" "}
-              or{" "}
-              <a
-                target="_blank"
-                href="https://tfgm.com/public-transport/bus/stations/manchester-piccadilly-gardens-bus"
-              >
-                Transport for Greater Manchester
-              </a>
-              .
-              <p>
-                Parking can be found at{" "}
-                <a
-                  target="_blank"
-                  href="https://www.ncp.co.uk/find-a-car-park/car-parks/manchester-chorlton-street/"
-                >
-                  Chorlton street car park
-                </a>
-              </p>
-            </p>
+            <ul class="alert alert-primary" role="alert">
+              <li>
+                {" "}
+                <p>
+                  {" "}
+                  For information on public transport that takes you Piccadilly
+                  which is the nearest transport hub to QA cinemas please visit{" "}
+                  <a
+                    target="_blank"
+                    href="https://moovitapp.com/index/en-gb/public_transportation-Manchester_Piccadilly_Railway_Station_MAN-North_West-site_19067081-2105"
+                  >
+                    Moovit
+                  </a>{" "}
+                  or{" "}
+                  <a
+                    target="_blank"
+                    href="https://tfgm.com/public-transport/bus/stations/manchester-piccadilly-gardens-bus"
+                  >
+                    Transport for Greater Manchester
+                  </a>
+                  .
+                </p>
+              </li>
+              <li>
+                <p>
+                  Parking can be found at{" "}
+                  <a
+                    target="_blank"
+                    href="https://www.ncp.co.uk/find-a-car-park/car-parks/manchester-chorlton-street/"
+                  >
+                    Chorlton street car park.
+                  </a>
+                </p>
+              </li>
+              <li>
+                <a href="https://www.blinkerbar.co.uk/">Blinker</a> is a
+                cocktail bar located within 5 minutes of QA cinema, perfect for
+                a post or pre film drink.
+              </li>
+            </ul>
           </Col>
         </Row>
       </Container>
