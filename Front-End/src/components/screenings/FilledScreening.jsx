@@ -30,7 +30,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
   const [showingId, setShowingId] = useState("");
   const [tickets, setTickets] = useState("");
   const [movieModalTitle, setMovieModalTitle] = useState("DEFAULT");
-  const [adultTicketsAmount, setAdultTicketsAmount] = useState(1);
+  const [adultTicketsAmount, setAdultTicketsAmount] = useState(118);
   const [childTicketsAmount, setChildTicketsAmount] = useState(0);
   const [concessionsTicketsAmount, setConcessionsTicketsAmount] = useState(0);
 
@@ -131,7 +131,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
                                   {i.showing_screen}
                                 </h2>
                                 {console.log(savedFilm.film_title)}
-                                <Button
+                                {(i.remaining_seats > 0) ? <Button
                                   onClick={() =>
                                     handleShow(
                                       savedFilm.film_title,
@@ -143,7 +143,10 @@ const FilledScreening = ({ films, selectedFilm }) => {
                                   }
                                 >
                                   Book Now
-                                </Button>
+                                </Button> : 
+                               <></>
+                                }
+                                
                                 <br />
                               </>
                             ))}
@@ -188,9 +191,18 @@ const FilledScreening = ({ films, selectedFilm }) => {
                   <Col>{adultTicketsAmount}</Col>
                   <Col>
                     <Button
-                      onClick={() =>
-                        setAdultTicketsAmount(adultTicketsAmount + 1)
+                     onClick={() => {
+                      if (
+                        !(
+                          concessionsTicketsAmount + adultTicketsAmount + childTicketsAmount >= tickets
+                        )
+                      ) {
+                        return setAdultTicketsAmount(
+                          adultTicketsAmount + 1
+                        );
                       }
+                      return 0;
+                    }}
                     >
                       +1
                     </Button>
@@ -219,9 +231,18 @@ const FilledScreening = ({ films, selectedFilm }) => {
                   <Col>{childTicketsAmount}</Col>
                   <Col>
                     <Button
-                      onClick={() =>
-                        setChildTicketsAmount(childTicketsAmount + 1)
-                      }
+                      onClick={() => {
+                        if (
+                          !(
+                            concessionsTicketsAmount + adultTicketsAmount + childTicketsAmount >= tickets
+                          )
+                        ) {
+                          return setChildTicketsAmount(
+                            childTicketsAmount + 1
+                          );
+                        }
+                        return 0;
+                      }}
                     >
                       +1
                     </Button>
@@ -253,11 +274,18 @@ const FilledScreening = ({ films, selectedFilm }) => {
                   <Col>{concessionsTicketsAmount}</Col>
                   <Col>
                     <Button
-                      onClick={() =>
-                        setConcessionsTicketsAmount(
-                          concessionsTicketsAmount + 1
-                        )
-                      }
+                      onClick={() => {
+                        if (
+                          !(
+                            concessionsTicketsAmount + adultTicketsAmount + childTicketsAmount >= tickets
+                          )
+                        ) {
+                          return setConcessionsTicketsAmount(
+                            concessionsTicketsAmount + 1
+                          );
+                        }
+                        return 0;
+                      }}
                     >
                       +1
                     </Button>
