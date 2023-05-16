@@ -61,6 +61,10 @@ const calculateOrderAmount = (items) => {
     {
       returnAmount+=500;
     }
+    if(i.id === 'concession-ticket')
+    {
+      returnAmount+=600;
+    }
   });
 
   console.log(returnAmount);

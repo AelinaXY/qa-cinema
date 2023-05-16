@@ -16,61 +16,61 @@ export default function StripeContainer(prop) {
   const [clientSecret, setClientSecret] = useState("");
   const createdPaymentIntent = useRef(false);
 
-  const {data} = prop;
+  const { data } = prop;
 
   const paymentId = useRef("");
 
   console.log(data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-  
+
   const amountOfTickets = [];
 
-  for(let i=0; i<data[0]; i++)
-  {
-    amountOfTickets.push({id:'adult-ticket'});
-    }
+  for (let i = 0; i < data[0]; i++) {
+    amountOfTickets.push({ id: "adult-ticket" });
+  }
 
-    for(let i=0; i<data[1]; i++)
-    {
-      amountOfTickets.push({id:'child-ticket'});
-      }
+  for (let i = 0; i < data[1]; i++) {
+    amountOfTickets.push({ id: "child-ticket" });
+  }
 
+  for (let i = 0; i < data[2]; i++) {
+    amountOfTickets.push({ id: "concession-ticket" });
+  }
 
   useEffect(() => {
-
-    if(createdPaymentIntent.current === true)
-    {
-      console.log(amountOfTickets, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-    // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:8080/update-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: amountOfTickets, id: paymentId.current}),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret))
-      .catch((err) => console.log(err));
-
+    if (createdPaymentIntent.current === true) {
+      console.log(
+        amountOfTickets,
+        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+      );
+      // Create PaymentIntent as soon as the page loads
+      fetch("http://localhost:8080/update-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: amountOfTickets, id: paymentId.current }),
+      })
+        .then((res) => res.json())
+        .then((data) => setClientSecret(data.clientSecret))
+        .catch((err) => console.log(err));
     }
-    
   }, [prop.data]);
 
-
-  useEffect(() =>
-  {
+  useEffect(() => {
     fetch("http://localhost:8080/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: amountOfTickets}),
+      body: JSON.stringify({ items: amountOfTickets }),
     })
       .then((res) => {
-        return res.json();})
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
         paymentId.current = data.id;
         createdPaymentIntent.current = true;
-        return setClientSecret(data.clientSecret);})
+        return setClientSecret(data.clientSecret);
+      })
       .catch((err) => console.log(err));
-  }, [])
+  }, []);
 
   const appearance = {
     theme: "stripe",
@@ -84,7 +84,7 @@ export default function StripeContainer(prop) {
     <div className="App">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm data={data} id={prop.id}/>
         </Elements>
       )}
     </div>

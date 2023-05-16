@@ -27,21 +27,25 @@ const FilledScreening = ({ films, selectedFilm }) => {
   const [show, setShow] = useState(false);
   const [showingTime, setShowingTime] = useState("");
   const [showingScreen, setShowingScreen] = useState("");
+  const [showingId, setShowingId] = useState("");
   const [tickets, setTickets] = useState("");
   const [movieModalTitle, setMovieModalTitle] = useState("DEFAULT");
   const [adultTicketsAmount, setAdultTicketsAmount] = useState(1);
   const [childTicketsAmount, setChildTicketsAmount] = useState(0);
-  let timerId;
+  const [concessionsTicketsAmount, setConcessionsTicketsAmount] = useState(0);
+
 
   const childPrice = 5;
   const adultPrice = 11;
+  const concessionPrice = 6;
 
   const handleClose = () => setShow(false);
-  const handleShow = (title, time, tickets, screen) => {
+  const handleShow = (title, time, tickets, screen,id) => {
     setMovieModalTitle(title);
     setShowingTime(time);
     setTickets(tickets);
     setShowingScreen(screen);
+    setShowingId(id);
     setShow(true);
   };
 
@@ -115,9 +119,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
                         >
                           <h1>Showings for {`${savedFilm.film_title}`}</h1>
                           {showingData
-                            .filter(
-                              ({ film_id }) => film_id == selectedFilm
-                            )
+                            .filter(({ film_id }) => film_id == selectedFilm)
                             .map((i) => (
                               <>
                                 <br />
@@ -130,12 +132,15 @@ const FilledScreening = ({ films, selectedFilm }) => {
                                 </h2>
                                 {console.log(savedFilm.film_title)}
                                 <Button
-                                  onClick={() => handleShow(
-                                    savedFilm.film_title,
-                                    dateParseFromDB(i.showing_time),
-                                    i.remaining_seats,
-                                    i.showing_screen
-                                  )}
+                                  onClick={() =>
+                                    handleShow(
+                                      savedFilm.film_title,
+                                      dateParseFromDB(i.showing_time),
+                                      i.remaining_seats,
+                                      i.showing_screen,
+                                      i.showing_id
+                                    )
+                                  }
                                 >
                                   Book Now
                                 </Button>
@@ -156,69 +161,129 @@ const FilledScreening = ({ films, selectedFilm }) => {
               <Modal.Title>Showing for {movieModalTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              Booking at {showingTime} in Screen {showingScreen} <br/>
-              Only {tickets} tickets left!
-
-                  <Container>
-                    <Row>
-                      <Col>
-                      Adult:
-                      </Col>
-                      <Col>
-                      <Button onClick={() => {
-                        if(!(adultTicketsAmount-1 === 0 && childTicketsAmount ===0))
-                        {
-                          return(setAdultTicketsAmount(adultTicketsAmount-1))
+              Booking at {showingTime} in Screen {showingScreen} <br />
+              Only {tickets} tickets left! <br/>
+              Id: {showingId}
+              <Container>
+                <Row>
+                  <Col>Adult:</Col>
+                  <Col>
+                    <Button
+                      onClick={() => {
+                        if (
+                          !(
+                            adultTicketsAmount - 1 === 0 &&
+                            childTicketsAmount === 0 &&
+                            concessionsTicketsAmount === 0
+                          )
+                        ) {
+                          return setAdultTicketsAmount(adultTicketsAmount - 1);
+                        }
+                        return 0;
+                      }}
+                    >
+                      -1
+                    </Button>
+                  </Col>
+                  <Col>{adultTicketsAmount}</Col>
+                  <Col>
+                    <Button
+                      onClick={() =>
+                        setAdultTicketsAmount(adultTicketsAmount + 1)
                       }
-                    return 0;}}>
-                        -1
-                      </Button>
-                      </Col>
-                      <Col>
-                      {adultTicketsAmount}
-                      </Col>
-                      <Col>
-                      <Button onClick={() => setAdultTicketsAmount(adultTicketsAmount+1)}>
-                        +1
-                      </Button>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                      Child:
-                      </Col>
-                      <Col>
-                      <Button onClick={() => {
-                        if(!(childTicketsAmount-1 === 0 && adultTicketsAmount ===0))
-                        {
-                          return(setChildTicketsAmount(childTicketsAmount-1))
+                    >
+                      +1
+                    </Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>Child:</Col>
+                  <Col>
+                    <Button
+                      onClick={() => {
+                        if (
+                          !(
+                            childTicketsAmount - 1 === 0 &&
+                            adultTicketsAmount === 0 &&
+                            concessionsTicketsAmount === 0
+                          )
+                        ) {
+                          return setChildTicketsAmount(childTicketsAmount - 1);
+                        }
+                        return 0;
+                      }}
+                    >
+                      -1
+                    </Button>
+                  </Col>
+                  <Col>{childTicketsAmount}</Col>
+                  <Col>
+                    <Button
+                      onClick={() =>
+                        setChildTicketsAmount(childTicketsAmount + 1)
                       }
-                    return 0;}}>
-                        -1
-                      </Button>
-                      </Col>
-                      <Col>
-                      {childTicketsAmount}
-                      </Col>
-                      <Col>
-                      <Button onClick={() => setChildTicketsAmount(childTicketsAmount+1)}>
-                        +1
-                      </Button>
-                      </Col>
-                    </Row>
+                    >
+                      +1
+                    </Button>
+                  </Col>
+                </Row>
 
-                    <Row>
-                      <Col>
-                      Ticket Price: £{childTicketsAmount*childPrice + adultTicketsAmount*adultPrice}.00
+                <Row>
+                  <Col>Concession:</Col>
+                  <Col>
+                    <Button
+                      onClick={() => {
+                        if (
+                          !(
+                            concessionsTicketsAmount - 1 === 0 &&
+                            adultTicketsAmount === 0 &&
+                            childTicketsAmount === 0
+                          )
+                        ) {
+                          return setConcessionsTicketsAmount(
+                            concessionsTicketsAmount - 1
+                          );
+                        }
+                        return 0;
+                      }}
+                    >
+                      -1
+                    </Button>
+                  </Col>
+                  <Col>{concessionsTicketsAmount}</Col>
+                  <Col>
+                    <Button
+                      onClick={() =>
+                        setConcessionsTicketsAmount(
+                          concessionsTicketsAmount + 1
+                        )
+                      }
+                    >
+                      +1
+                    </Button>
+                  </Col>
+                </Row>
 
-                      </Col>
-                    </Row>
-
-                  </Container>
-                  
+                <Row>
+                  <Col>
+                    Ticket Price: £
+                    {childTicketsAmount * childPrice +
+                      adultTicketsAmount * adultPrice +
+                      concessionsTicketsAmount * concessionPrice}
+                    .00
+                  </Col>
+                </Row>
+              </Container>
               {/* <Button onClick={() => {setTicketsAmount(ticketsAmount+1);}}>CLICK ME!</Button>
               {ticketsAmount} */}
-              <StripeContainer data={[adultTicketsAmount, childTicketsAmount]}/>
+              <StripeContainer
+                data={[
+                  adultTicketsAmount,
+                  childTicketsAmount,
+                  concessionsTicketsAmount,
+                ]}
+              id={showingId}
+              />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={handleClose}>
@@ -232,8 +297,6 @@ const FilledScreening = ({ films, selectedFilm }) => {
       shownCardsAdder(printArray, filmArray);
     }
   });
-
-  
 
   function shownCardsAdder(printArray, filmArray) {
     printArray.push(
