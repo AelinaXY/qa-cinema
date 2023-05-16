@@ -48,14 +48,18 @@ app.use(express.static("public"));
 
 const calculateOrderAmount = (items) => {
   
-  let returnAmount = 200;
+  let returnAmount = 0;
 
 
   items.forEach(i => {
 
-    if(i.id === 'cinema-ticket')
+    if(i.id === 'adult-ticket')
     {
-      returnAmount+=1400;
+      returnAmount+=1100;
+    }
+    if(i.id === 'child-ticket')
+    {
+      returnAmount+=500;
     }
   });
 

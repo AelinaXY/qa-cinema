@@ -29,7 +29,12 @@ const FilledScreening = ({ films, selectedFilm }) => {
   const [showingScreen, setShowingScreen] = useState("");
   const [tickets, setTickets] = useState("");
   const [movieModalTitle, setMovieModalTitle] = useState("DEFAULT");
-  const [ticketsAmount, setTicketsAmount] = useState(15);
+  const [adultTicketsAmount, setAdultTicketsAmount] = useState(1);
+  const [childTicketsAmount, setChildTicketsAmount] = useState(0);
+  let timerId;
+
+  const childPrice = 5;
+  const adultPrice = 11;
 
   const handleClose = () => setShow(false);
   const handleShow = (title, time, tickets, screen) => {
@@ -153,16 +158,71 @@ const FilledScreening = ({ films, selectedFilm }) => {
             <Modal.Body>
               Booking at {showingTime} in Screen {showingScreen} <br/>
               Only {tickets} tickets left!
-              <Button onClick={() => {setTicketsAmount(ticketsAmount+1);}}>CLICK ME!</Button>
-              {ticketsAmount}
-              <StripeContainer data={ticketsAmount}/>
+
+                  <Container>
+                    <Row>
+                      <Col>
+                      Adult:
+                      </Col>
+                      <Col>
+                      <Button onClick={() => {
+                        if(!(adultTicketsAmount-1 === 0 && childTicketsAmount ===0))
+                        {
+                          return(setAdultTicketsAmount(adultTicketsAmount-1))
+                      }
+                    return 0;}}>
+                        -1
+                      </Button>
+                      </Col>
+                      <Col>
+                      {adultTicketsAmount}
+                      </Col>
+                      <Col>
+                      <Button onClick={() => setAdultTicketsAmount(adultTicketsAmount+1)}>
+                        +1
+                      </Button>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                      Child:
+                      </Col>
+                      <Col>
+                      <Button onClick={() => {
+                        if(!(childTicketsAmount-1 === 0 && adultTicketsAmount ===0))
+                        {
+                          return(setChildTicketsAmount(childTicketsAmount-1))
+                      }
+                    return 0;}}>
+                        -1
+                      </Button>
+                      </Col>
+                      <Col>
+                      {childTicketsAmount}
+                      </Col>
+                      <Col>
+                      <Button onClick={() => setChildTicketsAmount(childTicketsAmount+1)}>
+                        +1
+                      </Button>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col>
+                      Ticket Price: £{childTicketsAmount*childPrice + adultTicketsAmount*adultPrice}.00
+
+                      </Col>
+                    </Row>
+
+                  </Container>
+                  
+              {/* <Button onClick={() => {setTicketsAmount(ticketsAmount+1);}}>CLICK ME!</Button>
+              {ticketsAmount} */}
+              <StripeContainer data={[adultTicketsAmount, childTicketsAmount]}/>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
               <Button variant="primary" onClick={handleClose}>
-                Save Changes
+                Close
               </Button>
             </Modal.Footer>
           </Modal>
@@ -172,6 +232,8 @@ const FilledScreening = ({ films, selectedFilm }) => {
       shownCardsAdder(printArray, filmArray);
     }
   });
+
+  
 
   function shownCardsAdder(printArray, filmArray) {
     printArray.push(

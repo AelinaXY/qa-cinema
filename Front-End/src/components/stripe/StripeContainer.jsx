@@ -24,10 +24,15 @@ export default function StripeContainer(prop) {
   
   const amountOfTickets = [];
 
-  for(let i=0; i<data; i++)
+  for(let i=0; i<data[0]; i++)
   {
-    amountOfTickets.push({id:'cinema-ticket'});
+    amountOfTickets.push({id:'adult-ticket'});
     }
+
+    for(let i=0; i<data[1]; i++)
+    {
+      amountOfTickets.push({id:'child-ticket'});
+      }
 
 
   useEffect(() => {
