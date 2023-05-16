@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        /* <Nav1 />
+        <Nav1 />
         <Route path="/" exact>
           <HomePage />
         </Route>

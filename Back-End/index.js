@@ -44,15 +44,39 @@ const stripe = require("stripe")(
 
 app.use(express.static("public"));
 
+
+
 const calculateOrderAmount = (items) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
-  return 1400;
+  
+  let returnAmount = 0;
+
+
+  items.forEach(i => {
+
+    if(i.id === 'adult-ticket')
+    {
+      returnAmount+=1100;
+    }
+    if(i.id === 'child-ticket')
+    {
+      returnAmount+=500;
+    }
+    if(i.id === 'concession-ticket')
+    {
+      returnAmount+=600;
+    }
+  });
+
+  console.log(returnAmount);
+
+
+  return returnAmount;
+
 };
 
 app.post("/create-payment-intent", async (req, res) => {
   const { items } = req.body;
+  console.log("I'm an ORDER");
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
@@ -61,6 +85,23 @@ app.post("/create-payment-intent", async (req, res) => {
     automatic_payment_methods: {
       enabled: true,
     },
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+    id: paymentIntent.id,
+  });
+});
+
+app.post("/update-payment-intent", async (req, res) => {
+  const { items } = req.body;
+  const {id} = req.body;
+  console.log("I'm an UPDATE");
+
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.update(id,{
+    amount: calculateOrderAmount(items)
   });
 
   res.send({
