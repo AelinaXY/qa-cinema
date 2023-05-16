@@ -1,13 +1,13 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../index.js');
-const Films = require('../models/films');
+// const Films = require('../models/films');
 const app = require('../index.js');
-const dbConnect = require('../dbutils/dbConnect.js');
-const { DB } = require('../dbutils/dbconfig.js');
-const dbconfig = require('../dbutils/dbconfig.js');
-const cleanUpDb = require('./cleanUpDb.js');
-const h2db = require('./test_dbutils/h2SetUp.js');
+// const dbConnect = require('../dbutils/dbConnect.js');
+// const { DB } = require('../dbutils/dbconfig.js');
+// const dbconfig = require('../dbutils/dbconfig.js');
+// const cleanUpDb = require('./cleanUpDb.js');
+const db = require('./h2SetUp.js');
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -25,18 +25,50 @@ describe('Film API', () => {
     };
 
     chai
-      .request(app)
-      .post('/films/')
-      .send(filmData)
-      .end((err, res) => {
-        chai.expect(err).to.be.null;
-        chai.expect(res.body).to.include(filmData);
-        chai.expect(res.status).to.equal(200);
+    .request(app)
+    .post('/films/')
+    .send(filmData)
+    .end((err, res) => {
+      chai.expect(err).to.be.null;
+      chai.expect(res.body).to.include(filmData);
+      chai.expect(res.status).to.equal(200);
+
+      db('films')
+      .where({film_title: filmData.film_title})
+      .first()
+      .then((film)=>{
+        expect(film).to.exist;
+        expect(film).to.deep.include(filmData);
         done();
+      })
+      .catch((error)=>{
+        done(error);
       });
+    });
   });
 
+
   // it('should retrieve all films', (done) => {
+  //   const expectedFilms =[
+  //     {
+  //       film_title: "Joker",
+  //       film_year: 2019,
+  //       film_rating: "15",
+  //       film_genre: "Crime",
+  //       film_secondary_genre: "Drama",
+  //       film_poster: "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
+
+  //     },
+  //     {
+  //         film_title: "Spider-Man: No Way Home",
+  //         film_year: 2021,
+  //         film_rating: "12A",
+  //         film_genre: "Action",
+  //         film_secondary_genre: "Adventure",
+  //         film_poster: "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/IMG_7260.jpg?v=1640349274"
+    
+  //     }
+  //   ]
   //   chai
   //     .request(app)
   //     .get('/films/')
