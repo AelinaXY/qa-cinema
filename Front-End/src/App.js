@@ -8,6 +8,9 @@ import Nav1 from "./components/Nav1";
 import Footer2 from "./components/Footer2";
 import ThankYou from "./components/ThankYou";
 import Ratings from "./components/Ratings";
+import Map from "./components/Map";
+
+
 
 import {
   BrowserRouter,
@@ -29,6 +32,9 @@ function App() {
         <Route path="/screenings/:film">
           <Screenings />
         </Route>
+        <Route path="/screenings" exact>
+          <Screenings />
+        </Route>
         <Route path="/contact">
           <Contact />
         </Route>
@@ -40,6 +46,9 @@ function App() {
         </Route>
         <Route path="/ratings">
           <Ratings />
+        </Route>
+        <Route path="/map">
+          <Map />
         </Route>
       </BrowserRouter>
 

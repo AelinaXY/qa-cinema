@@ -12,6 +12,7 @@ import { useState } from "react";
 // import { Card } from "semantic-ui-react";
 
 const ThankYou = () => {
+
   return (
     <>
       <Container>

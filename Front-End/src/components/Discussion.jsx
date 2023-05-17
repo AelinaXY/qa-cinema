@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Alert from "react-bootstrap/Alert";
+import './Discussion.css';
 
 const Discussion = () => {
   const [discussions, setDiscussions] = useState([]);
@@ -75,47 +77,63 @@ const Discussion = () => {
 
     return stars;
   };
-
+// Carousel
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
   return (
     <div>
-      <h1>Discussion Board</h1>
+      <h1 className='discussionPage'><span>Discussion</span></h1>{""}
+
+      <Alert className='discussionPage'>
+              {" "}
+              <p>
+              This is the place for you to talk about the films you watched with us.Please remember that this space is moderated.Posts with spoilers or any form of abusive language will result in the post being removed
+              </p>
+              </Alert>
+
       <form onSubmit={handleCreateDiscussion}>
         <input
           type="text"
-          placeholder="Title"
+          placeholder="Film Title:"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Body"
+          placeholder="Your opinion here:"
           value={body}
           onChange={(e) => setBody(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Film ID"
+          placeholder="Your QA experience here:"
           value={filmId}
           onChange={(e) => setFilmId(e.target.value)}
         />
         <div>
-          <label>Rating: </label>
+          <label className='discussionPage'>Rate the film: </label>
           {renderStars()} 
         </div>
-        <button type="submit">Create Discussion</button>
+        <button type="submit">Create post</button>
       </form>
-      <h2>Discussions</h2>
+      <h2 className='discussionPage' >What our viewers have said so far...</h2>
       <ul>
         {discussions.map((discussion) => (
-          <li key={discussion.id}>
-            <h3>{discussion.title}</h3>
+          <li class className='discussionPage'key={discussion.id}>
+            <h3 className='discussionPage'>  {discussion.title}</h3>
             <p>{discussion.body}</p>
-            <p>Film ID: {discussion.film_id}</p>
-            <p>Rating: {discussion.film_rating}</p>
+            <p>Overall Experience:{discussion.film_id}</p>
+            <p>Rating:{discussion.film_rating}</p>
           </li>
         ))}
       </ul>
     </div>
+    
   );
 };
 

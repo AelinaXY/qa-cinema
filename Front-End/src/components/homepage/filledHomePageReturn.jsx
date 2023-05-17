@@ -77,7 +77,7 @@ const filledHomePageReturn = (films, newReleases) => {
           <Col>
             <img
               id="imageCarouselRight"
-              src={`${newReleases[2].film_poster}`}
+              src={`${newReleases[newReleases.length-1].film_poster}`}
             />
           </Col>
         </Row>
