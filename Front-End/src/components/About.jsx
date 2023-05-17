@@ -2,13 +2,13 @@ import React from "react";
 import "./About.css";
 // import { Carousel } from "react-responsive-carousel";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Building from "./AboutBuilding.jpg";
-import Chair from "./AboutChair.jpg";
-import Screen from "./AboutScreen.jpg";
-import Openings from "./AboutOpeningTime.png";
-import Tickets from "./AboutTickets.png";
-import Values from "./AboutValues.png";
-import Location from "./AboutLocation.png";
+import Building from "./aboutImages/AboutBuilding.jpg";
+import Chair from "./aboutImages/AboutChair.jpg";
+import Screen from "./aboutImages/AboutScreen.jpg";
+import Openings from "./aboutImages/AboutOpeningTime.png";
+import Tickets from "./aboutImages/AboutTickets.png";
+import Values from "./aboutImages/AboutValues.png";
+import Location from "./aboutImages/AboutLocation.png";
 const About = () => {
   return (
     <div>
