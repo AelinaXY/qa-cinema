@@ -9,6 +9,9 @@ import Openings from "./aboutImages/AboutOpeningTime.png";
 import Tickets from "./aboutImages/AboutTickets.png";
 import Values from "./aboutImages/AboutValues.png";
 import Location from "./aboutImages/AboutLocation.png";
+import { Carousel } from "react-bootstrap";
+
+import { Container,Row,Col,Alert } from "react-bootstrap";
 const About = () => {
   return (
     <>
