@@ -343,7 +343,7 @@ hr {
 .modalBox {
   color: black;
 }
-.nav{
+.nav {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -354,7 +354,7 @@ hr {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.nav:hover{
+.nav:hover {
   background-color: #0056b3;
 }
 
@@ -396,4 +396,16 @@ hr {
 .header-maps {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+/* Navbar */
+.places-card {
+  margin: 15px 15px 35px 15px;
+  color: black;
+  text-align: center;
+}
+
+.places-img {
+  height: 200px;
+  width: auto;
 }
