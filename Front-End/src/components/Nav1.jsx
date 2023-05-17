@@ -51,7 +51,7 @@ function Nav1() {
           <Form className="d-flex" type="submit" onSubmit={handleSearch}>
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="Enter Movie info here"
               className="me-2"
               aria-label="Search"
               value={movieTitle}
