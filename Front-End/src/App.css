@@ -247,6 +247,19 @@ Button {
   margin: 10px 0px 20px 0px;
 }
 
+.contact-toast {
+  background-color: lightblue;
+  color: black;
+}
+
+.contact-toast-header {
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.contact-msg {
+  padding-bottom: 25px;
+}
+
 .header {
   margin: 25px 50px 55px 100px;
   text-shadow: 1px 1px 0px #ff0000;

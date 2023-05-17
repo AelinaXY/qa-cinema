@@ -17,18 +17,18 @@ const ContactForm = () => {
   if (state.succeeded) {
     return (
       <div className="contact-msg">
-        <Col md={6} className="mx-auto">
-          <Toast show={showA} onClose={toggleShowA}>
-            <Toast.Header>
-              <img
+        <Col md={4} className="mx-auto">
+          <Toast className="contact-toast" show={showA} onClose={toggleShowA}>
+            <Toast.Header className="contact-toast-header text-center">
+              {/* <img
                 src="holder.js/20x20?text=%20"
                 className="rounded me-2"
                 alt=""
-              />
+              /> */}
               <strong className="me-auto">QA Cinemas</strong>
             </Toast.Header>
             <Toast.Body>
-              Thank you for you for your inquiry. Respomses typically take 1-2
+              Thank you for you for your inquiry. Responses typically take 1-2
               working days.
             </Toast.Body>
           </Toast>
