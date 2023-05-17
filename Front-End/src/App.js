@@ -5,6 +5,10 @@ import Screenings from "./components/Screenings";
 import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
+import Footer2 from "./components/Footer2";
+import ThankYou from "./components/ThankYou";
+import Ratings from "./components/Ratings";
+import Map from "./components/Map";
 
 import {
   BrowserRouter,
@@ -23,7 +27,10 @@ function App() {
         <Route path="/about">
           <About />
         </Route>
-        <Route path="/screenings">
+        <Route path="/screenings/:film">
+          <Screenings />
+        </Route>
+        <Route path="/screenings/">
           <Screenings />
         </Route>
         <Route path="/contact">
@@ -32,7 +39,18 @@ function App() {
         <Route path="/discussion">
           <Discussion />
         </Route>
+        <Route path="/thankyou">
+          <ThankYou />
+        </Route>
+        <Route path="/ratings">
+          <Ratings />
+        </Route>
+        <Route path="/map">
+          <Map />
+        </Route>
       </BrowserRouter>
+
+      <Footer2 />
     </>
   );
 }
