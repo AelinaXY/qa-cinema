@@ -21,7 +21,7 @@ function Footer2() {
               </li>
               <li>
                 {" "}
-                <a href=""> Quick Link</a>
+                <a href="/map"> Our Location</a>
               </li>
               <li>
                 {" "}

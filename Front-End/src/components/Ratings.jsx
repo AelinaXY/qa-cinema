@@ -152,7 +152,7 @@ const Ratings = () => {
         </Row>
       </Container>
 
-      <Container className="faq-container">
+      <Container className="faq-container" id="faq">
         <Row>
           <Col>
             <h2 className="header text-center">FAQ'S</h2>
