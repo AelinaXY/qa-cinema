@@ -90,7 +90,7 @@ function Nav1() {
                 filmsData.map(f => <option>{f.film_title}{f.film_year}</option>)
               }
             </select>
-            <Link to="/Screenings.jsx">
+            <Link to="/screenings">
               <Button variant="outline-success" type="submit">
                Find films here.
               </Button>
