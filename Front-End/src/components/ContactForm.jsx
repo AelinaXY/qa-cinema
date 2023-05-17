@@ -40,7 +40,7 @@ const ContactForm = () => {
     <Container className="email-container">
       <Row>
         <Col>
-          <form onSubmit={handleSubmit}>
+          <form className="contact-form" onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -67,8 +67,12 @@ const ContactForm = () => {
               errors={state.errors}
             />
             <Form.Group className="mb-3">
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Label>Enquiry</Form.Label>
+              <Form.Control
+                placeholder="Enter enquiry"
+                as="textarea"
+                rows={3}
+              />
             </Form.Group>
             <ValidationError
               prefix="Message"

@@ -193,16 +193,6 @@ Button {
   background-color: #00003f;
 }
 
-/* .navbar-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-.navbar h2 {
-  color: white;
-}
-
 /* Navbar */
 
 .navbar-light .navbar-nav .nav-link {
@@ -233,12 +223,11 @@ Button {
   );
 }
 
-/* .contact-msg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
+.navbar h2 {
+  color: white;
+}
 
+/* Contact  */
 .email-container {
   width: 75vh;
 }
@@ -251,8 +240,11 @@ Button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: darkblue; */
   padding-top: 20px;
+}
+
+.contact-form {
+  margin: 10px 0px 20px 0px;
 }
 
 .header {
@@ -263,11 +255,6 @@ Button {
 .bookings-alert {
   margin: 65px 25px 25px 25px;
 }
-
-/* h1 {
-  font-size: 24px;
-  color: white;
-} */
 
 .thankyou-card {
   margin-top: 60px;
