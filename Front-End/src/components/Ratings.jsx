@@ -55,7 +55,7 @@ const Ratings = () => {
                 <Card.Title className="ratings-title">
                   Parental guidance
                 </Card.Title>
-                <Card.Text className="ratings-text">
+                <Card.Text className="ratings-text overflow-auto">
                   General viewing, but some scenes may be unsuitable for young
                   children. Unaccompanied children of any age may watch, but
                   parents are advised to consider whether the content may upset
@@ -88,7 +88,11 @@ const Ratings = () => {
         <Row>
           <Col md={4}>
             <Card style={{ width: "18rem" }} className="ratings-card  mx-auto">
-              <Card.Img variant="top" src="images/12a-rating.jpeg" />
+              <Card.Img
+                variant="top"
+                src="images/12a-rating.jpeg"
+                className="ratings-img"
+              />
               <Card.Body>
                 <Card.Title className="ratings-title">
                   Suitable for 12 years and over
@@ -107,9 +111,14 @@ const Ratings = () => {
               </Card.Body>
             </Card>
           </Col>
+
           <Col md={4}>
             <Card style={{ width: "18rem" }} className="ratings-card mx-auto">
-              <Card.Img variant="top" src="images/15-rating.png" />
+              <Card.Img
+                variant="top"
+                src="images/15-rating.png"
+                className="ratings-img"
+              />
               <Card.Body>
                 <Card.Title className="ratings-title">
                   Suitable only for 15 years and over
@@ -123,12 +132,16 @@ const Ratings = () => {
           </Col>
           <Col md={4}>
             <Card style={{ width: "18rem" }} className="ratings-card mx-auto">
-              <Card.Img variant="top" src="images/18-rating.png" />
+              <Card.Img
+                variant="top"
+                src="images/18-rating.png"
+                className="ratings-img"
+              />
               <Card.Body>
                 <Card.Title className="ratings-title">
                   Suitable only for adults
                 </Card.Title>
-                <Card.Text className="ratings-text">
+                <Card.Text className="ratings-text overflow-auto">
                   No one younger than 18 may see an 18 film in a cinema. No one
                   younger than 18 may rent or buy an 18 rated video work. Adults
                   should be free to choose their own entertainment.

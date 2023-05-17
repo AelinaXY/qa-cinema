@@ -312,6 +312,8 @@ hr {
   text-shadow: 1px 1px 0px #ff0000;
 }
 
+/* Certification */
+
 .ratings-card {
   margin: 25px 55px;
   height: 28rem;
@@ -320,7 +322,7 @@ hr {
 .ratings-img {
   object-fit: fill;
   height: 250px;
-  background-color: #00003f;
+  padding-bottom: 5px;
 }
 
 .ratings-title {
@@ -328,12 +330,15 @@ hr {
   padding-bottom: 10px;
   text-align: center;
   font-weight: 700;
+  color: black;
 }
 
 .ratings-text {
   height: 100px;
-  overflow-y: auto;
+  overflow: scroll;
+  /* overflow: hidden; */
   padding-bottom: 10px;
+  color: black;
 }
 
 .showingData {
