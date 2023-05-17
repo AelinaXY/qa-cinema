@@ -73,9 +73,22 @@ const Map = () => {
                 </p>
               </li>
               <li>
-                <a href="https://www.blinkerbar.co.uk/">Blinker</a> is a
-                cocktail bar located within 5 minutes of QA cinema, perfect for
-                a post or pre film drink.
+                <p>
+                  <a target="_blank" href="https://www.blinkerbar.co.uk/">
+                    Blinker
+                  </a>{" "}
+                  is a cocktail bar located within 5 minutes of QA cinema,
+                  perfect for a post or pre film drink.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <a target="_blank" href="https://www.10tiblane.com/">
+                    10 Tib
+                  </a>{" "}
+                  is a cosy restaurant and wine bar located within 5 minutes of
+                  QA cinema, perfect for dinner before a film or dessert after.
+                </p>
               </li>
             </ul>
           </Col>
