@@ -8,6 +8,8 @@ import { useState } from "react";
 import axios from "axios";
 import Screenings from "./Screenings.jsx";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect, useRef } from "react";
+
 
 const filmsData = [
   {
@@ -56,51 +58,93 @@ function Nav1() {
       film.film_title.toLowerCase().includes(query.toLowerCase())
     );
   };
-  return (
-    <Navbar expand="lg">
-      <Container fluid>
-        <Navbar.Brand href="/">QA Cinema</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="mx-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
-          >
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/screenings/navLink">Screenings</Nav.Link>
-            <Nav.Link href="/discussion">Discussion</Nav.Link>
-            <Nav.Link href="/contact">Contact</Nav.Link>
-            
-            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown> */}
-          </Nav>
-          <Form className="nav" type="submit" placeholder="Search films here"  style={{ backgroundColor: 'navy', color: 'white' }} onSubmit={handleSearch}>
-            <select>
-              {
-                filmsData.map(f => <option>{f.film_title}{f.film_year}</option>)
-              }
-            </select>
-            <Link to="/screenings">
-              <Button variant="outline-success" type="submit">
-               Find films here.
-              </Button>
-              </Link>
-           
-          </Form>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+
+
+  const [data, setData] = useState("");
+  const [error, setError] = useState("");
+  const loaded = useRef(false);
+  const [userChoice,setUserChoice] = useState(0);
+
+  const request = (url, setFunction) => {
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+    console.log(`making request for at ${url}`);
+    axios
+      .get(url, config)
+      .then((response) => {
+        setFunction(response.data);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
+
+  useEffect(() => {
+    if (loaded.current === false) {
+      request("http://localhost:8080/films/", setData);
+      loaded.current = true;
+    }
+  }, []);
+
+  if (loaded) {
+    console.log("NAV LOADED");
+    if (error !== "") {
+      console.log(error);
+    } else if (data !== "") {
+      console.log(data);
+      return (
+        <Navbar expand="lg">
+          <Container fluid>
+            <Navbar.Brand href="/">QA Cinema</Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+              <Nav
+                className="mx-auto my-2 my-lg-0"
+                style={{ maxHeight: "100px" }}
+                navbarScroll
+              >
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/about">About</Nav.Link>
+                <Nav.Link href="/screenings/navLink">Screenings</Nav.Link>
+                <Nav.Link href="/discussion">Discussion</Nav.Link>
+                <Nav.Link href="/contact">Contact</Nav.Link>
+                
+                {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
+                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">
+                    Another action
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action5">
+                    Something else here
+                  </NavDropdown.Item>
+                </NavDropdown> */}
+              </Nav>
+              <Form className="nav" type="submit" placeholder="Search films here"  style={{ backgroundColor: 'navy', color: 'white' }} onSubmit={handleSearch}>
+                <select onChange={(choice => setUserChoice(choice.target.value))}>
+                  {
+                    data.map(f => <option value={f.id}>{f.film_title} {f.film_year}</option>)
+                  }
+                </select>
+                <Link to={{pathname:`/screenings/${userChoice}`}}>
+                  <Button variant="outline-success" type="submit">
+                   Find films here.
+                  </Button>
+                  </Link>
+               
+              </Form>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      );    }
+  } else {
+    console.log("NAV UNLOADeD");
+  }
+
+  
 }
 
 export default Nav1;
