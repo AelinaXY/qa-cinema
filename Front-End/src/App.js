@@ -9,6 +9,7 @@ import Footer2 from "./components/Footer2";
 import ThankYou from "./components/ThankYou";
 import Ratings from "./components/Ratings";
 import Map from "./components/Map";
+import TheTeam from "./components/TheTeam";
 
 import {
   BrowserRouter,
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path="/map">
           <Map />
+        </Route>
+        <Route path="/theteam">
+          <TheTeam />
         </Route>
       </BrowserRouter>
 
