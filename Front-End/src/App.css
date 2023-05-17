@@ -269,7 +269,6 @@ Button {
   color: white;
 } */
 
-
 .thankyou-card {
   margin-top: 60px;
   background-color: rgba(0, 41, 65, 255);
@@ -341,6 +340,26 @@ hr {
   color: black;
 }
 
-.modalBox{
+.modalBox {
   color: black;
+}
+
+.leaflet-container {
+  width: 50vh;
+  height: 50vw;
+  border: 5px black solid;
+  box-shadow: 0 8px 8px -4px lightblue;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.about-map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-maps {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
