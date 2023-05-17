@@ -344,3 +344,17 @@ hr {
 .modalBox{
   color: black;
 }
+.nav{
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.nav:hover{
+  background-color: #0056b3;
+}
