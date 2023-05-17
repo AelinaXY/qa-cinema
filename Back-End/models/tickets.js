@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const connection = require("../dbutils/dbConnect.js");
 
 // constructor
 const Tickets = function(tickets) {
@@ -7,7 +7,7 @@ const Tickets = function(tickets) {
 };
 
 Tickets.create = (newTicket, result) => {
-    sql.query("INSERT INTO tickets SET ?", newTicket, (err, res) => {
+    connection.connection1.query("INSERT INTO tickets SET ?", newTicket, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -22,7 +22,7 @@ Tickets.create = (newTicket, result) => {
 Tickets.getAll = (result) => {
     let query = "SELECT * FROM tickets";
   
-    sql.query(query, (err, res) => {
+    connection.connection1.query(query, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -35,7 +35,7 @@ Tickets.getAll = (result) => {
   };
 
   Tickets.findById = (id, result) => {
-    sql.query(`SELECT * FROM tickets WHERE id = ${id}`, (err, res) => {
+    connection.connection1.query(`SELECT * FROM tickets WHERE id = ${id}`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -56,7 +56,7 @@ Tickets.getAll = (result) => {
   
 
 Tickets.updateById = (id, ticket, result) => {
-    sql.query(
+    connection.connection1.query(
       "UPDATE tickets SET ticket_showing = ?, ticket_user = ? WHERE id = ?",
       [ticket.ticket_showing, ticket.ticket_user, id],
       (err, res) => {
@@ -79,7 +79,7 @@ Tickets.updateById = (id, ticket, result) => {
   };
   
   Tickets.remove = (id, result) => {
-    sql.query("DELETE FROM tickets WHERE id = ?", id, (err, res) => {
+    connection.connection1.query("DELETE FROM tickets WHERE id = ?", id, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -98,7 +98,7 @@ Tickets.updateById = (id, ticket, result) => {
   };
 
   Tickets.bookTicket = (userName, showing, result) => {
-    sql.query(`INSERT INTO tickets SET ticket_showing = ${showing}, ticket_user = (SELECT id FROM users WHERE user_name = "${userName}" LIMIT 1)
+    connection.connection1.query(`INSERT INTO tickets SET ticket_showing = ${showing}, ticket_user = (SELECT id FROM users WHERE user_name = "${userName}" LIMIT 1)
     `,(err, res) => {
       if (err) {
         console.log("error: ", err);

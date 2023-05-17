@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const connection = require("../dbutils/dbConnect.js");
 
 // constructor
 const Showings = function(showing) {
@@ -8,7 +8,7 @@ const Showings = function(showing) {
 };
 
 Showings.create = (newShowing, result) => {
-  sql.query("INSERT INTO showings SET ?", newShowing, (err, res) => {
+  connection.connection1.query("INSERT INTO showings SET ?", newShowing, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -24,7 +24,7 @@ Showings.getAll = (result) => {
   let query = `SELECT * FROM showings`;
 
 
-  sql.query(query, (err, res) => {
+  connection.connection1.query(query, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -37,7 +37,7 @@ Showings.getAll = (result) => {
 };
 
 Showings.findById = (id, result) => {
-  sql.query(`SELECT * FROM showings WHERE id = ${id}`, (err, res) => {
+  connection.connection1.query(`SELECT * FROM showings WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -56,7 +56,7 @@ Showings.findById = (id, result) => {
 };
 
 Showings.updateById = (id, showing, result) => {
-  sql.query(
+  connection.connection1.query(
     "UPDATE showings SET showing_film = ?, showing_screen = ?, showing_time = ? WHERE id = ?",
     [showing.showing_film, showing.showing_screen, showing.showing_time, id],
     (err, res) => {
@@ -79,7 +79,7 @@ Showings.updateById = (id, showing, result) => {
 };
 
 Showings.remove = (id, result) => {
-  sql.query("DELETE FROM showings WHERE id = ?", id, (err, res) => {
+  connection.connection1.query("DELETE FROM showings WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -98,7 +98,7 @@ Showings.remove = (id, result) => {
 };
 
 Showings.findByTitle = (title, result) => {
-  sql.query(`select showings.id, showings.showing_screen, showings.showing_time, (screens.screen_max_seats-(SELECT COUNT(*) FROM tickets WHERE ticket_showing = showings.id)) AS "Remaining Seats"  from showings 
+  connection.connection1.query(`select showings.id, showings.showing_screen, showings.showing_time, (screens.screen_max_seats-(SELECT COUNT(*) FROM tickets WHERE ticket_showing = showings.id)) AS "Remaining Seats"  from showings 
   join films on showings.showing_film = films.id
   join screens on showings.showing_screen = screens.id
   where films.film_title = "${title}";`, (err, res) => {

@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const connection = require("../dbutils/dbConnect.js");
 
 // constructor
 const Screens = function(screen) {
@@ -6,7 +6,7 @@ const Screens = function(screen) {
 };
 
 Screens.create = (newScreen, result) => {
-  sql.query("INSERT INTO screens SET ?", newScreen, (err, res) => {
+  connection.connection1.query("INSERT INTO screens SET ?", newScreen, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -19,7 +19,7 @@ Screens.create = (newScreen, result) => {
 };
 
 Screens.getAll = (result) => {
-  sql.query("SELECT * FROM screens", (err, res) => {
+  connection.connection1.query("SELECT * FROM screens", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -32,7 +32,7 @@ Screens.getAll = (result) => {
 };
 
 Screens.findById = (id, result) => {
-  sql.query(`SELECT * FROM screens WHERE id = ${id}`, (err, res) => {
+  connection.connection1.query(`SELECT * FROM screens WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -51,7 +51,7 @@ Screens.findById = (id, result) => {
 };
 
 Screens.updateById = (id, screen, result) => {
-  sql.query(
+  connection.connection1.query(
     "UPDATE screens SET screen_max_seats = ? WHERE id = ?",
     [screen.screen_max_seats, id],
     (err, res) => {
@@ -74,7 +74,7 @@ Screens.updateById = (id, screen, result) => {
 };
 
 Screens.remove = (id, result) => {
-  sql.query("DELETE FROM screens WHERE id = ?", id, (err, res) => {
+  connection.connection1.query("DELETE FROM screens WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

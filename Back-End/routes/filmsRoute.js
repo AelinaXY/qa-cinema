@@ -1,4 +1,4 @@
-module.exports = app => {
+module.exports.configureRoutes = (app,app1) => {
     var router = require("express").Router();
     const films = require("../controllers/filmsController.js");
 
@@ -33,5 +33,9 @@ module.exports = app => {
     router.get("/new-releases/", films.findNewReleases);
 
     app.use('/films',router)
+    app1.use('/films1',router)
+
 
 }
+
+

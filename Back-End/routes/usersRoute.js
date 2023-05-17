@@ -1,4 +1,4 @@
-module.exports = app => {
+module.exports.configureRoutes = (app,app1) => {
     const users = require("../controllers/usersController.js");
   
     var router = require("express").Router();
@@ -19,4 +19,5 @@ module.exports = app => {
   router.delete("/:id", users.delete);
   
     app.use('/users', router);
+    app1.use('/users1', router);
   };

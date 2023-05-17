@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const connection = require("../dbutils/dbConnect.js");
 
 // constructor
 const Users = function(user) {
@@ -8,7 +8,7 @@ const Users = function(user) {
 };
 
 Users.create = (newUser, result) => {
-    sql.query("INSERT INTO users SET ?", newUser, (err, res) => {
+    connection.connection1.query("INSERT INTO users SET ?", newUser, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -27,7 +27,7 @@ Users.getAll = (name, result) => {
       query += ` WHERE name LIKE '%${name}%'`;
     }
   
-    sql.query(query, (err, res) => {
+    connection.connection1.query(query, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -40,7 +40,7 @@ Users.getAll = (name, result) => {
   };
 
   Users.findById = (id, result) => {
-    sql.query(`SELECT * FROM users WHERE id = ${id}`, (err, res) => {
+    connection.connection1.query(`SELECT * FROM users WHERE id = ${id}`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -61,7 +61,7 @@ Users.getAll = (name, result) => {
   
 
 Users.updateById = (id, user, result) => {
-    sql.query(
+    connection.connection1.query(
       "UPDATE users SET user_name = ?, user_fname = ?, user_pass = ? WHERE id = ?",
       [user.user_name, user.user_fname, user.user_pass, id],
       (err, res) => {
@@ -84,7 +84,7 @@ Users.updateById = (id, user, result) => {
   };
   
   Users.remove = (id, result) => {
-    sql.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
+    connection.connection1.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);

@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const connection = require("../dbutils/dbConnect.js");
 
 const DiscussionBoardPost = function(discussionBoardPost){
     this.title= discussionBoardPost.title;
@@ -8,7 +8,7 @@ const DiscussionBoardPost = function(discussionBoardPost){
 }
 
 DiscussionBoardPost.create = (newPost,result)=>{
-    sql.query("INSERT INTO discussion_board SET ?",newPost,(err,res)=>{
+  connection.connection1.query("INSERT INTO discussion_board SET ?",newPost,(err,res)=>{
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -27,7 +27,7 @@ DiscussionBoardPost.getAll = (result) => {
     //   query += ` WHERE title LIKE '%${title}%'`;
     // }
   
-    sql.query(query, (err, res) => {
+    connection.connection1.query(query, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -41,7 +41,7 @@ DiscussionBoardPost.getAll = (result) => {
   };
 
   DiscussionBoardPost.findById = (id, result) => {
-    sql.query(`SELECT * FROM discussion_board WHERE id = ${id}`, (err, res) => {
+    connection.connection1.query(`SELECT * FROM discussion_board WHERE id = ${id}`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -60,7 +60,7 @@ DiscussionBoardPost.getAll = (result) => {
   };
 
   DiscussionBoardPost.updateById = (id, post, result) => {
-    sql.query(
+    connection.connection1.query(
       "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ? WHERE id = ?",
       [post.title, post.body, post.film_id, post.film_rating, id],
       (err, res) => {
@@ -83,7 +83,7 @@ DiscussionBoardPost.getAll = (result) => {
   };
 
   DiscussionBoardPost.remove = (id, result) => {
-    sql.query("DELETE FROM discussion_board WHERE id = ?", id, (err, res) => {
+    connection.connection1.query("DELETE FROM discussion_board WHERE id = ?", id, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);

@@ -1,5 +1,5 @@
 
-module.exports = app => {
+module.exports.configureRoutes = (app,app1) => {
     const discussionBoardPosts = require("../controllers/discussionBoardController.js");
   var router = require("express").Router();
 
@@ -19,4 +19,5 @@ module.exports = app => {
   router.delete("/:id", discussionBoardPosts.delete);
 
   app.use('/discussionBoard', router);
+  app1.use('/discussionBoard1', router);
 };

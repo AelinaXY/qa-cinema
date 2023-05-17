@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const connection = require("../dbutils/dbConnect.js");
 
 // constructor
 const CCDetails = function(CCDetails) {
@@ -10,7 +10,7 @@ const CCDetails = function(CCDetails) {
 };
 
 CCDetails.create = (newCC, result) => {
-    sql.query("INSERT INTO cc_details SET ?", newCC, (err, res) => {
+  connection.connection1.query("INSERT INTO cc_details SET ?", newCC, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -25,7 +25,7 @@ CCDetails.create = (newCC, result) => {
   CCDetails.getAll = (result) => {
     let query = "SELECT * FROM cc_details";
   
-    sql.query(query, (err, res) => {
+    connection.connection1.query(query, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -38,7 +38,7 @@ CCDetails.create = (newCC, result) => {
   };
 
   CCDetails.findById = (id, result) => {
-    sql.query(`SELECT * FROM cc_details WHERE id = ${id}`, (err, res) => {
+    connection.connection1.query(`SELECT * FROM cc_details WHERE id = ${id}`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -59,7 +59,7 @@ CCDetails.create = (newCC, result) => {
   
 
   CCDetails.updateById = (id, ccdetails, result) => {
-    sql.query(
+    connection.connection1.query(
       "UPDATE cc_details SET cc_user = ?, cc_number = ?, cc_date = ?, cc_ccv = ? WHERE id = ?",
       [ccdetails.cc_user, ccdetails.cc_number, ccdetails.cc_date,ccdetails.ccv, id],
       (err, res) => {
@@ -82,7 +82,7 @@ CCDetails.create = (newCC, result) => {
   };
   
   CCDetails.remove = (id, result) => {
-    sql.query("DELETE FROM cc_details WHERE id = ?", id, (err, res) => {
+    connection.connection1.query("DELETE FROM cc_details WHERE id = ?", id, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
