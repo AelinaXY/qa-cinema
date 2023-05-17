@@ -30,7 +30,7 @@ function App() {
         <Route path="/screenings/:film">
           <Screenings />
         </Route>
-        <Route path="/screenings/">
+        <Route path="/screenings" exact>
           <Screenings />
         </Route>
         <Route path="/contact">
