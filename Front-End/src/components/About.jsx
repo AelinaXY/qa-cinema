@@ -11,31 +11,46 @@ import Values from "./aboutImages/AboutValues.png";
 import Location from "./aboutImages/AboutLocation.png";
 const About = () => {
   return (
-    <div>
-      <h2 className="aboutPage">
-        <span>About Us</span>
-      </h2>
-      <img className="openings-image" src={Openings} alt="Openings" />
-      <img className="tickets-image" src={Tickets} alt="Tickets" />
-      <img className="values-image" src={Values} alt="Values" />
-      <img className="location-image" src={Location} alt="Location" />
-
+    <>
+      <Container fluid>
+        <Row>
+          <Col className="text-center mx-auto">
+            {" "}
+            <h1 className="aboutPage text-center ">About Us</h1>
+            <img className="openings-image" src={Openings} alt="Values" />
+          </Col>
+        </Row>
+        <Row>
+          <Col className="text-center mx-auto">
+            {" "}
+            <img className="openings-image" src={Location} alt="Location" />
+          </Col>
+          <Col className="text-center mx-auto">
+            {" "}
+            <img className="openings-image" src={Values} alt="Values" />
+          </Col>
+        </Row>
+      </Container>
       <h3 className="aboutPage">
-        <span>Who are We?.</span>
+        <span>Who are We?</span>
       </h3>
-      <p1 className="aboutPage">
-        We are specialists in technology! With our expertise and cutting edge
-        technology to bring you the perfect blend of innovation and
-        entertainment. Step into our world of technological marvels and let us
-        take you on an unforgettable cinematic adventure like no other. Welcome
-        to the future of cinema. Still want to learn more?{" "}
-        <a href="/contacts">Write to us!</a>
-      </p1>
+
+      <Alert>
+        {" "}
+        <p1>
+          We are specialists in technology! With our expertise and cutting edge
+          technology to bring you the perfect blend of innovation and
+          entertainment. Step into our world of technological marvels and let us
+          take you on an unforgettable cinematic adventure like no other.
+          Welcome to the future of cinema. Still want to learn more?{" "}
+          <a href="/contact">Write to us!</a>
+        </p1>
+      </Alert>
 
       <h1 className="aboutPage">
         <span>A preview of our new state of the art cinema.</span>
       </h1>
-      {/* <Carousel className="aboutPage">
+      <Carousel className="aboutPage">
         <div className="aboutPage">
           <img className="aboutPage" src={Building} alt="Site" />
         </div>
@@ -48,8 +63,8 @@ const About = () => {
         <p1 className="aboutPage">
           This top of the line new cinema will change the industry forever
         </p1>
-      </Carousel> */}
-    </div>
+      </Carousel>
+    </>
   );
 };
 
