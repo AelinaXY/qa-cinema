@@ -29,6 +29,9 @@ function App() {
         <Route path="/screenings/:film">
           <Screenings />
         </Route>
+        <Route path="/screenings/">
+          <Screenings />
+        </Route>
         <Route path="/contact">
           <Contact />
         </Route>
