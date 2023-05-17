@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import ProductDisplay from "./ProductDisplay";
@@ -12,18 +12,63 @@ const stripePromise = loadStripe(
   "pk_test_51N6WNWCKjd8RwmSK8SoMWnKiN2J2OO6spK0MS5tjLMiixQJdzBJvKBsMmjhqU3AzAmMHUeYV1pp43sQafV2tLoXs0074uQolOD"
 );
 
-export default function StripeContainer() {
+export default function StripeContainer(prop) {
   const [clientSecret, setClientSecret] = useState("");
+  const createdPaymentIntent = useRef(false);
+
+  const { data } = prop;
+
+  const paymentId = useRef("");
+
+  console.log(data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+
+  const amountOfTickets = [];
+
+  for (let i = 0; i < data[0]; i++) {
+    amountOfTickets.push({ id: "adult-ticket" });
+  }
+
+  for (let i = 0; i < data[1]; i++) {
+    amountOfTickets.push({ id: "child-ticket" });
+  }
+
+  for (let i = 0; i < data[2]; i++) {
+    amountOfTickets.push({ id: "concession-ticket" });
+  }
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
+    if (createdPaymentIntent.current === true) {
+      console.log(
+        amountOfTickets,
+        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+      );
+      // Create PaymentIntent as soon as the page loads
+      fetch("http://localhost:8080/update-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: amountOfTickets, id: paymentId.current }),
+      })
+        .then((res) => res.json())
+        .then((data) => setClientSecret(data.clientSecret))
+        .catch((err) => console.log(err));
+    }
+  }, [prop.data]);
+
+  useEffect(() => {
     fetch("http://localhost:8080/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: [{ id: "cinema-ticket" }] }),
+      body: JSON.stringify({ items: amountOfTickets }),
     })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret))
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        paymentId.current = data.id;
+        createdPaymentIntent.current = true;
+        return setClientSecret(data.clientSecret);
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -39,7 +84,7 @@ export default function StripeContainer() {
     <div className="App">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm data={data} id={prop.id}/>
         </Elements>
       )}
     </div>

@@ -340,6 +340,10 @@ hr {
   color: black;
 }
 
+.modalBox {
+  color: black;
+}
+
 .leaflet-container {
   width: 50vh;
   height: 50vw;

@@ -6,7 +6,9 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+import axios from "axios";
+
+export default function CheckoutForm(prop) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -49,6 +51,7 @@ export default function CheckoutForm() {
   }, [stripe]);
 
   const handleSubmit = async (e) => {
+
     console.log("handleSubmit called");
 
     e.preventDefault();
@@ -60,6 +63,49 @@ export default function CheckoutForm() {
     }
 
     setIsLoading(true);
+
+    console.log(prop);
+    console.log(email);
+
+    let userId = "";
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+
+    console.log(`making request for at http://localhost:8080/users`);
+    await axios
+      .post(`http://localhost:8080/users`,
+      {
+        user_name:email
+      },config)
+      .then((response) => {
+        userId = response.data.id;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      await Promise.all(prop.data.map(async (i) => {
+
+        for (let j=0;j<i;j++)
+        {
+          await axios
+      .post(`http://localhost:8080/tickets`,
+      {
+        ticket_showing:prop.id,
+        ticket_user:userId
+      },config)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+        }
+      }))
+
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -91,7 +137,7 @@ export default function CheckoutForm() {
     <form id="payment-form" onSubmit={handleSubmit}>
       <LinkAuthenticationElement
         id="link-authentication-element"
-        onChange={(e) => setEmail(e.target ? e.target.value : "")}
+        onChange={(e) => setEmail(e.value.email)}
       />
 
       <PaymentElement id="payment-element" options={paymentElementOptions} />
