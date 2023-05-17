@@ -30,7 +30,7 @@ const FilledScreening = ({ films, selectedFilm }) => {
   const [showingId, setShowingId] = useState("");
   const [tickets, setTickets] = useState("");
   const [movieModalTitle, setMovieModalTitle] = useState("DEFAULT");
-  const [adultTicketsAmount, setAdultTicketsAmount] = useState(118);
+  const [adultTicketsAmount, setAdultTicketsAmount] = useState(1);
   const [childTicketsAmount, setChildTicketsAmount] = useState(0);
   const [concessionsTicketsAmount, setConcessionsTicketsAmount] = useState(0);
 

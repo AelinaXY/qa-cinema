@@ -11,6 +11,8 @@ import Ratings from "./components/Ratings";
 import Map from "./components/Map";
 import TheTeam from "./components/TheTeam";
 
+
+
 import {
   BrowserRouter,
   Route,
@@ -31,7 +33,7 @@ function App() {
         <Route path="/screenings/:film">
           <Screenings />
         </Route>
-        <Route path="/screenings/">
+        <Route path="/screenings" exact>
           <Screenings />
         </Route>
         <Route path="/contact">

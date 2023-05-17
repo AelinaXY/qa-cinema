@@ -51,6 +51,7 @@ export default function CheckoutForm(prop) {
   }, [stripe]);
 
   const handleSubmit = async (e) => {
+    const ticketIds = [];
 
     console.log("handleSubmit called");
 
@@ -76,10 +77,13 @@ export default function CheckoutForm(prop) {
 
     console.log(`making request for at http://localhost:8080/users`);
     await axios
-      .post(`http://localhost:8080/users`,
-      {
-        user_name:email
-      },config)
+      .post(
+        `http://localhost:8080/users`,
+        {
+          user_name: email,
+        },
+        config
+      )
       .then((response) => {
         userId = response.data.id;
       })
@@ -87,25 +91,30 @@ export default function CheckoutForm(prop) {
         console.log(error);
       });
 
-      await Promise.all(prop.data.map(async (i) => {
-
-        for (let j=0;j<i;j++)
-        {
+    await Promise.all(
+      prop.data.map(async (i) => {
+        for (let j = 0; j < i; j++) {
           await axios
-      .post(`http://localhost:8080/tickets`,
-      {
-        ticket_showing:prop.id,
-        ticket_user:userId
-      },config)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+            .post(
+              `http://localhost:8080/tickets`,
+              {
+                ticket_showing: prop.id,
+                ticket_user: userId,
+              },
+              config
+            )
+            .then((response) => {
+              ticketIds.push(response.data.id);
+              console.log(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
-      }))
+      })
+    );
 
+    console.log(ticketIds);
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -125,6 +134,27 @@ export default function CheckoutForm(prop) {
     } else {
       setMessage("An unexpected error occurred.");
     }
+
+    //Remove errant ticket bookings
+    await Promise.all(
+      ticketIds.map(async (i) => {
+        await axios
+          .delete(
+            `http://localhost:8080/tickets/${i}`,
+            {
+              ticket_showing: prop.id,
+              ticket_user: userId,
+            },
+            config
+          )
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+    );
 
     setIsLoading(false);
   };

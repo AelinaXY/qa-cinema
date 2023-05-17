@@ -348,6 +348,40 @@ hr {
 .modalBox {
   color: black;
 }
+.nav{
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.nav:hover{
+  background-color: #0056b3;
+}
+
+.leaflet-container {
+  width: 50vh;
+  height: 50vw;
+  border: 5px black solid;
+  box-shadow: 0 8px 8px -4px lightblue;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.about-map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-maps {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 
 .leaflet-container {
   width: 50vh;
