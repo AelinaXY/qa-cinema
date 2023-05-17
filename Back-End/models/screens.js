@@ -6,7 +6,7 @@ const Screens = function(screen) {
 };
 
 Screens.create = (newScreen, result) => {
-  connection.connection1.query("INSERT INTO screens SET ?", newScreen, (err, res) => {
+  connection.query("INSERT INTO screens SET ?", newScreen, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -19,7 +19,7 @@ Screens.create = (newScreen, result) => {
 };
 
 Screens.getAll = (result) => {
-  connection.connection1.query("SELECT * FROM screens", (err, res) => {
+  connection.query("SELECT * FROM screens", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -32,7 +32,7 @@ Screens.getAll = (result) => {
 };
 
 Screens.findById = (id, result) => {
-  connection.connection1.query(`SELECT * FROM screens WHERE id = ${id}`, (err, res) => {
+  connection.query(`SELECT * FROM screens WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -51,7 +51,7 @@ Screens.findById = (id, result) => {
 };
 
 Screens.updateById = (id, screen, result) => {
-  connection.connection1.query(
+  connection.query(
     "UPDATE screens SET screen_max_seats = ? WHERE id = ?",
     [screen.screen_max_seats, id],
     (err, res) => {
@@ -74,7 +74,7 @@ Screens.updateById = (id, screen, result) => {
 };
 
 Screens.remove = (id, result) => {
-  connection.connection1.query("DELETE FROM screens WHERE id = ?", id, (err, res) => {
+  connection.query("DELETE FROM screens WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

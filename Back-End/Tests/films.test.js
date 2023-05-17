@@ -1,8 +1,9 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const Films = require('../models/films'); 
-const {app1} = require('../index.js');
+const {app} = require('../server.js');
 const { cleanUpDb } = require('./cleanUpDb.js'); 
+
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -24,8 +25,8 @@ describe('Film API', () => {
     };
 
     chai
-      .request(app1)                         
-      .post('/films1/')                   
+      .request(app)                         
+      .post('/films/')                   
       .send(filmData)                          
       .end((err, res) => {
         chai.expect(err).to.be.null;                
@@ -35,8 +36,8 @@ describe('Film API', () => {
       });
   });
 
-  const expectedFilmAtId2 = {
-    id:2,
+  const expectedFilmAtId12 = {
+    id:12,
     film_title: 'Joker',              
     film_year: 2019,                        
     film_rating: '15',                      
@@ -47,25 +48,25 @@ describe('Film API', () => {
 
   it('should retrieve all films', (done) => {
     chai
-      .request(app1)
-      .get('/films1/')
+      .request(app)
+      .get('/films/')
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        chai.expect(res.body).to.deep.include(expectedFilmAtId2)
+        chai.expect(res.body).to.deep.include(expectedFilmAtId12)
         done();
       });
   })
 
   it('should retrieve a film by ID', (done) => {
-    const filmId = '2'; 
+    const filmId = '12'; 
   
     chai
-      .request(app1)
-      .get(`/films1/byId/${filmId}`)
+      .request(app)
+      .get(`/films/byId/${filmId}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
-        chai.expect(res.body).to.deep.include(expectedFilmAtId2); 
+        chai.expect(res.body).to.deep.include(expectedFilmAtId12); 
         chai.expect(res.status).to.equal(200);
         done();
       });
@@ -85,8 +86,8 @@ describe('Film API', () => {
     let originalFilmData; 
     // retrieving the original film data
     chai
-      .request(app1)
-      .get(`/films1/byId/${filmId}`)
+      .request(app)
+      .get(`/films/byId/${filmId}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
@@ -95,8 +96,8 @@ describe('Film API', () => {
   
     // update test
     chai
-      .request(app1)
-      .put(`/films1/${filmId}`)
+      .request(app)
+      .put(`/films/${filmId}`)
       .send(updatedFilmData)
       .end((err, res) => {
         chai.expect(err).to.be.null;
@@ -108,8 +109,8 @@ describe('Film API', () => {
     // restoring the original film data
     after(() => {
       chai
-        .request(app1)
-        .put(`/films1/${filmId}`)
+        .request(app)
+        .put(`/films/${filmId}`)
         .send(originalFilmData) 
         .end((err, res) => {
           chai.expect(err).to.be.null;
@@ -121,12 +122,12 @@ describe('Film API', () => {
     const genre = 'Crime';
 
     chai
-      .request(app1)
-      .get(`/films1/genre/${genre}`)
+      .request(app)
+      .get(`/films/genre/${genre}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        chai.expect(res.body).to.deep.include(expectedFilmAtId2);
+        chai.expect(res.body).to.deep.include(expectedFilmAtId12);
         done();
       });
   });
@@ -135,12 +136,12 @@ describe('Film API', () => {
     const rating = '15';
 
     chai
-      .request(app1)
-      .get(`/films1/rating/${rating}`)
+      .request(app)
+      .get(`/films/rating/${rating}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        chai.expect(res.body).to.deep.include(expectedFilmAtId2);
+        chai.expect(res.body).to.deep.include(expectedFilmAtId12);
         done();
       });
   });
@@ -158,8 +159,8 @@ describe('Film API', () => {
     const title = 'Guardian';
 
     chai
-      .request(app1)
-      .get(`/films1/title/${title}`)
+      .request(app)
+      .get(`/films/title/${title}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
@@ -168,15 +169,50 @@ describe('Film API', () => {
       });
   });
 
-  it('should retrieve new releases', (done) => {
+  it('should retrieve films by year', (done) => {
+    const year = 2019;
+
     chai
-      .request(app1)
-      .get('/films1/new-releases/')
+      .request(app)
+      .get(`/films/year/${year}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        // Assert the expected response or data here
+        chai.expect(res.body).to.deep.include(expectedFilmAtId12);
         done();
       });
+  });
+
+  it('should remove a film', (done) => {
+    const filmId = 15; 
+
+    let originalFilmData; 
+    // retrieving the original film data
+    chai
+      .request(app)
+      .get(`/films/byId/${filmId}`)
+      .end((err, res) => {
+        chai.expect(err).to.be.null;
+        chai.expect(res.status).to.equal(200);
+        originalFilmData = res.body; 
+      });
+
+    chai.request(app)
+      .delete(`/films/${filmId}`)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('message').equal('Film was deleted successfully!');
+        done();
+      });
+    after(() => {
+      chai
+        .request(app)
+        .post(`/films/${originalFilmData}`)
+        .send(originalFilmData) 
+        .end((err, res) => {
+          chai.expect(err).to.be.null;
+        });
+    });
   });
 });

@@ -1,4 +1,4 @@
-module.exports.configureRoutes = (app,app1) => {
+module.exports = (app) => {
     const tickets = require("../controllers/ticketsController.js");
   
     var router = require("express").Router();
@@ -22,5 +22,4 @@ module.exports.configureRoutes = (app,app1) => {
 
   
     app.use('/tickets', router);
-    app1.use('/tickets1', router);
   };

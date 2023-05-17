@@ -1,8 +1,8 @@
-const {connection2} = require('../dbutils/dbConnect.js');
+const {connection} = require('../dbutils/dbConnect.js');
 
 const cleanUpDb = async () => {
     try {
-        await connection2.query("DELETE FROM films WHERE film_title ='TestFilm' ");
+        await connection.query("DELETE FROM films WHERE film_title ='TestFilm' ");
         console.log('Database cleanup completed');
     } 
     catch (error) {

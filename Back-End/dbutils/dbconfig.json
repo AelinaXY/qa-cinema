@@ -1,0 +1,28 @@
+{
+  "prodConfig": {
+    "host": "35.246.113.74",
+    "user": "root",
+    "password": "",
+    "database": "cinema",
+    "dialect": "mysql",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "testConfig": {
+    "host": "35.246.117.173",
+    "user": "root",
+    "password": "",
+    "database": "cinema_test",
+    "dialect": "mysql",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  }
+}

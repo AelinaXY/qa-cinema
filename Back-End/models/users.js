@@ -8,7 +8,7 @@ const Users = function(user) {
 };
 
 Users.create = (newUser, result) => {
-    connection.connection1.query("INSERT INTO users SET ?", newUser, (err, res) => {
+    connection.query("INSERT INTO users SET ?", newUser, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -27,7 +27,7 @@ Users.getAll = (name, result) => {
       query += ` WHERE name LIKE '%${name}%'`;
     }
   
-    connection.connection1.query(query, (err, res) => {
+    connection.query(query, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -40,7 +40,7 @@ Users.getAll = (name, result) => {
   };
 
   Users.findById = (id, result) => {
-    connection.connection1.query(`SELECT * FROM users WHERE id = ${id}`, (err, res) => {
+    connection.query(`SELECT * FROM users WHERE id = ${id}`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -61,7 +61,7 @@ Users.getAll = (name, result) => {
   
 
 Users.updateById = (id, user, result) => {
-    connection.connection1.query(
+    connection.query(
       "UPDATE users SET user_name = ?, user_fname = ?, user_pass = ? WHERE id = ?",
       [user.user_name, user.user_fname, user.user_pass, id],
       (err, res) => {
@@ -84,7 +84,7 @@ Users.updateById = (id, user, result) => {
   };
   
   Users.remove = (id, result) => {
-    connection.connection1.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
+    connection.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);

@@ -1,5 +1,5 @@
 
-module.exports.configureRoutes = (app,app1) => {
+module.exports = (app) => {
     const screens = require("../controllers/screensController.js");
   var router = require("express").Router();
 
@@ -19,5 +19,4 @@ module.exports.configureRoutes = (app,app1) => {
   router.delete("/:id", screens.delete);
 
   app.use('/screens', router);
-  app1.use('/screens1', router);
 };

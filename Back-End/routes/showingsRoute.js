@@ -1,5 +1,5 @@
 
-module.exports.configureRoutes = (app,app1) => {
+module.exports = (app) => {
   const showings = require("../controllers/showingsController.js");
   var router = require("express").Router();
 
@@ -23,5 +23,4 @@ module.exports.configureRoutes = (app,app1) => {
 
 
   app.use('/showings', router);
-  app1.use('/showings1', router);
 };

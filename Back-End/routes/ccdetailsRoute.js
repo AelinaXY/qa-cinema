@@ -1,4 +1,4 @@
-module.exports.configureRoutes = (app,app1) => {
+module.exports = (app) => {
     const ccdetails = require("../controllers/ccdetailsController.js");
   
     var router = require("express").Router();
@@ -19,5 +19,4 @@ module.exports.configureRoutes = (app,app1) => {
   router.delete("/:id", ccdetails.delete);
   
   app.use('/cc', router);
-  app1.use('/cc1', router);
 };
