@@ -3,6 +3,7 @@ const chaiHttp = require('chai-http');
 const Films = require('../models/films'); 
 const {app} = require('../server.js');
 const { cleanUpDb } = require('./cleanUpDb.js'); 
+const {connection} = require('../dbutils/dbConnect.js');
 
 
 chai.use(chaiHttp);
@@ -36,8 +37,8 @@ describe('Film API', () => {
       });
   });
 
-  const expectedFilmAtId12 = {
-    id:12,
+  const expectedJokerFilm = {
+    id:32,
     film_title: 'Joker',              
     film_year: 2019,                        
     film_rating: '15',                      
@@ -53,20 +54,20 @@ describe('Film API', () => {
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        chai.expect(res.body).to.deep.include(expectedFilmAtId12)
+        chai.expect(res.body).to.deep.include(expectedJokerFilm)
         done();
       });
   })
 
   it('should retrieve a film by ID', (done) => {
-    const filmId = '12'; 
+    const filmId = '32'; 
   
     chai
       .request(app)
       .get(`/films/byId/${filmId}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
-        chai.expect(res.body).to.deep.include(expectedFilmAtId12); 
+        chai.expect(res.body).to.deep.include(expectedJokerFilm); 
         chai.expect(res.status).to.equal(200);
         done();
       });
@@ -127,7 +128,7 @@ describe('Film API', () => {
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        chai.expect(res.body).to.deep.include(expectedFilmAtId12);
+        chai.expect(res.body).to.deep.include(expectedJokerFilm);
         done();
       });
   });
@@ -141,7 +142,7 @@ describe('Film API', () => {
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        chai.expect(res.body).to.deep.include(expectedFilmAtId12);
+        chai.expect(res.body).to.deep.include(expectedJokerFilm);
         done();
       });
   });
@@ -178,41 +179,54 @@ describe('Film API', () => {
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        chai.expect(res.body).to.deep.include(expectedFilmAtId12);
+        chai.expect(res.body).to.deep.include(expectedJokerFilm);
         done();
       });
   });
 
   it('should remove a film', (done) => {
-    const filmId = 15; 
+  let lastFilmId;
+  let originalFilmData;
 
-    let originalFilmData; 
-    // retrieving the original film data
-    chai
-      .request(app)
-      .get(`/films/byId/${filmId}`)
+  // Retrieve the last inserted film ID
+  connection.query('SELECT MAX(id) AS last_id FROM films', (err, rows) => {
+    if (err) {
+      console.log('Error while retrieving last film ID:', err);
+      done(err);
+      return;
+    }
+
+    lastFilmId = rows[0].last_id;
+
+    // Fetch the original film data
+    chai.request(app)
+      .get(`/films/byId/${lastFilmId}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        originalFilmData = res.body; 
-      });
+        originalFilmData = res.body;
 
-    chai.request(app)
-      .delete(`/films/${filmId}`)
-      .end((err, res) => {
-        expect(err).to.be.null;
-        expect(res.status).to.equal(200);
-        expect(res.body).to.have.property('message').equal('Film was deleted successfully!');
-        done();
+        // Remove the film
+        chai.request(app)
+          .delete(`/films/${lastFilmId}`)
+          .end((err, res) => {
+            chai.expect(err).to.be.null;
+            chai.expect(res.status).to.equal(200);
+            chai.expect(res.body).to.have.property('message').equal('Film was deleted successfully!');
+
+            // Add the original film back
+            chai.request(app)
+              .post('/films/')
+              .send(originalFilmData)
+              .end((err, res) => {
+                chai.expect(err).to.be.null;
+                chai.expect(res.status).to.equal(200);
+                done();
+              });
+          });
       });
-    after(() => {
-      chai
-        .request(app)
-        .post(`/films/${originalFilmData}`)
-        .send(originalFilmData) 
-        .end((err, res) => {
-          chai.expect(err).to.be.null;
-        });
-    });
   });
+});
+
+  
 });
