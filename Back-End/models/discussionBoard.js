@@ -1,4 +1,4 @@
-const connection = require("../dbutils/dbConnect.js");
+const {connection} = require("../dbutils/dbConnect.js");
 
 const DiscussionBoardPost = function(discussionBoardPost){
     this.title= discussionBoardPost.title;
