@@ -35,87 +35,95 @@ describe("Showings API", function () {
       });
   });
 
-  // const showingExpectedData = {
-  //   id: 5,
-  //   showing_film: 4,
-  //   showing_screen: 2,
-  //   showing_time: "2023-05-15T15:45:00.000Z"
-  // };
+  const showingExpectedData = {
+    id: 5,
+    showing_film: 4,
+    showing_screen: 2,
+    showing_time: "2023-05-15T15:45:00.000Z"
+  };
 
-  // it("should retrieve all showings", (done) => {
-  //   chai
-  //     .request(app)
-  //     .get("/showings/")
-  //     .end((err, res) => {
-  //       expect(err).to.be.null;
-  //       expect(res.status).to.equal(200);
-  //       expect(res.body).to.be.an("array");
-  //       expect(res.body).to.deep.include(showingExpectedData);
-  //       done();
-  //     });
-  // });
+  it("should retrieve all showings", (done) => {
+    chai
+      .request(app)
+      .get("/showings/")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.status).to.equal(200);
+        expect(res.body).to.be.an("array");
+        expect(res.body).to.deep.include(showingExpectedData);
+        done();
+      });
+  });
 
-  // it("should retrieve a showing by ID", (done) => {
-  //   const showingId = 5;
+  it("should retrieve a showing by ID", (done) => {
+    const showingId = 5;
 
-  //   chai
-  //     .request(app)
-  //     .get(`/showings/${showingId}`)
-  //     .end((err, res) => {
-  //       expect(err).to.be.null;
-  //       expect(res.status).to.equal(200);
-  //       expect(res.body.id).to.equal(showingId);
-  //       expect(res.body).to.deep.include(showingExpectedData);
-  //       done();
-  //     });
-  // });
+    chai
+      .request(app)
+      .get(`/showings/${showingId}`)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.status).to.equal(200);
+        expect(res.body.id).to.equal(showingId);
+        expect(res.body).to.deep.include(showingExpectedData);
+        done();
+      });
+  });
 
-  // it("should update a showing by ID", (done) => {
-  //   const showingId = 4;
-  //   const updatedShowingData = {
-  //     showing_film: 3,
-  //     showing_screen: 1,
-  //     showing_time: "2023-11-12T21:50:05",
-  //   };
+  it("should update a showing by ID", (done) => {
+    const showingId = 4;
+    const updatedShowingData = {
+      showing_film: 3,
+      showing_screen: 1,
+      showing_time: "2023-11-12T21:50:05",
+    };
+    
 
-  //   // update test
-  //   chai
-  //     .request(app)
-  //     .put(`/showings/${showingId}`)
-  //     .send(updatedShowingData)
-  //     .end((err, res) => {
-  //       chai.expect(err).to.be.null;
-  //       console.log(res.body);
-  //       chai.expect(res.body).to.deep.include(updatedShowingData);
-  //       chai.expect(res.status).to.equal(200);
-  //       done();
-  //     });
+    // update test
+    chai
+      .request(app)
+      .put(`/showings/${showingId}`)
+      .send(updatedShowingData)
+      .end((err, res) => {
+        chai.expect(err).to.be.null;
+        console.log(res.body);
+        chai.expect(res.body).to.deep.include(updatedShowingData);
+        chai.expect(res.status).to.equal(200);
+        done();
+      });
+    });
 
-  // it('should remove a showing', (done) => {
-  //   // Remove the showing
-  //   chai.request(app)
-  //     .delete(`/showings/${lastShowingId}`)
-  //     .end((err, res) => {
-  //       expect(err).to.be.null;
-  //       expect(res.status).to.equal(200);
-  //       expect(res.body).to.have.property('message').equal('Showing was deleted successfully!');
-  //       done();
-  //   });
-  // });
+  it('should remove a showing', (done) => {
+    const showingIdRemoveTest = 4;
+    // Remove the showing
+    chai.request(app)
+      .delete(`/showings/${showingIdRemoveTest}`)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('message').equal('Showing was deleted successfully!');
+        done();
+    });
+  });
 
-  // it('should retrieve showings by film title', (done) => {
-  //   const title = 'Guardian';
+  it('should retrieve showings by film title', (done) => {
+    const title = 'Spider-Man: No Way Home';
 
-  //   chai
-  //     .request(app)
-  //     .get(`/showings/title/${title}`)
-  //     .end((err, res) => {
-  //       chai.expect(err).to.be.null;
-  //       chai.expect(res.status).to.equal(200);
-  //       chai.expect(res.body).to.deep.include(showingExpectedData);
-  //       done();
-  //     });
-  // });
+    const expectedTitleData = {
+      id: 2,
+      showing_screen: 2,
+      showing_time: "2023-05-12T19:00:00.000Z",
+    }
+    chai
+      .request(app)
+      .get(`/showings/film/${title}`)
+      .end((err, res) => {
+        chai.expect(err).to.be.null;
+        chai.expect(res.status).to.equal(200);
+        chai.expect(res.body).to.deep.include(expectedTitleData);
+        done();
+      });
+  });
 
     after(() => {
       connection.destroy();
