@@ -79,7 +79,7 @@ describe("discussion baord api", function () {
       body: "crap!",
       film_id: 2,
       film_rating: 3,
-      // cinema_rating: "excellent",
+      cinema_rating: "excellent",
     };
 
     chai
