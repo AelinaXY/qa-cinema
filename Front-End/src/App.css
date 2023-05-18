@@ -4,6 +4,7 @@ body {
   font-size: 18px;
   left: 2px;
   background-color: rgba(0, 41, 65, 255);
+  color: white;
   font-family: "Ubuntu", sans-serif;
 }
 
@@ -17,7 +18,6 @@ body {
 .carousel {
   width: 100%;
   z-index: 950;
-
 }
 
 #imageCarouselLeft {
@@ -36,16 +36,15 @@ body {
   float: left;
 }
 
-
 /* Title */
 
-.new-rs-title-container{
+.new-rs-title-container {
   padding-top: 2%;
   padding-bottom: 2%;
   text-align: center;
 }
 
-.new-rs-title-container h1{
+.new-rs-title-container h1 {
   background-color: #81efc9;
   width: 30%;
   min-width: 300px;
@@ -54,14 +53,12 @@ body {
   border-radius: 20px;
   padding-top: 0.2%;
   padding-bottom: 0.2%;
-  font-weight: bolder;  
+  font-weight: bolder;
   color: black;
   font-size: 300%;
   text-shadow: whitesmoke;
   border-color: black;
   border-width: 5px;
-
-
 }
 
 /* Showings */
@@ -152,6 +149,19 @@ body {
   padding: 40px 40px;
 }
 
+.contact-container {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.ratings-container {
+  padding: 40px 40px;
+}
+
+.faq-container {
+  padding: 40px 40px;
+}
+
 /* Footer */
 .social-links li a i {
   color: white;
@@ -165,10 +175,6 @@ body {
   color: #afafe7;
   padding-top: 1rem;
 }
-
-/* .navbar {
-  background-color: #00003f;
-} */
 
 ul {
   list-style: none;
@@ -185,16 +191,6 @@ ul {
 
 Button {
   background-color: #00003f;
-}
-
-/* .navbar-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-.navbar h2 {
-  color: white;
 }
 
 /* Navbar */
@@ -214,4 +210,262 @@ Button {
 .navbar-light .navbar-brand {
   color: white;
   text-shadow: 1px 1px 0px #ff0000;
+}
+
+.navbar {
+  height: 15vh;
+  border: 1px solid black;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 41, 65, 1) 40%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.nav {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 41, 65, 1) 40%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.search-btn {
+  color: white;
+  text-shadow: 1px 1px 0px #ff0000;
+  background-color: rgba(0, 41, 65, 255);
+}
+
+/* .nav {
+  background-color: linear-gradient(rgba(0, 212, 255, 1) 80%);
+} */
+
+.navbar h2 {
+  color: white;
+}
+
+/* Contact  */
+.email-container {
+  width: 75vh;
+}
+
+.address-card {
+  width: 50vh;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.contact-form {
+  margin: 10px 0px 20px 0px;
+}
+
+.contact-toast {
+  background-color: lightblue;
+  color: black;
+}
+
+.contact-toast-header {
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.contact-msg {
+  padding-bottom: 25px;
+}
+
+.header {
+  margin: 25px 50px 55px 100px;
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.bookings-alert {
+  margin: 65px 25px 25px 25px;
+}
+
+.thankyou-card {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  background-color: rgba(0, 41, 65, 255);
+  width: 50vw;
+  height: 50vh;
+  /* background: #eee; */
+  box-shadow: 0 8px 8px -4px lightblue;
+  /* background-image: url("/images/guardians-3.jpg"); */
+}
+
+hr {
+  margin-top: 30px;
+  color: white;
+}
+
+.thankyou-btn {
+  color: white;
+  background-color: black;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.thankyou-btn:hover {
+  text-shadow: 1px 1px 0px #ff0000;
+  background-color: rgba(0, 41, 65, 255) !important;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thankyou-head {
+  color: white;
+
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.header {
+  margin: 25px 50px 55px 100px;
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+/* Certification */
+
+.ratings-card {
+  margin: 25px 55px;
+  height: 28rem;
+}
+
+.ratings-img {
+  object-fit: fill;
+  height: 250px;
+  padding-bottom: 5px;
+}
+
+.ratings-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: 700;
+  color: black;
+}
+
+.ratings-text {
+  height: 100px;
+  overflow: scroll;
+  /* overflow: hidden; */
+  padding-bottom: 10px;
+  color: black;
+}
+
+.showingData {
+  color: black;
+}
+
+.modalBox {
+  color: black;
+}
+.nav {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.nav:hover {
+  background-color: #0056b3;
+}
+
+.leaflet-container {
+  width: 50vh;
+  height: 50vw;
+  border: 5px black solid;
+  box-shadow: 0 8px 8px -4px lightblue;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.about-map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-maps {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.leaflet-container {
+  width: 50vh;
+  height: 50vw;
+  border: 5px black solid;
+  box-shadow: 0 8px 8px -4px lightblue;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.about-map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-maps {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* Places  */
+.places-card {
+  margin: 15px 15px 15px 15px;
+  color: black;
+  text-align: center;
+  box-shadow: -2px -5px 5px 0px rgba(245, 240, 245, 1);
+}
+
+.places-img {
+  height: 200px;
+  width: auto;
+}
+
+.places-Container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.offCanva {
+  color: black;
+}
+
+.QuickLinks-col ul li a {
+  text-decoration: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+.QuickLinks-col ul {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.QuickLinks-col li {
+  margin-top: 20px;
+}
+
+.places-card a {
+  text-decoration: none;
+  color: RGB(5, 99, 193);
+  text-decoration: none;
+}
+
+.stripe-btn {
+  margin-top: 10px;
 }

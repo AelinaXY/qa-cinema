@@ -4,13 +4,15 @@
       "title": "spiderman - no way home post",
       "body": "best spiderman movie ever!",
       "film_id": 2,
-      "film_rating": 5
+      "film_rating": 5,
+      "cinema_rating": "good"
     },
     {
       "id": 2,
       "title": "Guardians of the Galaxy Vol. 3 post",
       "body": "Chris pratt is beautiful",
       "film_id": 4,
-      "film_rating": 4
+      "film_rating": 4,
+      "cinema_rating": "excellent"
     }
   ]

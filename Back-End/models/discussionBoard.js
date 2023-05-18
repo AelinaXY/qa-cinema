@@ -1,104 +1,105 @@
-const sql = require("../dbutils/dbConnect.js");
+const { connection } = require("../dbutils/dbConnect.js");
 
-const DiscussionBoardPost = function(discussionBoardPost){
-    this.title= discussionBoardPost.title;
-    this.body = discussionBoardPost.body;
-    this.film_id = discussionBoardPost.film_id;
-    this.film_rating = discussionBoardPost.film_rating;
-}
+const DiscussionBoardPost = function (discussionBoardPost) {
+  this.title = discussionBoardPost.title;
+  this.body = discussionBoardPost.body;
+  this.film_id = discussionBoardPost.film_id;
+  this.film_rating = discussionBoardPost.film_rating;
+  this.cinema_rating = discussionBoardPost.cinema_rating;
+};
 
-DiscussionBoardPost.create = (newPost,result)=>{
-    sql.query("INSERT INTO discussion_board SET ?",newPost,(err,res)=>{
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-          }
-      
-          console.log("created post: ", { id: res.insertId, ...newPost });
-          result(null, { id: res.insertId, ...newPost });
-    });
-}
-
-DiscussionBoardPost.getAll = (result) => {
-    let query = "SELECT * FROM discussion_board";
-  
-    // if (title) {
-    //   query += ` WHERE title LIKE '%${title}%'`;
-    // }
-  
-    sql.query(query, (err, res) => {
+DiscussionBoardPost.create = (newPost, result) => {
+  connection.query(
+    "INSERT INTO discussion_board SET ?",
+    newPost,
+    (err, res) => {
       if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-  
-      console.log(res);
-      console.log("posts: ", res);
-      result(null, res);
-    });
-  };
-
-  DiscussionBoardPost.findById = (id, result) => {
-    sql.query(`SELECT * FROM discussion_board WHERE id = ${id}`, (err, res) => {
-      if (err) {
-        console.log("error: ", err);
         result(err, null);
         return;
       }
-  
+
+      result(null, { id: res.insertId, ...newPost });
+    }
+  );
+};
+
+DiscussionBoardPost.getAll = (result) => {
+  let query = "SELECT * FROM discussion_board";
+
+  // if (title) {
+  //   query += ` WHERE title LIKE '%${title}%'`;
+  // }
+
+  connection.query(query, (err, res) => {
+    if (err) {
+      result(null, err);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
+DiscussionBoardPost.findById = (id, result) => {
+  connection.query(
+    `SELECT * FROM discussion_board WHERE id = ${id}`,
+    (err, res) => {
+      if (err) {
+        result(err, null);
+        return;
+      }
+
       if (res.length) {
-        console.log("found post: ", res[0]);
         result(null, res[0]);
         return;
       }
-  
+
       // not found post with the id
       result({ kind: "not_found" }, null);
-    });
-  };
+    }
+  );
+};
 
-  DiscussionBoardPost.updateById = (id, post, result) => {
-    sql.query(
-      "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ? WHERE id = ?",
-      [post.title, post.body, post.film_id, post.film_rating, id],
-      (err, res) => {
-        if (err) {
-          console.log("error: ", err);
-          result(null, err);
-          return;
-        }
-  
-        if (res.affectedRows == 0) {
-          // not found Post with the id
-          result({ kind: "not_found" }, null);
-          return;
-        }
-  
-        console.log("updated post: ", { id: id, ...post });
-        result(null, { id: id, ...post });
-      }
-    );
-  };
-
-  DiscussionBoardPost.remove = (id, result) => {
-    sql.query("DELETE FROM discussion_board WHERE id = ?", id, (err, res) => {
+DiscussionBoardPost.updateById = (id, post, result) => {
+  connection.query(
+    "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ?, cinema_rating = ? WHERE id = ?",
+    [post.title, post.body, post.film_id, post.film_rating, post.cinema_rating, id],
+    (err, res) => {
       if (err) {
-        console.log("error: ", err);
         result(null, err);
         return;
       }
-  
+
       if (res.affectedRows == 0) {
         // not found Post with the id
         result({ kind: "not_found" }, null);
         return;
       }
-  
-      console.log("deleted post with id: ", id);
-      result(null, res);
-    });
-  };
 
-  module.exports = DiscussionBoardPost;
+      result(null, { id: id, ...post });
+    }
+  );
+};
+
+DiscussionBoardPost.remove = (id, result) => {
+  connection.query(
+    "DELETE FROM discussion_board WHERE id = ?",
+    id,
+    (err, res) => {
+      if (err) {
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found Post with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      result(null, res);
+    }
+  );
+};
+
+module.exports = DiscussionBoardPost;

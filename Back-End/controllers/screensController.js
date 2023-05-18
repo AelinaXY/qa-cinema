@@ -61,7 +61,7 @@ exports.findAll = (req, res) => {
       });
     }
   
-    console.log(req.body);
+    
   
     Screens.updateById(
       req.params.id,

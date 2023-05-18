@@ -5,12 +5,18 @@ import Screenings from "./components/Screenings";
 import Discussion from "./components/Discussion";
 import Contact from "./components/Contact";
 import Nav1 from "./components/Nav1";
+import Footer2 from "./components/Footer2";
+import ThankYou from "./components/ThankYou";
+import Ratings from "./components/Ratings";
+import Map from "./components/Map";
+import TheTeam from "./components/TheTeam";
 
 import {
   BrowserRouter,
   Route,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { Switch, BrowserRouter as Router, Link } from "react-router-dom";
+import PlacesToEat from "./components/PlacesToEat";
 
 function App() {
   return (
@@ -26,13 +32,33 @@ function App() {
         <Route path="/screenings/:film">
           <Screenings />
         </Route>
+        <Route path="/screenings" exact>
+          <Screenings />
+        </Route>
         <Route path="/contact">
           <Contact />
         </Route>
         <Route path="/discussion">
           <Discussion />
         </Route>
+        <Route path="/thankyou">
+          <ThankYou />
+        </Route>
+        <Route path="/ratings">
+          <Ratings />
+        </Route>
+        <Route path="/map">
+          <Map />
+        </Route>
+        <Route path="/placestoeat">
+          <PlacesToEat />
+        </Route>
+        <Route path="/theteam">
+          <TheTeam />
+        </Route>
       </BrowserRouter>
+
+      <Footer2 />
     </>
   );
 }

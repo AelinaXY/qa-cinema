@@ -63,7 +63,7 @@ exports.update = (req, res) => {
       });
     }
   
-    console.log(req.body);
+    
   
     Users.updateById(
       req.params.id,

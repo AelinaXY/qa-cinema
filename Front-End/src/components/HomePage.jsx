@@ -16,7 +16,7 @@ const HomePage = () => {
         "Access-Control-Allow-Origin": "*",
       },
     };
-    console.log(`making request for at ${url}`);
+    
     axios
       .get(url, config)
       .then((response) => {
@@ -40,17 +40,17 @@ const HomePage = () => {
 
 
   if (loaded) {
-    console.log("57890");
+    
     if (error !== "") {
-      console.log(error);
+      
     } else if (data !== "" && newReleaseData !== "") {
-      console.log(data);
-      console.log(newReleaseData);
+      
+      
       return filledHomePageReturn(shuffle(data),shuffle(newReleaseData));
 
     }
   } else{
-    console.log("57891");
+    
   }
 };
 

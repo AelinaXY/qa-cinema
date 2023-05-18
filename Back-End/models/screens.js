@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const {connection} = require("../dbutils/dbConnect.js");
 
 // constructor
 const Screens = function(screen) {
@@ -6,41 +6,41 @@ const Screens = function(screen) {
 };
 
 Screens.create = (newScreen, result) => {
-  sql.query("INSERT INTO screens SET ?", newScreen, (err, res) => {
+  connection.query("INSERT INTO screens SET ?", newScreen, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
-    console.log("created screen: ", { id: res.insertId, ...newScreen });
+    
     result(null, { id: res.insertId, ...newScreen });
   });
 };
 
 Screens.getAll = (result) => {
-  sql.query("SELECT * FROM screens", (err, res) => {
+  connection.query("SELECT * FROM screens", (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log("screens: ", res);
+    
     result(null, res);
   });
 };
 
 Screens.findById = (id, result) => {
-  sql.query(`SELECT * FROM screens WHERE id = ${id}`, (err, res) => {
+  connection.query(`SELECT * FROM screens WHERE id = ${id}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
     if (res.length) {
-      console.log("found screen: ", res[0]);
+      
       result(null, res[0]);
       return;
     }
@@ -51,12 +51,12 @@ Screens.findById = (id, result) => {
 };
 
 Screens.updateById = (id, screen, result) => {
-  sql.query(
+  connection.query(
     "UPDATE screens SET screen_max_seats = ? WHERE id = ?",
     [screen.screen_max_seats, id],
     (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -67,16 +67,16 @@ Screens.updateById = (id, screen, result) => {
         return;
       }
 
-      console.log("updated screen: ", { id: id, ...screen });
+      
       result(null, { id: id, ...screen });
     }
   );
 };
 
 Screens.remove = (id, result) => {
-  sql.query("DELETE FROM screens WHERE id = ?", id, (err, res) => {
+  connection.query("DELETE FROM screens WHERE id = ?", id, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
@@ -87,7 +87,7 @@ Screens.remove = (id, result) => {
       return;
     }
 
-    console.log("deleted screen with id: ", id);
+    
     result(null, res);
   });
 };
