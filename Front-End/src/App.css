@@ -223,6 +223,25 @@ Button {
   );
 }
 
+.nav {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 41, 65, 1) 40%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.search-btn {
+  color: white;
+  text-shadow: 1px 1px 0px #ff0000;
+  background-color: rgba(0, 41, 65, 255);
+}
+
+/* .nav {
+  background-color: linear-gradient(rgba(0, 212, 255, 1) 80%);
+} */
+
 .navbar h2 {
   color: white;
 }
@@ -271,6 +290,7 @@ Button {
 
 .thankyou-card {
   margin-top: 60px;
+  margin-bottom: 60px;
   background-color: rgba(0, 41, 65, 255);
   width: 50vw;
   height: 50vh;
@@ -438,4 +458,14 @@ hr {
 
 .QuickLinks-col li {
   margin-top: 20px;
+}
+
+.places-card a {
+  text-decoration: none;
+  color: RGB(5, 99, 193);
+  text-decoration: none;
+}
+
+.stripe-btn {
+  margin-top: 10px;
 }

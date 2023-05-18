@@ -1,29 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 
-
-h1.discussionPage span {
-  background-color: white;
-  border: none;
+h1.discussionPage {
+  font-size: 60px;
+  font-style: normal;
+  margin-bottom: 20px;
+  text-align: center;
+  text-decoration: solid;
+  font-family: "Ubuntu", sans-serif;
+  background-size: cover;
+  text-shadow: 1px 1px 0px #ff0000;
+  color: white;
 }
-
-  
-  h1.discussionPage {
-    font-size: 60px;
-    font-style: normal;
-    margin-bottom: 20px;
-    text-align:center;
-    text-decoration:solid;
-    font-family:"Ubuntu", sans-serif ;
-    background-size: cover;
-    color:rgb(0,41, 65, 255);
-  }
-
 
 p.discussionPage {
   color: rgb(245, 253, 253);
 }
 
-label.discussionPage{
+label.discussionPage {
   color: white;
   flex-wrap: wrap;
 }
@@ -46,8 +39,9 @@ li.discussionPage p {
   color: rgb(246, 244, 244);
   display: inline-flex;
   display: grid;
-} 
+}
 
-
-
-
+.discussion-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
