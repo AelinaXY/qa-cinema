@@ -21,7 +21,7 @@
 
 Congratulations, you should now have a working, running, version of the QA-Cinema application.
 
-<br>
+---
 
 ## Authors
 
@@ -33,7 +33,7 @@ Allwin Johnson - [AllwinJWork](https://github.com/AllwinJWork)
 
 Maryum Shouket = [Marsho23](https://github.com/marsho23)
 
-<br>
+---
 
 ## License
 
@@ -41,7 +41,7 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 _For help in [Choosing a license](https://choosealicense.com/)_
 
-<br>
+---
 
 ## Acknowledgements
 
