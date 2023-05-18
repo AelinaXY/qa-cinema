@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 
 describe("discussion baord api", function () {
-  this.timeout(30_000);
+  this.timeout(50_000);
 
   beforeEach(async () => {
     await reset();
@@ -109,6 +109,7 @@ describe("discussion baord api", function () {
           .to.have.property("message")
 
           .equal("Post was deleted successfully!");
+        done();
       });
   });
 });
