@@ -58,9 +58,13 @@ const About = () => {
         </p1>
         <Container>
           <Row>
-            <Col>
-              <Button variant="primary" onClick={handleShow}>
-                Launch
+            <Col className="text-center">
+              <Button
+                className="about-btn"
+                variant="primary"
+                onClick={handleShow}
+              >
+                About Us
               </Button>
               <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
