@@ -19,7 +19,9 @@ module.exports = (app) => {
   router.delete("/:id", showings.delete);
 
   //Get Showings by Film TItle
-  router.get("/film/:title", showings.findTitle);
+  router.get("/film/:id", showings.findId);
+
+  router.get("/allFilms/:id", showings.findAllShowings);
 
 
   app.use('/showings', router);

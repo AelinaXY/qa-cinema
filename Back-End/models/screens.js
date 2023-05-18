@@ -1,4 +1,4 @@
-const connection = require("../dbutils/dbConnect.js");
+const {connection} = require("../dbutils/dbConnect.js");
 
 // constructor
 const Screens = function(screen) {

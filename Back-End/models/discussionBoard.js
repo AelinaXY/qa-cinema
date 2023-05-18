@@ -5,6 +5,7 @@ const DiscussionBoardPost = function (discussionBoardPost) {
   this.body = discussionBoardPost.body;
   this.film_id = discussionBoardPost.film_id;
   this.film_rating = discussionBoardPost.film_rating;
+  this.cinema_rating = discussionBoardPost.cinema_rating;
 };
 
 DiscussionBoardPost.create = (newPost, result) => {
@@ -61,8 +62,8 @@ DiscussionBoardPost.findById = (id, result) => {
 
 DiscussionBoardPost.updateById = (id, post, result) => {
   connection.query(
-    "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ? WHERE id = ?",
-    [post.title, post.body, post.film_id, post.film_rating, id],
+    "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ?, cinema_rating WHERE id = ?",
+    [post.title, post.body, post.film_id, post.film_rating, cinema_rating, id],
     (err, res) => {
       if (err) {
         result(null, err);

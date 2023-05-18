@@ -15,6 +15,7 @@ exports.create = (req, res) => {
     body: req.body.body,
     film_id: req.body.film_id,
     film_rating: req.body.film_rating,
+    cinema_rating: req.body.cinema_rating,
   });
 
   // Save post in the database

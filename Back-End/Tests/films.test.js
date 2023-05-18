@@ -1,19 +1,23 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
 const Films = require('../models/films'); 
-const {app} = require('../server.js');
-const { cleanUpDb } = require('./cleanUpDb.js'); 
-const {connection} = require('../dbutils/dbConnect.js');
-
+const chai = require("chai");
+const chaiHttp = require("chai-http");
+const { app } = require("../server.js");
+const { reset } = require("./cleanUpDb.js");
+const { connection } = require("../dbutils/dbConnect.js");
+const populate = require("../dbutils/dbPopulate");
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe('Film API', () => {
+describe('Film API', function () {
 
-  afterEach(async () => {
-    await cleanUpDb(); 
+  this.timeout(30_000);
+
+  beforeEach(async () => {
+    await reset();
+    await populate();
   });
+
 
   it('should create a film', (done) => {
     const filmData = {
@@ -38,7 +42,7 @@ describe('Film API', () => {
   });
 
   const expectedJokerFilm = {
-    id:32,
+    id:1,
     film_title: 'Joker',              
     film_year: 2019,                        
     film_rating: '15',                      
@@ -54,13 +58,14 @@ describe('Film API', () => {
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
+        expect(res.body).to.be.an("array");
         chai.expect(res.body).to.deep.include(expectedJokerFilm)
         done();
       });
   })
 
   it('should retrieve a film by ID', (done) => {
-    const filmId = '32'; 
+    const filmId = '1'; 
   
     chai
       .request(app)
@@ -84,17 +89,6 @@ describe('Film API', () => {
       film_poster: 'UpdatedFilm film_poster'                     
     };
   
-    let originalFilmData; 
-    // retrieving the original film data
-    chai
-      .request(app)
-      .get(`/films/byId/${filmId}`)
-      .end((err, res) => {
-        chai.expect(err).to.be.null;
-        chai.expect(res.status).to.equal(200);
-        originalFilmData = res.body; 
-      });
-  
     // update test
     chai
       .request(app)
@@ -106,17 +100,6 @@ describe('Film API', () => {
         chai.expect(res.status).to.equal(200);
         done();
       });
-  
-    // restoring the original film data
-    after(() => {
-      chai
-        .request(app)
-        .put(`/films/${filmId}`)
-        .send(originalFilmData) 
-        .end((err, res) => {
-          chai.expect(err).to.be.null;
-        });
-    });
   });
 
   it('should retrieve films by genre', (done) => {
@@ -142,13 +125,14 @@ describe('Film API', () => {
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
+        expect(res.body).to.be.an("array");
         chai.expect(res.body).to.deep.include(expectedJokerFilm);
         done();
       });
   });
 
   const expectedDataForTitle= {
-    id:5,
+    id:4,
     film_title: 'Guardians of the Galaxy Vol. 3',
     film_year: 2023,
     film_rating: '12A',
@@ -185,48 +169,19 @@ describe('Film API', () => {
   });
 
   it('should remove a film', (done) => {
-  let lastFilmId;
-  let originalFilmData;
-
-  // Retrieve the last inserted film ID
-  connection.query('SELECT MAX(id) AS last_id FROM films', (err, rows) => {
-    if (err) {
-      
-      done(err);
-      return;
-    }
-
-    lastFilmId = rows[0].last_id;
-
-    // Fetch the original film data
+  let filmIdToBeRemoved=3;
     chai.request(app)
-      .get(`/films/byId/${lastFilmId}`)
+      .delete(`/films/${filmIdToBeRemoved}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
-        originalFilmData = res.body;
-
-        // Remove the film
-        chai.request(app)
-          .delete(`/films/${lastFilmId}`)
-          .end((err, res) => {
-            chai.expect(err).to.be.null;
-            chai.expect(res.status).to.equal(200);
-            chai.expect(res.body).to.have.property('message').equal('Film was deleted successfully!');
-
-            // Add the original film back
-            chai.request(app)
-              .post('/films/')
-              .send(originalFilmData)
-              .end((err, res) => {
-                chai.expect(err).to.be.null;
-                chai.expect(res.status).to.equal(200);
-                done();
-              });
-          });
-      });
+        chai.expect(res.body).to.have.property('message').equal('Film was deleted successfully!');
+        done();
   });
 });
 
-  
+// after(() => {
+//   connection.destroy();
+// });
+
 });
