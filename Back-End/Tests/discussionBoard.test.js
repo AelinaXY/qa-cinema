@@ -9,7 +9,7 @@ const populate = require("../dbutils/dbPopulate");
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe("discussion baord api", function () {
+describe("Discussion Board api", function () {
   this.timeout(50_000);
 
   beforeEach(async () => {
