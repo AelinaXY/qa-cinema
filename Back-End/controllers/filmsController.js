@@ -67,7 +67,7 @@ exports.update = (req, res) => {
     });
   }
 
-  console.log(req.body);
+  
 
   Films.updateById(
     req.params.id,

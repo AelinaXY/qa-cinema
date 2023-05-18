@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const connection = require("../dbutils/dbConnect.js");
 
 const DiscussionBoardPost = function(discussionBoardPost){
     this.title= discussionBoardPost.title;
@@ -8,14 +8,14 @@ const DiscussionBoardPost = function(discussionBoardPost){
 }
 
 DiscussionBoardPost.create = (newPost,result)=>{
-    sql.query("INSERT INTO discussion_board SET ?",newPost,(err,res)=>{
+  connection.query("INSERT INTO discussion_board SET ?",newPost,(err,res)=>{
         if (err) {
-            console.log("error: ", err);
+            
             result(err, null);
             return;
           }
       
-          console.log("created post: ", { id: res.insertId, ...newPost });
+          
           result(null, { id: res.insertId, ...newPost });
     });
 }
@@ -27,29 +27,29 @@ DiscussionBoardPost.getAll = (result) => {
     //   query += ` WHERE title LIKE '%${title}%'`;
     // }
   
-    sql.query(query, (err, res) => {
+    connection.query(query, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
   
-      console.log(res);
-      console.log("posts: ", res);
+      
+      
       result(null, res);
     });
   };
 
   DiscussionBoardPost.findById = (id, result) => {
-    sql.query(`SELECT * FROM discussion_board WHERE id = ${id}`, (err, res) => {
+    connection.query(`SELECT * FROM discussion_board WHERE id = ${id}`, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
       if (res.length) {
-        console.log("found post: ", res[0]);
+        
         result(null, res[0]);
         return;
       }
@@ -60,12 +60,12 @@ DiscussionBoardPost.getAll = (result) => {
   };
 
   DiscussionBoardPost.updateById = (id, post, result) => {
-    sql.query(
+    connection.query(
       "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ? WHERE id = ?",
       [post.title, post.body, post.film_id, post.film_rating, id],
       (err, res) => {
         if (err) {
-          console.log("error: ", err);
+          
           result(null, err);
           return;
         }
@@ -76,16 +76,16 @@ DiscussionBoardPost.getAll = (result) => {
           return;
         }
   
-        console.log("updated post: ", { id: id, ...post });
+        
         result(null, { id: id, ...post });
       }
     );
   };
 
   DiscussionBoardPost.remove = (id, result) => {
-    sql.query("DELETE FROM discussion_board WHERE id = ?", id, (err, res) => {
+    connection.query("DELETE FROM discussion_board WHERE id = ?", id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -96,7 +96,7 @@ DiscussionBoardPost.getAll = (result) => {
         return;
       }
   
-      console.log("deleted post with id: ", id);
+      
       result(null, res);
     });
   };

@@ -1,17 +1,19 @@
-const mysql = require('mysql');
-const dbConfig = require('./dbconfig.js');
-console.log(dbConfig);
-const connection = mysql.createConnection(
-    {host: dbConfig.HOST,
-    user: dbConfig.USER,
-    password: dbConfig.PASSWORD,
-    database: dbConfig.DB,
-  connectTimeout: 30000});
+const mysql = require("mysql");
+const { prodConfig, testConfig } = require("./dbconfig.json");
+// const {  testConfig } = require("./dbconfig.json");
+
+const config = process.env.NODE_ENV === 'test' ? testConfig : prodConfig;
 
 
-connection.connect(error => {
-    if (error) throw error;
-    console.log("Successfully connected to the database.");
-  });
+const connection = mysql.createConnection({
+  ...config,
+  connectTimeout: 30000,
+});
 
-module.exports = (connection)
+connection.connect((error) => {
+  if (error) throw error;
+  
+});
+
+
+module.exports = {connection};
