@@ -1,5 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Container, Row, Col } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 
 const Map = () => {
   //   const position = [53.478154, -2.238327];
@@ -35,7 +37,7 @@ const Map = () => {
           </Col>
         </Row>
       </Container>
-      <Container className="header-maps">
+      {/* <Container className="header-maps">
         <Row>
           <Col>
             <ul class="alert alert-primary" role="alert">
@@ -72,25 +74,101 @@ const Map = () => {
                   </a>
                 </p>
               </li>
-              <li>
-                <p>
-                  <a target="_blank" href="https://www.blinkerbar.co.uk/">
-                    Blinker
-                  </a>{" "}
-                  is a cocktail bar located within 5 minutes of QA cinema,
-                  perfect for a post or pre film drink.
-                </p>
-              </li>
-              <li>
-                <p>
-                  <a target="_blank" href="https://www.10tiblane.com/">
-                    10 Tib
-                  </a>{" "}
-                  is a cosy restaurant and wine bar located within 5 minutes of
-                  QA cinema, perfect for dinner before a film or dessert after.
-                </p>
-              </li>
             </ul>
+          </Col>
+        </Row>
+      </Container> */}
+      <Container className="places-Container">
+        <Row>
+          <Col>
+            {" "}
+            <h1 className="text-center">Parking </h1>
+            <h1 className="text-center">Public Transport </h1>
+            <CardGroup>
+              <Card className="places-card">
+                <Card.Img
+                  className="places-img"
+                  variant="top"
+                  src="/images/public-transport.jpeg"
+                />
+
+                <Card.Body>
+                  <Card.Title>
+                    <a
+                      target="_blank"
+                      href="https://tfgm.com/public-transport/bus/stations/manchester-piccadilly-gardens-bus"
+                    >
+                      Transport for Greater Manchester
+                    </a>
+                  </Card.Title>
+                  <Card.Text>
+                    Please visit transport greater Manchester. QA cinema is
+                    located within a few minutes of various public transport
+                    routes.
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  {/* <small className="text-muted">
+                    Petersfield House, Peter St, Manchester M2 5QJ
+                  </small> */}
+                </Card.Footer>
+              </Card>
+              <Card className="places-card">
+                <Card.Img
+                  className="places-img"
+                  variant="top"
+                  src="/images/parking.jpeg"
+                />
+
+                <Card.Body>
+                  <Card.Title>
+                    <a
+                      target="_blank"
+                      href="https://www.ncp.co.uk/find-a-car-park/car-parks/manchester-chorlton-street/"
+                    >
+                      Chorlton street car park.
+                    </a>
+                  </Card.Title>
+                  <Card.Text>
+                    For parking please visit chorlton street car park situated
+                    next to QA cinema.
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">
+                    Chorlton St., Manchester M1 3FY
+                  </small>
+                </Card.Footer>
+              </Card>
+              <Card className="places-card">
+                <Card.Img
+                  className="places-img"
+                  variant="top"
+                  src="/images/moovit.jpeg"
+                />
+
+                <Card.Body>
+                  <Card.Title>
+                    <a
+                      target="_blank"
+                      href="https://moovitapp.com/index/en-gb/public_transportation-Manchester_Piccadilly_Railway_Station_MAN-North_West-site_19067081-2105"
+                    >
+                      Moovit
+                    </a>{" "}
+                  </Card.Title>
+                  <Card.Text>
+                    Moovit: More than a train and bus time app! Use it for
+                    public transit navigation, maps, schedules, real-time
+                    arrivals and more!
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  {/* <small className="text-muted">
+                    10 Tib Ln, Manchester M2 4JB
+                  </small> */}
+                </Card.Footer>
+              </Card>
+            </CardGroup>
           </Col>
         </Row>
       </Container>

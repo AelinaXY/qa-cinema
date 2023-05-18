@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Alert from "react-bootstrap/Alert";
-import './Discussion.css';
+import "./Discussion.css";
+import Button from "react-bootstrap/Button";
 
 const Discussion = () => {
   const [discussions, setDiscussions] = useState([]);
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [filmId, setFilmId] = useState('');
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [filmId, setFilmId] = useState("");
   const [rating, setRating] = useState(0);
-
 
   const config = {
     headers: {
@@ -23,7 +23,7 @@ const Discussion = () => {
 
   const fetchDiscussions = () => {
     axios
-      .get('http://localhost:8080/discussionBoard', config)
+      .get("http://localhost:8080/discussionBoard", config)
       .then((response) => {
         setDiscussions(response.data);
       })
@@ -36,23 +36,27 @@ const Discussion = () => {
     e.preventDefault();
 
     axios
-      .post('http://localhost:8080/discussionBoard', {
-        title,
-        body,
-        film_id: filmId,
-        film_rating: rating,
-      }, config)
+      .post(
+        "http://localhost:8080/discussionBoard",
+        {
+          title,
+          body,
+          film_id: filmId,
+          film_rating: rating,
+        },
+        config
+      )
       .then((response) => {
         console.log(response.data);
-        fetchDiscussions(); 
+        fetchDiscussions();
       })
       .catch((error) => {
         console.log(error);
       });
 
-    setTitle('');
-    setBody('');
-    setFilmId('');
+    setTitle("");
+    setBody("");
+    setFilmId("");
     setRating(0);
   };
 
@@ -67,8 +71,10 @@ const Discussion = () => {
 
     for (let i = 1; i <= 5; i++) {
       stars.push(
-        <span key={i} onClick={()=>handleRatingClick(i)}
-          style={{cursor:'pointer',color:i<=rating? 'yellow':'gray',}}
+        <span
+          key={i}
+          onClick={() => handleRatingClick(i)}
+          style={{ cursor: "pointer", color: i <= rating ? "yellow" : "gray" }}
         >
           ☆
         </span>
@@ -77,24 +83,27 @@ const Discussion = () => {
 
     return stars;
   };
-// Carousel
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
+  // Carousel
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div>
-      <h1 className='discussionPage'><span>Discussion</span></h1>{""}
+      <h1 className="discussionPage">Discussion</h1>
+      {""}
 
-      <Alert className='discussionPage'>
-              {" "}
-              <p>
-              This is the place for you to talk about the films you watched with us.Please remember that this space is moderated.Posts with spoilers or any form of abusive language will result in the post being removed
-              </p>
-              </Alert>
+      <Alert className="discussionPage">
+        {" "}
+        <p>
+          This is the place for you to talk about the films you watched with
+          us.Please remember that this space is moderated.Posts with spoilers or
+          any form of abusive language will result in the post being removed
+        </p>
+      </Alert>
 
       <form onSubmit={handleCreateDiscussion}>
         <input
@@ -116,16 +125,21 @@ const settings = {
           onChange={(e) => setFilmId(e.target.value)}
         />
         <div>
-          <label className='discussionPage'>Rate the film: </label>
-          {renderStars()} 
+          <label className="discussionPage">Rate the film: </label>
+          {renderStars()}
         </div>
-        <button type="submit">Create post</button>
+        <Button className="discussion-btn" type="submit">
+          Create post
+        </Button>
+        {/* <button className="discussion-btn" type="submit">
+          Create post
+        </button> */}
       </form>
-      <h2 className='discussionPage' >What our viewers have said so far...</h2>
+      <h2 className="discussionPage">What our viewers have said so far...</h2>
       <ul>
         {discussions.map((discussion) => (
-          <li class className='discussionPage'key={discussion.id}>
-            <h3 className='discussionPage'>  {discussion.title}</h3>
+          <li class className="discussionPage" key={discussion.id}>
+            <h3 className="discussionPage"> {discussion.title}</h3>
             <p>{discussion.body}</p>
             <p>Overall Experience:{discussion.film_id}</p>
             <p>Rating:{discussion.film_rating}</p>
@@ -133,7 +147,6 @@ const settings = {
         ))}
       </ul>
     </div>
-    
   );
 };
 

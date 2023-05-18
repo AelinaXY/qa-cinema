@@ -6,6 +6,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 export default function CheckoutForm(prop) {
@@ -171,8 +172,17 @@ export default function CheckoutForm(prop) {
       />
 
       <PaymentElement id="payment-element" options={paymentElementOptions} />
+      {/* <Button disabled={isLoading || !stripe || !elements} id="submit">
+        <span id="button-text">
+          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+        </span>
+      </Button> */}
 
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button
+        className="btn-primary stripe-btn"
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+      >
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>

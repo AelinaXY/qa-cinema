@@ -10,44 +10,47 @@ import Screenings from "./Screenings.jsx";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect, useRef } from "react";
 
-
 const filmsData = [
   {
-    "film_title": "Joker",
-    "film_year": 2019,
-    "film_rating": "15",
-    "film_genre": "Crime",
-    "film_secondary_genre": "Drama",
-    "film_poster": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
+    film_title: "Joker",
+    film_year: 2019,
+    film_rating: "15",
+    film_genre: "Crime",
+    film_secondary_genre: "Drama",
+    film_poster:
+      "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
   },
   {
-    "film_title": "Spider-Man: No Way Home",
-    "film_year": 2021,
-    "film_rating": "PG-13",
-    "film_genre": "Action",
-    "film_secondary_genre": "Adventure",
-    "film_poster": "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/IMG_7260.jpg?v=1640349274"
+    film_title: "Spider-Man: No Way Home",
+    film_year: 2021,
+    film_rating: "PG-13",
+    film_genre: "Action",
+    film_secondary_genre: "Adventure",
+    film_poster:
+      "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/IMG_7260.jpg?v=1640349274",
   },
   {
-    "film_title": "The Batman",
-    "film_year": 2022,
-    "film_rating": "PG-13",
-    "film_genre": "Action",
-    "film_secondary_genre": "Crime",
-    "film_poster": "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/TheBatman_VERT_MONTAGE_2764x4096_INTL-540359.jpg?v=1646430239"
+    film_title: "The Batman",
+    film_year: 2022,
+    film_rating: "PG-13",
+    film_genre: "Action",
+    film_secondary_genre: "Crime",
+    film_poster:
+      "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/TheBatman_VERT_MONTAGE_2764x4096_INTL-540359.jpg?v=1646430239",
   },
   {
-    "film_title": "Guardians of the Galaxy Vol. 3",
-    "film_year": 2023,
-    "film_rating": "PG-13",
-    "film_genre": "Action",
-    "film_secondary_genre": "Adventure",
-    "film_poster": "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/IMG_0661-1_1024x1024@2x.jpg?v=1673620887"
-  }
+    film_title: "Guardians of the Galaxy Vol. 3",
+    film_year: 2023,
+    film_rating: "PG-13",
+    film_genre: "Action",
+    film_secondary_genre: "Adventure",
+    film_poster:
+      "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/IMG_0661-1_1024x1024@2x.jpg?v=1673620887",
+  },
 ];
 
 function Nav1() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = (event) => {
@@ -59,11 +62,10 @@ function Nav1() {
     );
   };
 
-
   const [data, setData] = useState("");
   const [error, setError] = useState("");
   const loaded = useRef(false);
-  const [userChoice,setUserChoice] = useState(0);
+  const [userChoice, setUserChoice] = useState(0);
 
   const request = (url, setFunction) => {
     const config = {
@@ -111,7 +113,7 @@ function Nav1() {
                 <Nav.Link href="/screenings/navLink">Screenings</Nav.Link>
                 <Nav.Link href="/discussion">Discussion</Nav.Link>
                 <Nav.Link href="/contact">Contact</Nav.Link>
-                
+
                 {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                   <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">
@@ -123,28 +125,42 @@ function Nav1() {
                   </NavDropdown.Item>
                 </NavDropdown> */}
               </Nav>
-              <Form className="nav" type="submit" placeholder="Search films here"  style={{ backgroundColor: 'navy', color: 'white' }} onSubmit={handleSearch}>
-                <select onChange={(choice => setUserChoice(choice.target.value))}>
-                  {
-                    data.map(f => <option value={f.id}>{f.film_title} {f.film_year}</option>)
-                  }
+              <Form
+                className="nav nav-colour"
+                type="submit"
+                placeholder="Search films here"
+                style={{
+                  color: "white",
+                }}
+                onSubmit={handleSearch}
+              >
+                <select
+                  onChange={(choice) => setUserChoice(choice.target.value)}
+                >
+                  {data.map((f) => (
+                    <option value={f.id}>
+                      {f.film_title} {f.film_year}
+                    </option>
+                  ))}
                 </select>
-                <Link to={{pathname:`/screenings/${userChoice}`}}>
-                  <Button variant="outline-success" type="submit">
-                   Find films here.
+                <Link to={{ pathname: `/screenings/${userChoice}` }}>
+                  <Button
+                    className="search-btn"
+                    variant="ptimary"
+                    type="submit"
+                  >
+                    Find films here.
                   </Button>
-                  </Link>
-               
+                </Link>
               </Form>
             </Navbar.Collapse>
           </Container>
         </Navbar>
-      );    }
+      );
+    }
   } else {
     console.log("NAV UNLOADeD");
   }
-
-  
 }
 
 export default Nav1;
