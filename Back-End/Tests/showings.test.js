@@ -125,7 +125,7 @@ describe("Showings API", function () {
       });
   });
 
-    after(() => {
-      connection.destroy();
-    });
+    // after(() => {
+    //   connection.destroy();
+    // });
   });

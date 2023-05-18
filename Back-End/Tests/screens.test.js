@@ -98,4 +98,8 @@ describe('Screen API', function () {
         done();
   });
 });
+
+// after(() => {
+//   connection.destroy();
+// });
 });

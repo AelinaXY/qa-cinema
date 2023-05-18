@@ -179,4 +179,9 @@ describe('Film API', function () {
         done();
   });
 });
+
+// after(() => {
+//   connection.destroy();
+// });
+
 });
