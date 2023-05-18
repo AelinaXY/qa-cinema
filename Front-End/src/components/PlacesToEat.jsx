@@ -187,32 +187,6 @@ const PlacesToEat = () => {
               </Card.Footer>
             </Card>
           </CardGroup>
-          <Button variant="primary" onClick={handleShow}>
-            Launch
-          </Button>
-          <Offcanvas show={show} onHide={handleClose}>
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body className="offCanva">
-              <ul className="aboutList">
-                <a href="/placestoeat">
-                  <li>Come and see the team at qa Cinema</li>
-                </a>
-                <a href="/ratings">
-                  {" "}
-                  <li>Certifications and FAQ's</li>{" "}
-                </a>
-
-                <a href="">
-                  <li>Where are we located</li>{" "}
-                </a>
-                <a href="/placestoeat">
-                  <li>Places to eat </li>
-                </a>
-              </ul>
-            </Offcanvas.Body>
-          </Offcanvas>
         </Col>
       </Row>
     </Container>
