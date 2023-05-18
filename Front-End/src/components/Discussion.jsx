@@ -26,7 +26,7 @@ const Discussion = () => {
         setDiscussions(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        
       });
   };
 
@@ -41,11 +41,11 @@ const Discussion = () => {
         film_rating: rating,
       }, config)
       .then((response) => {
-        console.log(response.data);
+        
         fetchDiscussions(); 
       })
       .catch((error) => {
-        console.log(error);
+        
       });
 
     setTitle('');

@@ -8,15 +8,10 @@ exports.create = (req, res) => {
     });
   }
 
-  // Create a Showing
-  const showing = new Showings({
-    showing_film: req.body.showing_film,
-    showing_screen: req.body.showing_screen,
-    showing_time: req.body.showing_time,
-  });
+
 
   // Save Showing in the database
-  Showings.create(showing, (err, data) => {
+  Showings.create(req.body, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -61,11 +56,11 @@ exports.update = (req, res) => {
     });
   }
 
-  console.log(req.body);
+  
 
   Showings.updateById(
     req.params.id,
-    new Showings(req.body),
+    req.body,
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
@@ -78,8 +73,7 @@ exports.update = (req, res) => {
           });
         }
       } else res.send(data);
-    }
-  );
+    })
 };
 
 exports.delete = (req, res) => {

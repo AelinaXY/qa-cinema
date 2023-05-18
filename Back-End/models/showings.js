@@ -1,21 +1,22 @@
-const connection = require("../dbutils/dbConnect.js");
+const {connection} = require("../dbutils/dbConnect.js");
 
 // constructor
-const Showings = function(showing) {
-  this.showing_film = showing.showing_film;
-  this.showing_screen = showing.showing_screen;
-  this.showing_time = showing.showing_time;
-};
+const Showings = {};
+//  function(showing) {
+//   this.showing_film = showing.showing_film;
+//   this.showing_screen = showing.showing_screen;
+//   this.showing_time = showing.showing_time;
+// };
 
 Showings.create = (newShowing, result) => {
   connection.query("INSERT INTO showings SET ?", newShowing, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
-    console.log("created showing: ", { id: res.insertId, ...newShowing });
+    // 
     result(null, { id: res.insertId, ...newShowing });
   });
 };
@@ -26,12 +27,12 @@ Showings.getAll = (result) => {
 
   connection.query(query, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      // 
       result(null, err);
       return;
     }
 
-    console.log("showings: ", res);
+    // 
     result(null, res);
   });
 };
@@ -39,13 +40,13 @@ Showings.getAll = (result) => {
 Showings.findById = (id, result) => {
   connection.query(`SELECT * FROM showings WHERE id = ${id}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
     if (res.length) {
-      console.log("found showing: ", res[0]);
+      // 
       result(null, res[0]);
       return;
     }
@@ -61,7 +62,7 @@ Showings.updateById = (id, showing, result) => {
     [showing.showing_film, showing.showing_screen, showing.showing_time, id],
     (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -72,7 +73,6 @@ Showings.updateById = (id, showing, result) => {
         return;
       }
 
-      console.log("updated showing: ", { id: id, ...showing });
       result(null, { id: id, ...showing });
     }
   );
@@ -81,7 +81,7 @@ Showings.updateById = (id, showing, result) => {
 Showings.remove = (id, result) => {
   connection.query("DELETE FROM showings WHERE id = ?", id, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
@@ -92,7 +92,7 @@ Showings.remove = (id, result) => {
       return;
     }
 
-    console.log("deleted showing with id: ", id);
+    // 
     result(null, res);
   });
 };
@@ -103,13 +103,13 @@ Showings.findByTitle = (title, result) => {
   join screens on showings.showing_screen = screens.id
   where films.film_title = "${title}";`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
     if (res.length) {
-      console.log("found showing: ", res[0]);
+      // 
       result(null, res[0]);
       return;
     }

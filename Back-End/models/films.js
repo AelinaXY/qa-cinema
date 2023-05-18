@@ -13,12 +13,12 @@ const Films = function(film) {
 Films.create = (newFilm, result) => {
   connection.query("INSERT INTO films SET ?", newFilm, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
-    console.log("created film: ", { id: res.insertId, ...newFilm });
+    
     result(null, { id: res.insertId, ...newFilm });
   });
 };
@@ -32,12 +32,12 @@ Films.getAll = (title, result) => {
 
   connection.query(query, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log("films: ", res);
+    
     result(null, res);
   });
 };
@@ -45,13 +45,13 @@ Films.getAll = (title, result) => {
 Films.findById = (id, result) => {
   connection.query(`SELECT * FROM films WHERE id = ${id}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
     if (res.length) {
-      console.log("found film: ", res[0]);
+      
       result(null, res[0]);
       return;
     }
@@ -67,7 +67,7 @@ Films.updateById = (id, film, result) => {
     [film.film_title, film.film_year, film.film_rating, film.film_genre, film.film_secondary_genre, film.film_poster, id],
     (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -78,7 +78,7 @@ Films.updateById = (id, film, result) => {
         return;
       }
 
-      console.log("updated film: ", { id: id, ...film });
+      
       result(null, { id: id, ...film });
     }
   );
@@ -87,7 +87,7 @@ Films.updateById = (id, film, result) => {
 Films.remove = (id, result) => {
   connection.query("DELETE FROM films WHERE id = ?", id, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
@@ -98,7 +98,7 @@ Films.remove = (id, result) => {
       return;
     }
 
-    console.log("deleted film with id: ", id);
+    
     result(null, res);
   });
 };
@@ -106,12 +106,12 @@ Films.remove = (id, result) => {
 Films.findByGenre = (genre, result) => {
   connection.query(`SELECT * FROM films WHERE film_genre LIKE '%${genre}%'`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log(`films with genre ${genre}: `, res);
+    
     result(null, res);
   });
 };
@@ -119,12 +119,12 @@ Films.findByGenre = (genre, result) => {
 Films.findByRating = (rating, result) => {
   connection.query(`SELECT * FROM films WHERE film_rating = '${rating}'`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log(`films with rating ${rating}: `, res);
+    
     result(null, res);
   });
 };
@@ -132,12 +132,12 @@ Films.findByRating = (rating, result) => {
 Films.findByYear = (year, result) => {
   connection.query(`SELECT * FROM films WHERE film_year = ${year}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log(`films from year ${year}: `, res);
+    
     result(null, res);
   });
 };
@@ -145,12 +145,12 @@ Films.findByYear = (year, result) => {
 Films.findByTitle = (title, result) => {
   connection.query(`SELECT * FROM films WHERE film_title LIKE '%${title}%'`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log(`films with title ${title}: `, res);
+    
     result(null, res);
   });
 };
@@ -158,12 +158,12 @@ Films.findByTitle = (title, result) => {
 Films.findNewReleases = (result) => {
   connection.query(`SELECT film_title, film_poster, film_rating FROM films WHERE film_year = YEAR(CURRENT_DATE())`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log("new releases: ", res);
+    
     result(null, res);
   });
 };

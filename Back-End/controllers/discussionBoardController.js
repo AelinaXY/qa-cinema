@@ -66,7 +66,7 @@ exports.findAll = (req, res) => {
       });
     }
   
-    console.log(req.body);
+    
   
     DiscussionBoardPosts.updateById(
       req.params.id,

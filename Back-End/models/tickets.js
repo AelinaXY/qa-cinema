@@ -9,12 +9,12 @@ const Tickets = function(tickets) {
 Tickets.create = (newTicket, result) => {
     connection.query("INSERT INTO tickets SET ?", newTicket, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
-      console.log("created tickets: ", { id: res.insertId, ...newTicket });
+      
       result(null, { id: res.insertId, ...newTicket });
     });
   };
@@ -24,12 +24,12 @@ Tickets.getAll = (result) => {
   
     connection.query(query, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
   
-      console.log("users: ", res);
+      
       result(null, res);
     });
   };
@@ -37,13 +37,13 @@ Tickets.getAll = (result) => {
   Tickets.findById = (id, result) => {
     connection.query(`SELECT * FROM tickets WHERE id = ${id}`, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
       if (res.length) {
-        console.log("found ticket: ", res[0]);
+        
         result(null, res[0]);
         return;
       }
@@ -61,7 +61,7 @@ Tickets.updateById = (id, ticket, result) => {
       [ticket.ticket_showing, ticket.ticket_user, id],
       (err, res) => {
         if (err) {
-          console.log("error: ", err);
+          
           result(null, err);
           return;
         }
@@ -72,7 +72,7 @@ Tickets.updateById = (id, ticket, result) => {
           return;
         }
   
-        console.log("updated ticket: ", { id: id, ...ticket });
+        
         result(null, { id: id, ...ticket });
       }
     );
@@ -81,7 +81,7 @@ Tickets.updateById = (id, ticket, result) => {
   Tickets.remove = (id, result) => {
     connection.query("DELETE FROM tickets WHERE id = ?", id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -92,7 +92,7 @@ Tickets.updateById = (id, ticket, result) => {
         return;
       }
   
-      console.log("deleted ticket with id: ", id);
+      
       result(null, res);
     });
   };
@@ -101,12 +101,12 @@ Tickets.updateById = (id, ticket, result) => {
     connection.query(`INSERT INTO tickets SET ticket_showing = ${showing}, ticket_user = (SELECT id FROM users WHERE user_name = "${userName}" LIMIT 1)
     `,(err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
-      console.log("created tickets: ", { id: res.insertId });
+      
       result(null, { id: res.insertId });
     });
   };

@@ -65,7 +65,7 @@ exports.update = (req, res) => {
       });
     }
   
-    console.log(req.body);
+    
   
     CCDetails.updateById(
       req.params.id,

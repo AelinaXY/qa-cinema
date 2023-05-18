@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger-output.json')
-const isTesting = process.env.NODE_ENV === 'test';
 
 const app = express();
 
@@ -36,7 +35,7 @@ require("./routes/discussionBoardRoute.js")(app);
 // // set port, listen for requests
 // const PORT = process.env.PORT || 8080;
 // app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}.`);
+//   
 // });
 
 // Set ports for two databases
@@ -44,7 +43,7 @@ const port = 8080;
 
 
 app.listen(port, () => {
-  console.log(`Server is running on cinema db port ${port}.`);
+  
 });
 
 
@@ -52,7 +51,7 @@ app.listen(port, () => {
 
 // const port = process.env.PORT || 8080;
 // app.listen(port, () => {
-//   console.log(`Server is running on port ${port}.`);
+//   
 // });
 
 

@@ -8,12 +8,12 @@ const Screens = function(screen) {
 Screens.create = (newScreen, result) => {
   connection.query("INSERT INTO screens SET ?", newScreen, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
-    console.log("created screen: ", { id: res.insertId, ...newScreen });
+    
     result(null, { id: res.insertId, ...newScreen });
   });
 };
@@ -21,12 +21,12 @@ Screens.create = (newScreen, result) => {
 Screens.getAll = (result) => {
   connection.query("SELECT * FROM screens", (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log("screens: ", res);
+    
     result(null, res);
   });
 };
@@ -34,13 +34,13 @@ Screens.getAll = (result) => {
 Screens.findById = (id, result) => {
   connection.query(`SELECT * FROM screens WHERE id = ${id}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
     if (res.length) {
-      console.log("found screen: ", res[0]);
+      
       result(null, res[0]);
       return;
     }
@@ -56,7 +56,7 @@ Screens.updateById = (id, screen, result) => {
     [screen.screen_max_seats, id],
     (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -67,7 +67,7 @@ Screens.updateById = (id, screen, result) => {
         return;
       }
 
-      console.log("updated screen: ", { id: id, ...screen });
+      
       result(null, { id: id, ...screen });
     }
   );
@@ -76,7 +76,7 @@ Screens.updateById = (id, screen, result) => {
 Screens.remove = (id, result) => {
   connection.query("DELETE FROM screens WHERE id = ?", id, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
@@ -87,7 +87,7 @@ Screens.remove = (id, result) => {
       return;
     }
 
-    console.log("deleted screen with id: ", id);
+    
     result(null, res);
   });
 };

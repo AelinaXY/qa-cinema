@@ -191,7 +191,7 @@ describe('Film API', () => {
   // Retrieve the last inserted film ID
   connection.query('SELECT MAX(id) AS last_id FROM films', (err, rows) => {
     if (err) {
-      console.log('Error while retrieving last film ID:', err);
+      
       done(err);
       return;
     }

@@ -10,12 +10,12 @@ const DiscussionBoardPost = function(discussionBoardPost){
 DiscussionBoardPost.create = (newPost,result)=>{
   connection.query("INSERT INTO discussion_board SET ?",newPost,(err,res)=>{
         if (err) {
-            console.log("error: ", err);
+            
             result(err, null);
             return;
           }
       
-          console.log("created post: ", { id: res.insertId, ...newPost });
+          
           result(null, { id: res.insertId, ...newPost });
     });
 }
@@ -29,13 +29,13 @@ DiscussionBoardPost.getAll = (result) => {
   
     connection.query(query, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
   
-      console.log(res);
-      console.log("posts: ", res);
+      
+      
       result(null, res);
     });
   };
@@ -43,13 +43,13 @@ DiscussionBoardPost.getAll = (result) => {
   DiscussionBoardPost.findById = (id, result) => {
     connection.query(`SELECT * FROM discussion_board WHERE id = ${id}`, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
       if (res.length) {
-        console.log("found post: ", res[0]);
+        
         result(null, res[0]);
         return;
       }
@@ -65,7 +65,7 @@ DiscussionBoardPost.getAll = (result) => {
       [post.title, post.body, post.film_id, post.film_rating, id],
       (err, res) => {
         if (err) {
-          console.log("error: ", err);
+          
           result(null, err);
           return;
         }
@@ -76,7 +76,7 @@ DiscussionBoardPost.getAll = (result) => {
           return;
         }
   
-        console.log("updated post: ", { id: id, ...post });
+        
         result(null, { id: id, ...post });
       }
     );
@@ -85,7 +85,7 @@ DiscussionBoardPost.getAll = (result) => {
   DiscussionBoardPost.remove = (id, result) => {
     connection.query("DELETE FROM discussion_board WHERE id = ?", id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -96,7 +96,7 @@ DiscussionBoardPost.getAll = (result) => {
         return;
       }
   
-      console.log("deleted post with id: ", id);
+      
       result(null, res);
     });
   };

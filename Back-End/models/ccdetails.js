@@ -12,12 +12,12 @@ const CCDetails = function(CCDetails) {
 CCDetails.create = (newCC, result) => {
   connection.query("INSERT INTO cc_details SET ?", newCC, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
-      console.log("created cc: ", { id: res.insertId, ...newCC });
+      
       result(null, { id: res.insertId, ...newCC });
     });
   };
@@ -27,12 +27,12 @@ CCDetails.create = (newCC, result) => {
   
     connection.query(query, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
   
-      console.log("CCDetails: ", res);
+      
       result(null, res);
     });
   };
@@ -40,13 +40,13 @@ CCDetails.create = (newCC, result) => {
   CCDetails.findById = (id, result) => {
     connection.query(`SELECT * FROM cc_details WHERE id = ${id}`, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
       if (res.length) {
-        console.log("found CC: ", res[0]);
+        
         result(null, res[0]);
         return;
       }
@@ -64,7 +64,7 @@ CCDetails.create = (newCC, result) => {
       [ccdetails.cc_user, ccdetails.cc_number, ccdetails.cc_date,ccdetails.ccv, id],
       (err, res) => {
         if (err) {
-          console.log("error: ", err);
+          
           result(null, err);
           return;
         }
@@ -75,7 +75,7 @@ CCDetails.create = (newCC, result) => {
           return;
         }
   
-        console.log("updated user: ", { id: id, ...ccdetails });
+        
         result(null, { id: id, ...ccdetails });
       }
     );
@@ -84,7 +84,7 @@ CCDetails.create = (newCC, result) => {
   CCDetails.remove = (id, result) => {
     connection.query("DELETE FROM cc_details WHERE id = ?", id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -95,7 +95,7 @@ CCDetails.create = (newCC, result) => {
         return;
       }
   
-      console.log("deleted CC with id: ", id);
+      
       result(null, res);
     });
   };

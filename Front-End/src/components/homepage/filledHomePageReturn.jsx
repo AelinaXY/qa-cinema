@@ -8,9 +8,9 @@ import {Link} from "react-router-dom";
 import shuffle from "../functions/shuffle";
 
 const filledHomePageReturn = (films, newReleases) => {
-  console.log("IN FILLED HOME PAGE");
-  console.log(films);
-  console.log(newReleases);
+  
+  
+  
 
   const carouselList = [];
 
