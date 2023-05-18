@@ -23,6 +23,18 @@ Congratulations, you should now have a working, running, version of the QA-Cinem
 
 ---
 
+## How to Test
+
+Testing the application is fairly simple. Assuming that you have followed the above tutorial for installing the application and that the application is currently running.
+
+1. Firstly, stop the application using `CTRL+C`
+2. Next, navigate to the back-end using `cd ../Back-End`
+3. Finally, execute `npm run test`
+
+Unfortunately, there is currently no front end testing.
+
+---
+
 ## Authors
 
 Lauren Darlaston - [AelinaXY](https://github.com/AelinaXY/)
