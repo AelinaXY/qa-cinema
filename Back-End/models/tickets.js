@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const connection = require("../dbutils/dbConnect.js");
 
 // constructor
 const Tickets = function(tickets) {
@@ -7,14 +7,14 @@ const Tickets = function(tickets) {
 };
 
 Tickets.create = (newTicket, result) => {
-    sql.query("INSERT INTO tickets SET ?", newTicket, (err, res) => {
+    connection.query("INSERT INTO tickets SET ?", newTicket, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
-      console.log("created tickets: ", { id: res.insertId, ...newTicket });
+      
       result(null, { id: res.insertId, ...newTicket });
     });
   };
@@ -22,28 +22,28 @@ Tickets.create = (newTicket, result) => {
 Tickets.getAll = (result) => {
     let query = "SELECT * FROM tickets";
   
-    sql.query(query, (err, res) => {
+    connection.query(query, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
   
-      console.log("users: ", res);
+      
       result(null, res);
     });
   };
 
   Tickets.findById = (id, result) => {
-    sql.query(`SELECT * FROM tickets WHERE id = ${id}`, (err, res) => {
+    connection.query(`SELECT * FROM tickets WHERE id = ${id}`, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
       if (res.length) {
-        console.log("found ticket: ", res[0]);
+        
         result(null, res[0]);
         return;
       }
@@ -56,12 +56,12 @@ Tickets.getAll = (result) => {
   
 
 Tickets.updateById = (id, ticket, result) => {
-    sql.query(
+    connection.query(
       "UPDATE tickets SET ticket_showing = ?, ticket_user = ? WHERE id = ?",
       [ticket.ticket_showing, ticket.ticket_user, id],
       (err, res) => {
         if (err) {
-          console.log("error: ", err);
+          
           result(null, err);
           return;
         }
@@ -72,16 +72,16 @@ Tickets.updateById = (id, ticket, result) => {
           return;
         }
   
-        console.log("updated ticket: ", { id: id, ...ticket });
+        
         result(null, { id: id, ...ticket });
       }
     );
   };
   
   Tickets.remove = (id, result) => {
-    sql.query("DELETE FROM tickets WHERE id = ?", id, (err, res) => {
+    connection.query("DELETE FROM tickets WHERE id = ?", id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -92,21 +92,21 @@ Tickets.updateById = (id, ticket, result) => {
         return;
       }
   
-      console.log("deleted ticket with id: ", id);
+      
       result(null, res);
     });
   };
 
   Tickets.bookTicket = (userName, showing, result) => {
-    sql.query(`INSERT INTO tickets SET ticket_showing = ${showing}, ticket_user = (SELECT id FROM users WHERE user_name = "${userName}" LIMIT 1)
+    connection.query(`INSERT INTO tickets SET ticket_showing = ${showing}, ticket_user = (SELECT id FROM users WHERE user_name = "${userName}" LIMIT 1)
     `,(err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
-      console.log("created tickets: ", { id: res.insertId });
+      
       result(null, { id: res.insertId });
     });
   };

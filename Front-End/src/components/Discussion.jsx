@@ -54,7 +54,7 @@ const Discussion = () => {
         setDiscussions(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        
       });
   };
 
@@ -70,11 +70,11 @@ const Discussion = () => {
         cinema_rating: qaExperience
       }, config)
       .then((response) => {
-        console.log(response.data);
+        
         fetchDiscussions(); 
       })
       .catch((error) => {
-        console.log(error);
+        
       });
 
     setTitle('');

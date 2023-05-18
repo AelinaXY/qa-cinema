@@ -1,4 +1,4 @@
-module.exports = app => {
+module.exports = (app) => {
     var router = require("express").Router();
     const films = require("../controllers/filmsController.js");
 
@@ -35,3 +35,5 @@ module.exports = app => {
     app.use('/films',router)
 
 }
+
+

@@ -7,9 +7,9 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
 const filledHomePageReturn = (films, newReleases) => {
-  console.log("IN FILLED HOME PAGE");
-  console.log(films);
-  console.log(newReleases);
+  
+  
+  
 
   const carouselList = [];
 

@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const {connection} = require("../dbutils/dbConnect.js");
 
 // constructor
 const Films = function(film) {
@@ -11,14 +11,14 @@ const Films = function(film) {
 };
 
 Films.create = (newFilm, result) => {
-  sql.query("INSERT INTO films SET ?", newFilm, (err, res) => {
+  connection.query("INSERT INTO films SET ?", newFilm, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
-    console.log("created film: ", { id: res.insertId, ...newFilm });
+    
     result(null, { id: res.insertId, ...newFilm });
   });
 };
@@ -30,28 +30,28 @@ Films.getAll = (title, result) => {
     query += ` WHERE film_title LIKE '%${title}%'`;
   }
 
-  sql.query(query, (err, res) => {
+  connection.query(query, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log("films: ", res);
+    
     result(null, res);
   });
 };
 
 Films.findById = (id, result) => {
-  sql.query(`SELECT * FROM films WHERE id = ${id}`, (err, res) => {
+  connection.query(`SELECT * FROM films WHERE id = ${id}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(err, null);
       return;
     }
 
     if (res.length) {
-      console.log("found film: ", res[0]);
+      
       result(null, res[0]);
       return;
     }
@@ -62,12 +62,12 @@ Films.findById = (id, result) => {
 };
 
 Films.updateById = (id, film, result) => {
-  sql.query(
+  connection.query(
     "UPDATE films SET film_title = ?, film_year = ?, film_rating = ?, film_genre = ?, film_secondary_genre = ?, film_poster = ? WHERE id = ?",
     [film.film_title, film.film_year, film.film_rating, film.film_genre, film.film_secondary_genre, film.film_poster, id],
     (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -78,16 +78,16 @@ Films.updateById = (id, film, result) => {
         return;
       }
 
-      console.log("updated film: ", { id: id, ...film });
+      
       result(null, { id: id, ...film });
     }
   );
 };
 
 Films.remove = (id, result) => {
-  sql.query("DELETE FROM films WHERE id = ?", id, (err, res) => {
+  connection.query("DELETE FROM films WHERE id = ?", id, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
@@ -98,72 +98,72 @@ Films.remove = (id, result) => {
       return;
     }
 
-    console.log("deleted film with id: ", id);
+    
     result(null, res);
   });
 };
 
 Films.findByGenre = (genre, result) => {
-  sql.query(`SELECT * FROM films WHERE film_genre LIKE '%${genre}%'`, (err, res) => {
+  connection.query(`SELECT * FROM films WHERE film_genre LIKE '%${genre}%'`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log(`films with genre ${genre}: `, res);
+    
     result(null, res);
   });
 };
 
 Films.findByRating = (rating, result) => {
-  sql.query(`SELECT * FROM films WHERE film_rating = '${rating}'`, (err, res) => {
+  connection.query(`SELECT * FROM films WHERE film_rating = '${rating}'`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log(`films with rating ${rating}: `, res);
+    
     result(null, res);
   });
 };
 
 Films.findByYear = (year, result) => {
-  sql.query(`SELECT * FROM films WHERE film_year = ${year}`, (err, res) => {
+  connection.query(`SELECT * FROM films WHERE film_year = ${year}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log(`films from year ${year}: `, res);
+    
     result(null, res);
   });
 };
 
 Films.findByTitle = (title, result) => {
-  sql.query(`SELECT * FROM films WHERE film_title LIKE '%${title}%'`, (err, res) => {
+  connection.query(`SELECT * FROM films WHERE film_title LIKE '%${title}%'`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log(`films with title ${title}: `, res);
+    
     result(null, res);
   });
 };
 
 Films.findNewReleases = (result) => {
-  sql.query(`SELECT film_title, film_poster, film_rating FROM films WHERE film_year = YEAR(CURRENT_DATE())`, (err, res) => {
+  connection.query(`SELECT film_title, film_poster, film_rating FROM films WHERE film_year = YEAR(CURRENT_DATE())`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      
       result(null, err);
       return;
     }
 
-    console.log("new releases: ", res);
+    
     result(null, res);
   });
 };
