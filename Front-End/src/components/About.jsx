@@ -67,8 +67,8 @@ const About = () => {
                 About Us
               </Button>
               <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                <Offcanvas.Header className="offCanva-head" closeButton>
+                  <Offcanvas.Title>Quick Links</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body className="offCanva">
                   <ul className="aboutList">

@@ -201,3 +201,7 @@ h2.about {
   color: white;
   text-decoration: none;
 }
+
+.offCanva-head {
+  background-color: rgba(0, 41, 65, 255);
+}
