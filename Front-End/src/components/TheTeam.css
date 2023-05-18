@@ -1,0 +1,74 @@
+.team-page {
+  margin: 20px;
+
+  text-align: center;
+}
+
+.team-header {
+  font-size: 38px;
+
+  color: white;
+
+  font-family: "Ubuntu", sans-serif;
+
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.team-members {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+.team-member {
+  max-width: 400px;
+
+  padding: 20px;
+
+  margin: 20px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 4px;
+  background-color: #00d5ff;
+  box-shadow: -2px -5px 5px 0px rgba(245, 240, 245, 1);
+}
+
+.team-member h4 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+
+  color: white;
+
+  font-feature-settings: "akhn";
+
+  text-decoration: underline;
+}
+
+.member-bio {
+  margin-top: 15px;
+
+  margin-bottom: 10px;
+
+  text-align: left;
+
+  margin-bottom: 10px;
+
+  color: rgba(0, 41, 65, 245);
+}
+
+x .member-links {
+  text-align: left;
+}
+
+.member-links a {
+  color: #fa0101;
+
+  text-decoration: none;
+}
+
+.member-links a:hover {
+  text-decoration: underline;
+}

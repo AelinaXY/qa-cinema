@@ -5,6 +5,7 @@ const DiscussionBoardPost = function(discussionBoardPost){
     this.body = discussionBoardPost.body;
     this.film_id = discussionBoardPost.film_id;
     this.film_rating = discussionBoardPost.film_rating;
+    this.cinema_rating = discussionBoardPost.cinema_rating;
 }
 
 DiscussionBoardPost.create = (newPost,result)=>{
