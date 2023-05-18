@@ -2,8 +2,16 @@
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import { Container, Row, Col } from "react-bootstrap";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 const PlacesToEat = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Container className="places-Container">
       <Row>
@@ -179,6 +187,32 @@ const PlacesToEat = () => {
               </Card.Footer>
             </Card>
           </CardGroup>
+          <Button variant="primary" onClick={handleShow}>
+            Launch
+          </Button>
+          <Offcanvas show={show} onHide={handleClose}>
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body className="offCanva">
+              <ul className="aboutList">
+                <a href="/placestoeat">
+                  <li>Come and see the team at qa Cinema</li>
+                </a>
+                <a href="/ratings">
+                  {" "}
+                  <li>Certifications and FAQ's</li>{" "}
+                </a>
+
+                <a href="">
+                  <li>Where are we located</li>{" "}
+                </a>
+                <a href="/placestoeat">
+                  <li>Places to eat </li>
+                </a>
+              </ul>
+            </Offcanvas.Body>
+          </Offcanvas>
         </Col>
       </Row>
     </Container>

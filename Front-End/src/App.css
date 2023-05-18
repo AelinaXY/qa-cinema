@@ -398,7 +398,7 @@ hr {
   margin-bottom: 15px;
 }
 
-/* Places */
+/* Places  */
 .places-card {
   margin: 15px 15px 15px 15px;
   color: black;
@@ -413,4 +413,12 @@ hr {
 .places-Container {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.offCanva {
+  color: black;
+}
+
+.aboutList li {
+  margin-top: 24px;
 }
