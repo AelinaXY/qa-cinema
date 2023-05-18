@@ -62,8 +62,8 @@ DiscussionBoardPost.getAll = (result) => {
 
   DiscussionBoardPost.updateById = (id, post, result) => {
     connection.query(
-      "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ? WHERE id = ?",
-      [post.title, post.body, post.film_id, post.film_rating, id],
+      "UPDATE discussion_board SET title = ?, body = ?, film_id = ?, film_rating = ?, cinema_rating WHERE id = ?",
+      [post.title, post.body, post.film_id, post.film_rating, cinema_rating, id],
       (err, res) => {
         if (err) {
           
