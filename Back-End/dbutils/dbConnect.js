@@ -2,8 +2,7 @@ const mysql = require("mysql");
 const { prodConfig, testConfig } = require("./dbconfig.json");
 // const {  testConfig } = require("./dbconfig.json");
 
-const config = process.env.NODE_ENV === 'test' ? testConfig : prodConfig;
-
+const config = process.env.NODE_ENV === "test" ? testConfig : prodConfig;
 
 const connection = mysql.createConnection({
   ...config,
@@ -12,8 +11,6 @@ const connection = mysql.createConnection({
 
 connection.connect((error) => {
   if (error) throw error;
-  
 });
 
-
-module.exports = {connection};
+module.exports = { connection };
