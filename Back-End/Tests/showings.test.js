@@ -86,7 +86,7 @@ describe("Showings API", function () {
       .send(updatedShowingData)
       .end((err, res) => {
         chai.expect(err).to.be.null;
-        console.log(res.body);
+        // console.log(res.body);
         chai.expect(res.body).to.deep.include(updatedShowingData);
         chai.expect(res.status).to.equal(200);
         done();
@@ -106,8 +106,8 @@ describe("Showings API", function () {
     });
   });
 
-  it('should retrieve showings by film title', (done) => {
-    const title = 'Spider-Man: No Way Home';
+  it('should retrieve showings by film id', (done) => {
+    const id = 2;
 
     const expectedTitleData = {
       id: 2,
@@ -116,7 +116,7 @@ describe("Showings API", function () {
     }
     chai
       .request(app)
-      .get(`/showings/film/${title}`)
+      .get(`/showings/film/${id}`)
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res.status).to.equal(200);
