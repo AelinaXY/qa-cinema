@@ -14,7 +14,8 @@ exports.create = (req, res) => {
     title: req.body.title,
     body: req.body.body,
     film_id: req.body.film_id,
-    film_rating: req.body.film_rating
+    film_rating: req.body.film_rating,
+    cinema_rating: req.body.cinema_rating
 
   });
 
@@ -66,7 +67,7 @@ exports.findAll = (req, res) => {
       });
     }
   
-    console.log(req.body);
+    
   
     DiscussionBoardPosts.updateById(
       req.params.id,

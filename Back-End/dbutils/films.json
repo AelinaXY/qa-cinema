@@ -10,7 +10,7 @@
     {
       "film_title": "Spider-Man: No Way Home",
       "film_year": 2021,
-      "film_rating": "PG-13",
+      "film_rating": "12A",
       "film_genre": "Action",
       "film_secondary_genre": "Adventure",
       "film_poster": "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/IMG_7260.jpg?v=1640349274"
@@ -18,7 +18,7 @@
     {
       "film_title": "The Batman",
       "film_year": 2022,
-      "film_rating": "PG-13",
+      "film_rating": "12A",
       "film_genre": "Action",
       "film_secondary_genre": "Crime",
       "film_poster": "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/TheBatman_VERT_MONTAGE_2764x4096_INTL-540359.jpg?v=1646430239"
@@ -26,7 +26,7 @@
     {
         "film_title": "Guardians of the Galaxy Vol. 3",
         "film_year": 2023,
-        "film_rating": "PG-13",
+        "film_rating": "12A",
         "film_genre": "Action",
         "film_secondary_genre": "Adventure",
         "film_poster": "https://cdn.shopify.com/s/files/1/0037/8008/3782/products/IMG_0661-1_1024x1024@2x.jpg?v=1673620887"

@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const {connection} = require("../dbutils/dbConnect.js");
 
 // constructor
 const CCDetails = function(CCDetails) {
@@ -10,14 +10,14 @@ const CCDetails = function(CCDetails) {
 };
 
 CCDetails.create = (newCC, result) => {
-    sql.query("INSERT INTO cc_details SET ?", newCC, (err, res) => {
+  connection.query("INSERT INTO cc_details SET ?", newCC, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
-      console.log("created cc: ", { id: res.insertId, ...newCC });
+      
       result(null, { id: res.insertId, ...newCC });
     });
   };
@@ -25,28 +25,28 @@ CCDetails.create = (newCC, result) => {
   CCDetails.getAll = (result) => {
     let query = "SELECT * FROM cc_details";
   
-    sql.query(query, (err, res) => {
+    connection.query(query, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
   
-      console.log("CCDetails: ", res);
+      
       result(null, res);
     });
   };
 
   CCDetails.findById = (id, result) => {
-    sql.query(`SELECT * FROM cc_details WHERE id = ${id}`, (err, res) => {
+    connection.query(`SELECT * FROM cc_details WHERE id = ${id}`, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
       if (res.length) {
-        console.log("found CC: ", res[0]);
+        
         result(null, res[0]);
         return;
       }
@@ -59,12 +59,12 @@ CCDetails.create = (newCC, result) => {
   
 
   CCDetails.updateById = (id, ccdetails, result) => {
-    sql.query(
+    connection.query(
       "UPDATE cc_details SET cc_user = ?, cc_number = ?, cc_date = ?, cc_ccv = ? WHERE id = ?",
       [ccdetails.cc_user, ccdetails.cc_number, ccdetails.cc_date,ccdetails.ccv, id],
       (err, res) => {
         if (err) {
-          console.log("error: ", err);
+          
           result(null, err);
           return;
         }
@@ -75,16 +75,16 @@ CCDetails.create = (newCC, result) => {
           return;
         }
   
-        console.log("updated user: ", { id: id, ...ccdetails });
+        
         result(null, { id: id, ...ccdetails });
       }
     );
   };
   
   CCDetails.remove = (id, result) => {
-    sql.query("DELETE FROM cc_details WHERE id = ?", id, (err, res) => {
+    connection.query("DELETE FROM cc_details WHERE id = ?", id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -95,7 +95,7 @@ CCDetails.create = (newCC, result) => {
         return;
       }
   
-      console.log("deleted CC with id: ", id);
+      
       result(null, res);
     });
   };

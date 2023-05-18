@@ -1,4 +1,4 @@
-const sql = require("../dbutils/dbConnect.js");
+const {connection} = require("../dbutils/dbConnect.js");
 
 // constructor
 const Users = function(user) {
@@ -8,14 +8,14 @@ const Users = function(user) {
 };
 
 Users.create = (newUser, result) => {
-    sql.query("INSERT INTO users SET ?", newUser, (err, res) => {
+    connection.query("INSERT INTO users SET ?", newUser, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
-      console.log("created user: ", { id: res.insertId, ...newUser });
+      
       result(null, { id: res.insertId, ...newUser });
     });
   };
@@ -27,28 +27,28 @@ Users.getAll = (name, result) => {
       query += ` WHERE name LIKE '%${name}%'`;
     }
   
-    sql.query(query, (err, res) => {
+    connection.query(query, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
   
-      console.log("users: ", res);
+      
       result(null, res);
     });
   };
 
   Users.findById = (id, result) => {
-    sql.query(`SELECT * FROM users WHERE id = ${id}`, (err, res) => {
+    connection.query(`SELECT * FROM users WHERE id = ${id}`, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(err, null);
         return;
       }
   
       if (res.length) {
-        console.log("found user: ", res[0]);
+        
         result(null, res[0]);
         return;
       }
@@ -61,12 +61,12 @@ Users.getAll = (name, result) => {
   
 
 Users.updateById = (id, user, result) => {
-    sql.query(
+    connection.query(
       "UPDATE users SET user_name = ?, user_fname = ?, user_pass = ? WHERE id = ?",
       [user.user_name, user.user_fname, user.user_pass, id],
       (err, res) => {
         if (err) {
-          console.log("error: ", err);
+          
           result(null, err);
           return;
         }
@@ -77,16 +77,16 @@ Users.updateById = (id, user, result) => {
           return;
         }
   
-        console.log("updated user: ", { id: id, ...user });
+        
         result(null, { id: id, ...user });
       }
     );
   };
   
   Users.remove = (id, result) => {
-    sql.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
+    connection.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        
         result(null, err);
         return;
       }
@@ -97,7 +97,7 @@ Users.updateById = (id, user, result) => {
         return;
       }
   
-      console.log("deleted user with id: ", id);
+      
       result(null, res);
     });
   };

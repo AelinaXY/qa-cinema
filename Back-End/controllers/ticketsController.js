@@ -63,7 +63,7 @@ exports.update = (req, res) => {
       });
     }
   
-    console.log(req.body);
+    
   
     Tickets.updateById(
       req.params.id,
@@ -106,7 +106,7 @@ exports.book = (req, res) => {
   const username = req.query.username;
   const showingId = req.query.showing;
 
-  console.log(username, showingId);
+  
 
 
 
