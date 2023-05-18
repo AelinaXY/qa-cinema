@@ -10,9 +10,17 @@ import Tickets from "./aboutImages/AboutTickets.png";
 import Values from "./aboutImages/AboutValues.png";
 import Location from "./aboutImages/AboutLocation.png";
 import { Carousel } from "react-bootstrap";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { useEffect, useRef, useState } from "react";
 
-import { Container,Row,Col,Alert } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+
+import { Container, Row, Col, Alert } from "react-bootstrap";
 const About = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <>
       <Container fluid>
@@ -48,6 +56,42 @@ const About = () => {
           Welcome to the future of cinema. Still want to learn more?{" "}
           <a href="/contact">Write to us!</a>
         </p1>
+        <Container>
+          <Row>
+            <Col className="text-center">
+              <Button
+                className="about-btn"
+                variant="primary"
+                onClick={handleShow}
+              >
+                About Us
+              </Button>
+              <Offcanvas show={show} onHide={handleClose}>
+                <Offcanvas.Header className="offCanva-head" closeButton>
+                  <Offcanvas.Title>Quick Links</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body className="offCanva">
+                  <ul className="aboutList">
+                    <a href="/theteam">
+                      <li>Come and see the team at qa Cinema</li>
+                    </a>
+                    <a href="/ratings">
+                      {" "}
+                      <li>Certifications and FAQ's</li>{" "}
+                    </a>
+
+                    <a href="/map">
+                      <li>Where are we located</li>{" "}
+                    </a>
+                    <a href="/placestoeat">
+                      <li>Places to eat </li>
+                    </a>
+                  </ul>
+                </Offcanvas.Body>
+              </Offcanvas>
+            </Col>
+          </Row>
+        </Container>
       </Alert>
 
       <h1 className="aboutPage">

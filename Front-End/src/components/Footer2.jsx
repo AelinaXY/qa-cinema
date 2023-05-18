@@ -14,10 +14,9 @@ function Footer2() {
           <Col className="QuickLinks-col">
             {" "}
             <ul>
-              <p></p>
               <li>
                 {" "}
-                <a href="/ratings">Ratings</a>
+                <a href="/ratings">Certification</a>
               </li>
               <li>
                 {" "}
@@ -25,11 +24,11 @@ function Footer2() {
               </li>
               <li>
                 {" "}
-                <a href=""> Quick Link</a>
+                <a href="/placestoeat">Places to eat and drink</a>
               </li>
               <li>
                 {" "}
-                <a href=""> Quick Link</a>
+                <a href="TheTeam"> QA cinema team</a>
               </li>
             </ul>
           </Col>

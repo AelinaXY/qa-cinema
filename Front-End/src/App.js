@@ -11,13 +11,12 @@ import Ratings from "./components/Ratings";
 import Map from "./components/Map";
 import TheTeam from "./components/TheTeam";
 
-
-
 import {
   BrowserRouter,
   Route,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { Switch, BrowserRouter as Router, Link } from "react-router-dom";
+import PlacesToEat from "./components/PlacesToEat";
 
 function App() {
   return (
@@ -50,6 +49,9 @@ function App() {
         </Route>
         <Route path="/map">
           <Map />
+        </Route>
+        <Route path="/placestoeat">
+          <PlacesToEat />
         </Route>
         <Route path="/theteam">
           <TheTeam />
