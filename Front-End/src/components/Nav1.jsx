@@ -10,6 +10,8 @@ import Screenings from "./Screenings.jsx";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect, useRef } from "react";
 
+import logo from "./navImages/Logo.png"
+
 const filmsData = [
   {
     film_title: "Joker",
@@ -100,7 +102,10 @@ function Nav1() {
       return (
         <Navbar expand="lg">
           <Container fluid>
-            <Navbar.Brand href="/">QA Cinema</Navbar.Brand>
+            <Navbar.Brand href="/"><img src={logo} alt="Qa Cinema Logo" style={{
+          height: 150,
+          width: 306
+        }}/></Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
