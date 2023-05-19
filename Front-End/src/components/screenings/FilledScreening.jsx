@@ -175,9 +175,11 @@ const FilledScreening = ({ films, selectedFilm }) => {
                       onClick={() => {
                         if (
                           !(
-                            adultTicketsAmount - 1 === 0 &&
+                            (adultTicketsAmount - 1 === 0 &&
                             childTicketsAmount === 0 &&
-                            concessionsTicketsAmount === 0
+                            concessionsTicketsAmount === 0)
+                            ||
+                            (adultTicketsAmount - 1 < 0)
                           )
                         ) {
                           return setAdultTicketsAmount(adultTicketsAmount - 1);
@@ -215,9 +217,11 @@ const FilledScreening = ({ films, selectedFilm }) => {
                       onClick={() => {
                         if (
                           !(
-                            childTicketsAmount - 1 === 0 &&
+                            (childTicketsAmount - 1 === 0 &&
                             adultTicketsAmount === 0 &&
-                            concessionsTicketsAmount === 0
+                            concessionsTicketsAmount === 0)
+                            ||
+                            (childTicketsAmount - 1 < 0)
                           )
                         ) {
                           return setChildTicketsAmount(childTicketsAmount - 1);
@@ -256,9 +260,11 @@ const FilledScreening = ({ films, selectedFilm }) => {
                       onClick={() => {
                         if (
                           !(
-                            concessionsTicketsAmount - 1 === 0 &&
+                            (concessionsTicketsAmount - 1 === 0 &&
                             adultTicketsAmount === 0 &&
-                            childTicketsAmount === 0
+                            childTicketsAmount === 0)
+                            ||
+                            (concessionsTicketsAmount - 1 < 0)
                           )
                         ) {
                           return setConcessionsTicketsAmount(
